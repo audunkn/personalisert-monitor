@@ -12,10 +12,10 @@
 
 ## Oppgavegruppe 2: Prosjektkonfigurasjon
 
-- [ ] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `test-enkelt`, `rapport`, `alle`, `produksjon`
-- [ ] Lag `.env.mal` med komplett feltsett (se `specs/teknologi.md` → Miljøvariabler)
-- [ ] Lag `.env` fra `.env.mal` (ikke committes — dekkes av `.gitignore`)
-- [ ] Lag `konfig/kilder.yaml` med fem startkilder og `hent_fra`/`hent_til` per kilde
+- [x] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `test-enkelt`, `rapport`, `alle`, `produksjon`
+- [x] Lag `.env.mal` med komplett feltsett (se `specs/teknologi.md` → Miljøvariabler)
+- [x] Lag `.env` fra `.env.mal` (ikke committes — dekkes av `.gitignore`)
+- [x] Lag `konfig/kilder.yaml` med fem startkilder og `hent_fra`/`hent_til` per kilde
 
 Startkilder (`konfig/teknologi.md` → Startkilder):
 1. Simon Willison — RSS — simonwillison.net/atom/everything/
