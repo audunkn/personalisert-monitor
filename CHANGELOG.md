@@ -12,6 +12,9 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ## [Uutgitt]
 
 ### Lagt til
+- Undermapper `innhenter/`, `sammendrag/`, `evaluering/`, `rag/`, `prosessering/`, `levering/`, `analyse/`, `db/` under `src/intelligence_monitor/` — hver med tom `__init__.py`
+- `src/intelligence_monitor/sammendrag/prompts/.gitkeep` — bevarerstruktur for prompt-tekstfiler
+- `tester/__init__.py` og `tester/konfig/__init__.py` — pytest-pakkestruktur
 - `src/intelligence_monitor/__init__.py` — opprettet Python-pakke for kjernemodulen
 - `pyproject.toml` med alle fase A–D-avhengigheter og dev-gruppe (pytest, pytest-mock)
 - `.gitignore` for `.env`, `*.db`, `__pycache__`, `.venv`
