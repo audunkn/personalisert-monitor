@@ -290,6 +290,13 @@ Legg til `#`-kommentar der logikken ikke er umiddelbart lesbar:
 
 Unngå kommentarer som bare gjentar koden (`artikkel_id = 1  # setter artikkel_id til 1`).
 
+### Planleggingsdokumenter (plan.md)
+Hvert `plan.md` under `specs/features/` skal ha én beskrivende innledning per oppgavegruppe.
+Innledningen plasseres mellom gruppeoverskriften og sjekklisten og skal:
+- Forklare **hva** gruppen produserer og **hvorfor** det er nødvendig på dette tidspunktet.
+- Være forståelig for både ikke-tekniske og tekniske lesere — ingen kodesnutter.
+- Holde seg til 2–4 setninger.
+
 ---
 
 ## Kalibreringsterser

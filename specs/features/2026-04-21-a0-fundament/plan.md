@@ -2,6 +2,8 @@
 
 ## Oppgavegruppe 1: Mappestruktur
 
+Etablerer katalogstrukturen som all Python-kode, tester og spesifikasjoner bygges på. En entydig mappestruktur fra dag én gjør det enkelt å finne frem og forhindrer at kode havner på feil sted etter hvert som prosjektet vokser.
+
 - [x] Opprett `src/intelligence_monitor/` med tom `__init__.py`
 - [x] Opprett undermapper: `innhenter/`, `sammendrag/prompts/`, `evaluering/`, `rag/`, `prosessering/`, `levering/`, `analyse/`, `db/`
 - [x] Legg `__init__.py` i hver undermappe
@@ -11,6 +13,8 @@
 ---
 
 ## Oppgavegruppe 2: Prosjektkonfigurasjon
+
+Setter opp verktøyene som alle utviklere og systemet bruker daglig: Makefile for kommandolinjearbeidsflyt, miljøvariabler for hemmeligheter og konfigurasjon, og kildelisten som bestemmer hva systemet overvåker. Uten denne konfigurasjonen kan ingen andre deler av systemet kjøres.
 
 - [x] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `test-enkelt`, `rapport`, `alle`, `produksjon`
 - [x] Legg til utfyllende kommentarer i `Makefile` — forklarer hver targets funksjon og systemkonsekvenser
@@ -30,6 +34,8 @@ Startkilder (`konfig/teknologi.md` → Startkilder):
 
 ## Oppgavegruppe 3: Vault-mapper
 
+Oppretter mappestrukturen i Obsidian-vaulten der artikkeltekst og bilder lagres. Disse mappene eksisterer kun lokalt og er ikke en del av Git-repoet — de peker på den faktiske Obsidian-vaulten via `VAULT_STI` i `.env`.
+
 - [ ] Opprett vault-mappestruktur: `artikler/`, `ressurser/bilder/`, `innboks/`, `behandlet/`
 - [ ] Legg `.gitkeep` i hver tom mappe (bevarer struktur i Git)
 
@@ -38,6 +44,8 @@ Startkilder (`konfig/teknologi.md` → Startkilder):
 ---
 
 ## Oppgavegruppe 4: Database
+
+Definerer og oppretter SQLite-databasen som er systemets primærkilde for metadata, sammendrag og evalueringstriplets. Initialisering er idempotent — skriptet kan kjøres gjentatte ganger uten å slette eksisterende data, og synkroniserer automatisk kildelisten fra YAML-konfig til databasen.
 
 - [ ] Skriv `src/intelligence_monitor/db/skjema.sql` med fase A-tabeller:
   - `kilder` — inkl. `hent_fra`, `hent_til`, `aktiv`-flagg
@@ -53,6 +61,8 @@ Startkilder (`konfig/teknologi.md` → Startkilder):
 
 ## Oppgavegruppe 5: Opik og regulatorisk kontekst
 
+Kobler systemet til Opik for sporbarhet av alle LLM-kall, og produserer det regulatoriske referansedokumentet som summarizer-prompten bruker for å koble AI-nyheter til relevant lovgivning (EU AI Act, NIS2, ISO 42001). Begge er forutsetninger for å starte fase A2a.
+
 - [ ] Konfigurer Opik i `src/intelligence_monitor/db/init.py` eller egen modul: `fail_silently=True`, les nøkkel fra env
 - [ ] Verifiser at Opik-kontoen er opprettet og API-nøkkel fungerer
 - [ ] Skriv `specs/regulatorisk-kontekst.md` — strukturert utkast med høydepunkter fra:
@@ -63,6 +73,8 @@ Startkilder (`konfig/teknologi.md` → Startkilder):
 ---
 
 ## Oppgavegruppe 6: Enhetstester
+
+Verifiserer at databaselaget fungerer korrekt: at tabeller kan opprettes gjentatte ganger uten feil (idempotens), og at kildelisten i YAML-konfig alltid reflekteres korrekt i databasen. Grønne tester her er inngangskriteriet for å starte på A1.
 
 - [ ] Skriv `tester/test_db_init.py` — to tester:
   1. **Idempotens**: Kjør `init.py` to ganger mot midlertidig SQLite-fil. Verifiser at alle tabeller finnes og ingen data er slettet.
