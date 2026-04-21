@@ -88,13 +88,21 @@ synk:
 	python -m intelligence_monitor.evaluering.opik_synk
 
 # ─────────────────────────────────────────────────────────────────────────────
-# REGRESJONSTESTING
-# Kjører lagrede evalueringstriplets merket er_regresjonstest=true mot Claude API på nytt.
-# Sammenligner nye svar med lagrede referansesvar og rapporterer avvik.
-# Brukes for å oppdage prompt-regresjoner etter modell- eller promptoppdateringer.
-# Skriver IKKE nye rader — leser kun eksisterende triplets fra SQLite.
+# REGRESJONSTESTING  [FASE B — PLACEHOLDER]
+# Full implementasjon tilhører fase B og krever LLM-dommer (intelligence_monitor.evaluering.dommer).
+# Flyten: hent artikkel → kjør sammendrag med gjeldende prompt → LLM-dommer scorer →
+# sammenlign mot lagret domeneekspert-score i evalueringstriplet.
+#
+# I fase A finnes targeten kun som skall og vil feile med "No module named
+# 'intelligence_monitor.evaluering.regresjonstest'" frem til fase B er levert.
+#
+# Når implementert (fase B):
+#   Kjører evalueringstriplets merket er_regresjonstest=true mot Claude API på nytt.
+#   Sammenligner nye svar med lagrede referansesvar og rapporterer avvik.
+#   Brukes for å oppdage prompt-regresjoner etter modell- eller promptoppdateringer.
+#   Skriver IKKE nye rader — leser kun eksisterende triplets fra SQLite.
 # ─────────────────────────────────────────────────────────────────────────────
-## regresjon: Kjør regresjonstester mot lagrede evalueringstriplets
+## regresjon: Kjør regresjonstester mot lagrede evalueringstriplets [krever fase B]
 regresjon:
 	python -m intelligence_monitor.evaluering.regresjonstest
 

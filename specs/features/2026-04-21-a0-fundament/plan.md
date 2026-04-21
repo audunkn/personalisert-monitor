@@ -14,6 +14,7 @@
 
 - [x] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `test-enkelt`, `rapport`, `alle`, `produksjon`
 - [x] Legg til utfyllende kommentarer i `Makefile` — forklarer hver targets funksjon og systemkonsekvenser
+  - **Merknad:** `regresjon`-targeten er en bevisst fase A-placeholder for et fase B-leverabel. Full implementasjon krever LLM-dommer og vil feile med «modul ikke funnet» frem til fase B er levert.
 - [x] Lag `.env.mal` med komplett feltsett (se `specs/teknologi.md` → Miljøvariabler)
 - [x] Lag `.env` fra `.env.mal` (ikke committes — dekkes av `.gitignore`)
 - [x] Lag `konfig/kilder.yaml` med fem startkilder og `hent_fra`/`hent_til` per kilde
