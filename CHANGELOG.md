@@ -12,6 +12,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ## [Uutgitt]
 
 ### Lagt til
+- Kodekonvensjon for docstrings (Google-stil) og inline-kommentarer dokumentert i `specs/teknologi.md`
 - `Makefile` med 10 targets (`innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `rapport`, `test`, `test-enkelt`, `alle`, `produksjon`) + `help`-target, med utfyllende kommentarer per target som forklarer funksjon, systemkonsekvenser og dataflyt
 - `regresjon`-target i `Makefile` dokumentert som bevisst fase A-placeholder — full implementasjon (LLM-dommer + sammenligning mot domeneekspert-score) er fase B-leverabel
 - `.env.mal` med komplett feltsett (14 variabler) fra specs/teknologi.md

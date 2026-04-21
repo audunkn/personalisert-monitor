@@ -254,6 +254,44 @@ Enhetstester skrives parallelt med hver modul. **Pytest** med fixtures for midle
 
 ---
 
+## Kodekonvensjoner
+
+### Docstrings
+Alle klasser og funksjoner skal ha en Google-stil docstring:
+
+```python
+def hent_artikler(kilde_id: int, grense: int = 50) -> list[dict]:
+    """Henter uprosesserte artikler for én kilde fra SQLite.
+
+    Args:
+        kilde_id: Primærnøkkel i `kilder`-tabellen.
+        grense: Maks antall rader som returneres.
+
+    Returns:
+        Liste med dicts — én per artikkel, med feltene `guid`, `url`, `tittel`.
+
+    Raises:
+        sqlite3.OperationalError: Hvis databaseforbindelsen feiler.
+    """
+```
+
+Minimumskrav:
+- **Klasser**: én setning som forklarer ansvar.
+- **Funksjoner/metoder**: én setning + `Args` og `Returns` hvis signaturen ikke er
+  selvforklarende. `Raises` legges til kun hvis funksjonen kan kaste unntak som
+  kalleren forventes å håndtere.
+- Privat hjelpefunksjon med triviell logikk: kort én-linje docstring er tilstrekkelig.
+
+### Inline-kommentarer
+Legg til `#`-kommentar der logikken ikke er umiddelbart lesbar:
+- Ikke-åpenbare konstanter eller beregnede verdier.
+- Valgbegrunnelser (f.eks. `# CREATE TABLE IF NOT EXISTS — idempotent`).
+- Komplekse betingelser eller regulæruttrykksmønstre.
+
+Unngå kommentarer som bare gjentar koden (`artikkel_id = 1  # setter artikkel_id til 1`).
+
+---
+
 ## Kalibreringsterser
 
 | Terskel | Verdi |
