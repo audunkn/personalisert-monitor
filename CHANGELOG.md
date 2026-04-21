@@ -16,6 +16,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 - `.gitignore` for `.env`, `*.db`, `__pycache__`, `.venv`
 - Python 3.11 virtuelt miljø via `uv venv`
 - Alle avhengigheter installert og verifisert med `uv pip install -e ".[dev]"`
+- Feature-spesifikasjon A0 — Fundament: `specs/features/2026-04-21-a0-fundament/` med `plan.md`, `requirements.md`, `validation.md`
 
 ---
 
