@@ -13,6 +13,7 @@
 ## Oppgavegruppe 2: Prosjektkonfigurasjon
 
 - [x] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `test-enkelt`, `rapport`, `alle`, `produksjon`
+- [x] Legg til utfyllende kommentarer i `Makefile` — forklarer hver targets funksjon og systemkonsekvenser
 - [x] Lag `.env.mal` med komplett feltsett (se `specs/teknologi.md` → Miljøvariabler)
 - [x] Lag `.env` fra `.env.mal` (ikke committes — dekkes av `.gitignore`)
 - [x] Lag `konfig/kilder.yaml` med fem startkilder og `hent_fra`/`hent_til` per kilde
