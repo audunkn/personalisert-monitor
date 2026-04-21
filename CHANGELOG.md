@@ -12,6 +12,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ## [Uutgitt]
 
 ### Lagt til
+- `src/intelligence_monitor/__init__.py` — opprettet Python-pakke for kjernemodulen
 - `pyproject.toml` med alle fase A–D-avhengigheter og dev-gruppe (pytest, pytest-mock)
 - `.gitignore` for `.env`, `*.db`, `__pycache__`, `.venv`
 - Python 3.11 virtuelt miljø via `uv venv`

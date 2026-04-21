@@ -2,7 +2,7 @@
 
 ## Oppgavegruppe 1: Mappestruktur
 
-- [ ] Opprett `src/intelligence_monitor/` med tom `__init__.py`
+- [x] Opprett `src/intelligence_monitor/` med tom `__init__.py`
 - [ ] Opprett undermapper: `innhenter/`, `sammendrag/prompts/`, `evaluering/`, `rag/`, `prosessering/`, `levering/`, `analyse/`, `db/`
 - [ ] Legg `__init__.py` i hver undermappe
 - [ ] Opprett `tester/` med `konfig/` og tom `__init__.py` i begge
