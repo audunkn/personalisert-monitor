@@ -86,7 +86,7 @@ class _InnboksHandler(FileSystemEventHandler):
             return
 
         frontmatter, kropp = _les_frontmatter_og_kropp(fil_sti)
-        url = frontmatter.get("url", "").strip()
+        url = (frontmatter.get("url") or frontmatter.get("source") or "").strip()
 
         if not url:
             logger.warning("Ingen URL i frontmatter — hopper over %s", fil_sti.name)
