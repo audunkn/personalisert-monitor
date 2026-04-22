@@ -240,7 +240,7 @@ def start(vault_rot: Path, db_sti: Path) -> None:
         vault_rot: Rot-mappe for Obsidian-vault.
         db_sti: Sti til SQLite-databasefilen.
     """
-    innboks = vault_rot / os.getenv("INNBOKS_MAPPE", "Clippings")
+    innboks = vault_rot / "innboks"
     innboks.mkdir(parents=True, exist_ok=True)
 
     handler = _InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
