@@ -32,7 +32,7 @@ Personaliseringen skjer ikke gjennom et konfigurasjonspanel. Den vokser frem gje
 
 ## Kildetyper (denne versjonen)
 
-**RSS- og Atom-strømmer** — maskinlesbare lister over nye artikler fra blogger og nyhetssider.
+**RSS- og Atom-strømmer** — maskinlesbare lister over nye artikler fra fagblogger og publiseringsplattformer.
 
 **Substack-nyhetsbrev** — nettskraping av offentlige nettsider.
 
