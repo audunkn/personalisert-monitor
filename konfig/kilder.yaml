@@ -1,0 +1,30 @@
+kilder:
+  - navn: simon-willison
+    type: rss
+    url: https://simonwillison.net/atom/everything/
+    hent_fra: "2024-01-01"
+    hent_til: null
+
+  - navn: anthropic-blogg
+    type: rss
+    url: https://anthropic.com/rss.xml
+    hent_fra: "2024-01-01"
+    hent_til: null
+
+  - navn: langchain-blogg
+    type: rss
+    url: https://blog.langchain.dev/rss/
+    hent_fra: "2024-01-01"
+    hent_til: null
+
+  - navn: decoding-ai
+    type: substack
+    url: https://decodingai.substack.com
+    hent_fra: "2024-01-01"
+    hent_til: null
+
+  - navn: sebastian-raschka
+    type: substack
+    url: https://magazine.sebastianraschka.com
+    hent_fra: "2024-01-01"
+    hent_til: null

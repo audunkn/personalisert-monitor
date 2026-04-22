@@ -1,0 +1,38 @@
+# Miljø og hemmeligheter
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Obsidian vault — artikkeltekst og bilder er lokale og skal aldri committes.
+# Mappestrukturen spores likevel via .gitkeep slik at andre kan klone repoet
+# og få riktig katalogstruktur uten å ha vault-innholdet.
+#
+# vault/**          — ignorer alt innhold under vault/
+# !vault/*/         — men la undermapper på nivå 1 gjennom (f.eks. vault/artikler/)
+# !vault/*/*/       — og undermapper på nivå 2 (f.eks. vault/ressurser/bilder/)
+# !vault/**/.gitkeep — og selve .gitkeep-filene i disse mappene
+vault/**
+!vault/*/
+!vault/*/*/
+!vault/**/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -146,6 +146,9 @@ Hvis kalibreringen viser at Markdown-referansen er for grov, vektoriseres lovtek
 ## Miljøvariabler — komplett feltsett
 
 ```
+# Database
+DATABASE_STI=data/monitor.db
+
 # Claude API
 ANTHROPIC_API_NØKKEL=
 
@@ -254,6 +257,59 @@ Enhetstester skrives parallelt med hver modul. **Pytest** med fixtures for midle
 
 ---
 
+## Kodekonvensjoner
+
+### Docstrings
+Alle klasser og funksjoner skal ha en Google-stil docstring:
+
+```python
+def hent_artikler(kilde_id: int, grense: int = 50) -> list[dict]:
+    """Henter uprosesserte artikler for én kilde fra SQLite.
+
+    Args:
+        kilde_id: Primærnøkkel i `kilder`-tabellen.
+        grense: Maks antall rader som returneres.
+
+    Returns:
+        Liste med dicts — én per artikkel, med feltene `guid`, `url`, `tittel`.
+
+    Raises:
+        sqlite3.OperationalError: Hvis databaseforbindelsen feiler.
+    """
+```
+
+Minimumskrav:
+- **Klasser**: én setning som forklarer ansvar.
+- **Funksjoner/metoder**: én setning + `Args` og `Returns` hvis signaturen ikke er
+  selvforklarende. `Raises` legges til kun hvis funksjonen kan kaste unntak som
+  kalleren forventes å håndtere.
+- Privat hjelpefunksjon med triviell logikk: kort én-linje docstring er tilstrekkelig.
+
+### Inline-kommentarer
+Legg til `#`-kommentar der logikken ikke er umiddelbart lesbar:
+- Ikke-åpenbare konstanter eller beregnede verdier.
+- Valgbegrunnelser (f.eks. `# CREATE TABLE IF NOT EXISTS — idempotent`).
+- Komplekse betingelser eller regulæruttrykksmønstre.
+
+Unngå kommentarer som bare gjentar koden (`artikkel_id = 1  # setter artikkel_id til 1`).
+
+### Konfigurasjonsfiler
+Alle konfigurasjonsfiler skal ha beskrivende kommentarer slik at hensikt og konsekvenser er lette å forstå uten å lese kildekoden. Dette gjelder:
+
+- **`.gitignore`** — hver regel eller regelgruppe skal ha en kommentar som forklarer hva som ignoreres og hvorfor. Komplekse mønstre (f.eks. negasjonsregler) forklares med eksempler på hva som tas med og hva som holdes ute.
+- **`Makefile`** — hvert target skal ha en kommentar som beskriver funksjon, systemkonsekvenser og dataflyt.
+- **`konfig/kilder.yaml`** — hvert felt som ikke er selvforklarende skal ha en inline-kommentar.
+- **`.env.mal`** — hvert felt skal ha en kommentar som forklarer hva verdien brukes til.
+
+### Planleggingsdokumenter (plan.md)
+Hvert `plan.md` under `specs/features/` skal ha én beskrivende innledning per oppgavegruppe.
+Innledningen plasseres mellom gruppeoverskriften og sjekklisten og skal:
+- Forklare **hva** gruppen produserer og **hvorfor** det er nødvendig på dette tidspunktet.
+- Være forståelig for både ikke-tekniske og tekniske lesere — ingen kodesnutter.
+- Holde seg til 2–4 setninger.
+
+---
+
 ## Kalibreringsterser
 
 | Terskel | Verdi |
@@ -295,6 +351,15 @@ specs/
 ## Git-arbeidsflyt og changelog
 
 `CHANGELOG.md` oppdateres ved **hver commit og merge** — en commit uten changelog-oppdatering er ufullstendig. Følger [Keep a Changelog](https://keepachangelog.com) med seksjonene **Lagt til**, **Endret**, **Fikset**, **Fjernet**.
+
+Hver oppføring under `[Uutgitt]` skal avsluttes med et tidsstempel som samsvarer med commit-tidspunktet:
+
+```
+- Vault-mappestruktur opprettet: `artikler/`, ... *(2026-04-22 11:51)*
+- `.gitignore` justert for vault-regler *(2026-04-22 11:57)*
+```
+
+Format: `*(YYYY-MM-DD HH:MM)*`. Hentes fra `git log --format="%ad" --date=format:"%Y-%m-%d %H:%M"` etter commit.
 
 Commit-konvensjon ([Conventional Commits](https://www.conventionalcommits.org)):
 ```
