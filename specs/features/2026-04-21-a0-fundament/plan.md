@@ -72,7 +72,7 @@ Kobler systemet til Opik for sporbarhet av alle LLM-kall. Opik-integrasjon er en
 
 Produserer det regulatoriske referansedokumentet som summarizer-prompten bruker for å koble artikkelinnhold til relevant lovgivning. Dokumentet er et selvstendig leverabel og kan oppdateres uavhengig av resten av systemet.
 
-- [ ] Skriv `specs/regulatorisk-kontekst.md` — strukturert utkast med høydepunkter fra:
+- [x] Skriv `specs/regulatorisk-kontekst.md` — strukturert utkast med høydepunkter fra:
   - EU AI Act (risikoklassifisering, krav til høyrisiko-systemer, transparens)
   - NIS2 (sikkerhetskrav, varslingsplikter, scope)
   - ISO 42001 (AI Management System, risikovurdering, dokumentasjon)
