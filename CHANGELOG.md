@@ -13,6 +13,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Ad hoc: veikart.md — kryss av alle A0-punkter
+*Forespørsel utenom plan — konsistens etter merge*
+
+##### Endret
+- `specs/veikart.md`: alle 14 implementerings- og testpunkter under A0 krysset av *(2026-04-22 17:30)*
+
+---
+
 #### Ad hoc: A0 Fundament — validering og klargjøring for merge
 *Forespørsel utenom plan — kvalitetssikring*
 

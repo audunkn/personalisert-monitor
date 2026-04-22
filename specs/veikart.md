@@ -15,22 +15,22 @@
 ## A0 — Fundament
 
 **Implementering:**
-- [ ] Opprett `src/intelligence_monitor/`-struktur, `tester/`, `specs/` og `specs/features/`.
-- [ ] Initialiser Git-repo med `.gitignore` (`.env`, `*.db`, `__pycache__`, `.venv`).
-- [ ] Opprett `CHANGELOG.md` med [Keep a Changelog](https://keepachangelog.com)-format.
-- [ ] Sett opp Python-miljø: `uv venv` og `pyproject.toml`. Installer med `uv pip install -e .`.
-- [ ] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `rapport`, `alle`, `produksjon`.
-- [ ] Lag `.env` fra `.env.mal` med alle felter, inkl. `HENT_FRA` og `HENT_TIL`.
-- [ ] Definer `konfig/kilder.yaml` med startkilder og `hent_fra`/`hent_til` per kilde.
-- [ ] Opprett vault-mapper: `artikler/`, `ressurser/bilder/`, `innboks/`, `behandlet/`.
-- [ ] Skriv `db/skjema.sql` med alle tabeller inkl. `hent_fra`/`hent_til` i `kilder`, `prompt_versjon` og `er_regresjonstest`.
-- [ ] Skriv `db/init.py` — idempotent tabellopprettelse og YAML→SQLite-synk inkl. datointervall-felt.
-- [ ] Konfigurer Opik med `fail_silently=True`. Verifiser konto og API-nøkkel.
-- [ ] Opprett `specs/regulatorisk-kontekst.md` med høydepunkter fra AI Act, NIS2 og ISO 42001.
+- [x] Opprett `src/intelligence_monitor/`-struktur, `tester/`, `specs/` og `specs/features/`.
+- [x] Initialiser Git-repo med `.gitignore` (`.env`, `*.db`, `__pycache__`, `.venv`).
+- [x] Opprett `CHANGELOG.md` med [Keep a Changelog](https://keepachangelog.com)-format.
+- [x] Sett opp Python-miljø: `uv venv` og `pyproject.toml`. Installer med `uv pip install -e .`.
+- [x] Lag `Makefile` med targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `rapport`, `alle`, `produksjon`.
+- [x] Lag `.env` fra `.env.mal` med alle felter, inkl. `HENT_FRA` og `HENT_TIL`.
+- [x] Definer `konfig/kilder.yaml` med startkilder og `hent_fra`/`hent_til` per kilde.
+- [x] Opprett vault-mapper: `artikler/`, `ressurser/bilder/`, `innboks/`, `behandlet/`.
+- [x] Skriv `db/skjema.sql` med alle tabeller inkl. `hent_fra`/`hent_til` i `kilder`, `prompt_versjon` og `er_regresjonstest`.
+- [x] Skriv `db/init.py` — idempotent tabellopprettelse og YAML→SQLite-synk inkl. datointervall-felt.
+- [x] Konfigurer Opik med `fail_silently=True`. Verifiser konto og API-nøkkel.
+- [x] Opprett `specs/regulatorisk-kontekst.md` med høydepunkter fra AI Act, NIS2 og ISO 42001.
 
 **Tester:**
-- [ ] `test_db_init.py`: idempotens — kjør to ganger, tabeller finnes, ingen data slettet.
-- [ ] `test_db_init.py`: YAML→SQLite-synk — ny kilde med `hent_fra` dukker opp korrekt, fjernet merkes inaktiv.
+- [x] `test_db_init.py`: idempotens — kjør to ganger, tabeller finnes, ingen data slettet.
+- [x] `test_db_init.py`: YAML→SQLite-synk — ny kilde med `hent_fra` dukker opp korrekt, fjernet merkes inaktiv.
 
 ---
 
