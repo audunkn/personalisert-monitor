@@ -13,6 +13,15 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Konfigurerbar innboks-mappe via INNBOKS_MAPPE
+
+##### Endret
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — linje 243: hardkodet `"innboks"` → `os.getenv("INNBOKS_MAPPE", "Clippings")` slik at Web Clipper sin standard `Clippings`-mappe fungerer uten manuelt steg *(2026-04-23 00:00)*
+- `.env.mal` — ny linje `INNBOKS_MAPPE=Clippings` under `# Obsidian-vault` *(2026-04-23 00:00)*
+- `.env` — ny linje `INNBOKS_MAPPE=Clippings` under `# Obsidian-vault` *(2026-04-23 00:00)*
+
+---
+
 #### Røyktest-klargjøring: env var-mismatch
 
 ##### Endret
