@@ -16,8 +16,11 @@ __pycache__/
 dist/
 build/
 
-# Obsidian vault (lokal data)
-vault/
+# Obsidian vault — innhold er lokalt, men mappestruktur spores via .gitkeep
+vault/**
+!vault/*/
+!vault/*/*/
+!vault/**/.gitkeep
 
 # IDE
 .vscode/

@@ -12,6 +12,8 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ## [Uutgitt]
 
 ### Lagt til
+- Vault-mappestruktur opprettet: `vault/artikler/`, `vault/ressurser/bilder/`, `vault/innboks/`, `vault/behandlet/` — hver med `.gitkeep` for Git-sporing
+- `.gitignore` justert: `vault/**` ignorerer innhold, `!vault/*/`, `!vault/*/*/` og `!vault/**/.gitkeep` bevarer mappestruktur
 - Konvensjon for beskrivende innledning per oppgavegruppe i `plan.md`-dokumenter dokumentert i `specs/teknologi.md`
 - Beskrivende innledning lagt til alle 6 oppgavegrupper i `specs/features/2026-04-21-a0-fundament/plan.md`
 - Kodekonvensjon for docstrings (Google-stil) og inline-kommentarer dokumentert i `specs/teknologi.md`

@@ -36,8 +36,8 @@ Startkilder (`konfig/teknologi.md` → Startkilder):
 
 Oppretter mappestrukturen i Obsidian-vaulten der artikkeltekst og bilder lagres. Disse mappene eksisterer kun lokalt og er ikke en del av Git-repoet — de peker på den faktiske Obsidian-vaulten via `VAULT_STI` i `.env`.
 
-- [ ] Opprett vault-mappestruktur: `artikler/`, `ressurser/bilder/`, `innboks/`, `behandlet/`
-- [ ] Legg `.gitkeep` i hver tom mappe (bevarer struktur i Git)
+- [x] Opprett vault-mappestruktur: `artikler/`, `ressurser/bilder/`, `innboks/`, `behandlet/`
+- [x] Legg `.gitkeep` i hver tom mappe (bevarer struktur i Git)
 
 *Vault-mappen for faktisk innhold konfigureres via `VAULT_STI` i `.env` og er i `.gitignore`.*
 
