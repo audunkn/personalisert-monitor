@@ -11,6 +11,16 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Ad hoc-endringer
+
+#### Røyktest-klargjøring: env var-mismatch
+
+##### Endret
+- `.env.mal` — omdøpte `VAULT_STI=` → `VAULT_ROT=` for å matche `os.getenv("VAULT_ROT")` i `obsidian_vakt.py` *(2026-04-22 23:59)*
+- `.env` — omdøpte `VAULT_STI=` → `VAULT_ROT=` (behold eksisterende verdi) *(2026-04-22 23:59)*
+
+---
+
 ### Planlagte implementeringer
 
 #### A0b Obsidian Web Clipper — Gruppe 3 og 4: obsidian_vakt.py og enhetstester
