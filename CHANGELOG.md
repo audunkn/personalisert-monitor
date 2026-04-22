@@ -11,6 +11,20 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Planlagte implementeringer
+
+#### A0b Obsidian Web Clipper — FULLFØRT
+
+##### Lagt til
+- `notebooks/datakontroll.ipynb` — Jupyter-notebook for sanity-sjekk av siste N artikler fra SQLite og vault *(2026-04-23 00:21)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/VERIFICATION.md` — verifikasjonsrapport, 6/6 tester grønne, røyktest bestått med 3 artikler *(2026-04-23 00:44)*
+
+##### Endret
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — justert frontmatter-spec: tittel som H1 (ikke frontmatter-felt), kilde_id kun i SQLite *(2026-04-23 00:44)*
+- `specs/veikart.md` — røyktest krysset av under A0b *(2026-04-23 00:44)*
+
+---
+
 ### Ad hoc-endringer
 
 #### Røyktesting: Web Clipper frontmatter og vault-sti

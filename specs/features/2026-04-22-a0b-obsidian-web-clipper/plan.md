@@ -30,7 +30,7 @@ Vault-skriveren er hjerte i innhentingslaget — den ene modulen som har ansvar 
   3. Skriv Markdown-fil med `element_id` i YAML-frontmatter til `vault/artikler/`.
   4. Skriv rad til `elementer`-tabellen i SQLite med samme `element_id` og `vault_sti`.
   5. Ved feil i steg 4: slett filen fra steg 3 (rollback).
-- [x] YAML-frontmatter som minimum: `element_id`, `url`, `tittel`, `kilde_id`, `publisert`, `kildetype`, `klippet_dato` (kun for `kildetype: manuell`).
+- [x] YAML-frontmatter som minimum: `element_id`, `url`, `publisert`, `kildetype`, `klippet_dato` (kun for `kildetype: manuell`). Tittel skrives som `# H1`-heading (Obsidian-konvensjon). `kilde_id` lagres kun i SQLite.
 - [x] Bilder: last ned og lagre i `vault/ressurser/bilder/` — ugyldig bilde-URL logges som WARNING og hoppes over uten krasj.
 - [x] Legg til Google-stil docstring og relevante inline-kommentarer.
 

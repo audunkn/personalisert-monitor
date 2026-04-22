@@ -40,7 +40,7 @@
 - [x] Installer og konfigurer Web Clipper mot `innboks/` med YAML-frontmatter: `url`, `klippet_dato`, `kildetype: manuell`.
 - [x] Skriv `vault_skriver.py` med konsistensrekkefølge: UUID → fil → SQLite → rollback ved feil.
 - [x] Skriv `obsidian_vakt.py` med `watchdog`. Manuelt klippede artikler får ingen datointervall-sjekk — de lagres alltid.
-- [ ] Røyktest: klipp nettside, verifiser i Obsidian og SQLite.
+- [x] Røyktest: klipp nettside, verifiser i Obsidian og SQLite.
 
 **Tester:**
 - [x] `test_vault_skriver.py`: korrekt filnavn, YAML-frontmatter og UUID mot midlertidig testmappe.
