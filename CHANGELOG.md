@@ -59,6 +59,16 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ---
 
+### A0 Fundament — Regulatorisk kontekst
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 6*
+
+#### Lagt til
+- `specs/regulatorisk-kontekst.md` — strukturert oppslagsverk for summarizer-prompten med fem seksjoner: EU AI Act (risikoklassifisering, GPAI, håndhevelse), NIS2 (scope, varslingsplikter 24t/72t/1mnd, leverandørkjede), ISO 42001 (AIMS, risikovurdering, sertifisering), Datatilsynet (DPIA, GDPR-krysningspunkter, dataoverføring), NSM grunnprinsipper (leverandørkjede-sikkerhet, tilgangsstyring, hendelseshåndtering) *(2026-04-22)*
+- `specs/features/2026-04-21-a0-fundament/validation.md` oppdatert: valideringsbullet for `regulatorisk-kontekst.md` inkluderer nå Datatilsynet og NSM grunnprinsipper *(2026-04-22)*
+- `specs/features/2026-04-21-a0-fundament/plan.md` oppdatert: oppgavegruppe 6 nevner Datatilsynet og NSM eksplisitt *(2026-04-22)*
+
+---
+
 ### Ad hoc: plan.md — del opp gruppe 5 i to grupper
 *Forespørsel utenom plan — strukturforbedring*
 

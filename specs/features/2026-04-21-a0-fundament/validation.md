@@ -27,7 +27,7 @@ Alle punkter under **Obligatorisk** må være krysset av før merge til `main`.
 - [ ] `Makefile` har alle targets: `innhent`, `sammendrag`, `review`, `synk`, `regresjon`, `test`, `test-enkelt`, `rapport`, `alle`, `produksjon`
 - [ ] `.env.mal` inneholder alle felter fra `specs/teknologi.md` → Miljøvariabler, inkl. `DATABASE_STI=data/monitor.db`
 - [ ] `.env` er i `.gitignore` og ikke committet
-- [ ] `specs/regulatorisk-kontekst.md` eksisterer med innhold om AI Act, NIS2 og ISO 42001
+- [ ] `specs/regulatorisk-kontekst.md` eksisterer med innhold om AI Act, NIS2, ISO 42001, Datatilsynet og NSM grunnprinsipper
 
 ---
 

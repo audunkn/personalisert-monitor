@@ -76,6 +76,8 @@ Produserer det regulatoriske referansedokumentet som summarizer-prompten bruker 
   - EU AI Act (risikoklassifisering, krav til høyrisiko-systemer, transparens)
   - NIS2 (sikkerhetskrav, varslingsplikter, scope)
   - ISO 42001 (AI Management System, risikovurdering, dokumentasjon)
+  - Datatilsynet og norsk AI-veiledning (DPIA, GDPR-krysningspunkter, åpenhet)
+  - NSM grunnprinsipper (leverandørkjede, tilgangsstyring, hendelseshåndtering)
 
 ---
 
