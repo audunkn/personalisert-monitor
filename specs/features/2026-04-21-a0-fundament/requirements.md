@@ -43,6 +43,9 @@ Se `specs/visjon.md` → Regulatorisk kontekst i sammendragene for bakgrunn.
 
 Se `specs/teknologi.md` → Idempotent tabellopprettelse og Kildesynkronisering.
 
+### Databaseplassering
+Databasefilen lagres i `data/monitor.db`. Stien leses fra `DATABASE_STI` i `.env` med `data/monitor.db` som default. `DATABASE_STI=data/monitor.db` legges til i `.env.mal`. Selve `.db`-filen dekkes av `.gitignore` (`*.db`), men `data/`-mappen spores via `.gitkeep`.
+
 ### Lagringsprinsipp
 Obsidian-vault eier artikkeltekst og bilder. SQLite eier all operasjonell og evalueringsorientert data. Opik eier observabilitet. Ingen av de tre lagrer det de andre eier.
 
