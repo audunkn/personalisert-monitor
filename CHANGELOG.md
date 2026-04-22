@@ -54,11 +54,11 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 *Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 5*
 
 #### Lagt til
-- `src/intelligence_monitor/opik_konfig.py` — `konfigurer_opik()` henter `OPIK_API_NØKKEL` og `OPIK_PROSJEKTNAVN` fra miljø og kaller `opik.configure()`. Manglende nøkkel eller SDK-feil propagerer og stopper oppstart — Opik er obligatorisk *(2026-04-22)*
-- `src/intelligence_monitor/db/init.py` utvidet: importerer og kaller `konfigurer_opik()` øverst i `initialiser()` — Opik konfigureres før databasetilkobling *(2026-04-22)*
-- `load_dotenv()` lagt til i `db/init.py` slik at `.env`-fil leses ved kjøring som modul *(2026-04-22)*
-- `OPIK_ARBEIDSROM`-variabel lagt til `.env` og sendt som `workspace`-parameter til `opik.configure()` — unngår interaktivt arbeidsrom-spørsmål ved oppstart *(2026-04-22)*
-- Opik API-nøkkel verifisert: `python -m intelligence_monitor.db.init` returnerer exit code 0 og logger konfigurasjon mot `intelligence-monitor`-prosjektet *(2026-04-22)*
+- `src/intelligence_monitor/opik_konfig.py` — `konfigurer_opik()` henter `OPIK_API_NØKKEL` og `OPIK_PROSJEKTNAVN` fra miljø og kaller `opik.configure()`. Manglende nøkkel eller SDK-feil propagerer og stopper oppstart — Opik er obligatorisk *(2026-04-22 15:45)*
+- `src/intelligence_monitor/db/init.py` utvidet: importerer og kaller `konfigurer_opik()` øverst i `initialiser()` — Opik konfigureres før databasetilkobling *(2026-04-22 15:45)*
+- `load_dotenv()` lagt til i `db/init.py` slik at `.env`-fil leses ved kjøring som modul *(2026-04-22 16:22)*
+- `OPIK_ARBEIDSROM`-variabel lagt til `.env` og sendt som `workspace`-parameter til `opik.configure()` — unngår interaktivt arbeidsrom-spørsmål ved oppstart *(2026-04-22 16:22)*
+- Opik API-nøkkel verifisert: `python -m intelligence_monitor.db.init` returnerer exit code 0 og logger konfigurasjon mot `intelligence-monitor`-prosjektet *(2026-04-22 16:22)*
 
 ---
 
@@ -66,7 +66,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 *Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 7*
 
 #### Lagt til
-- `tester/test_db_init.py` — to enhetstester for `db/init.py`: `test_idempotens` (kjør `initialiser()` to ganger, verifiser alle fire tabeller og at radantall ikke dobbles) og `test_yaml_synk` (legg til/fjern kilde via YAML, verifiser `aktiv`-flagg). Opik og `_YAML_STI` mocket for å kjøre uten ekstern infrastruktur *(2026-04-22)*
+- `tester/test_db_init.py` — to enhetstester for `db/init.py`: `test_idempotens` (kjør `initialiser()` to ganger, verifiser alle fire tabeller og at radantall ikke dobbles) og `test_yaml_synk` (legg til/fjern kilde via YAML, verifiser `aktiv`-flagg). Opik og `_YAML_STI` mocket for å kjøre uten ekstern infrastruktur *(2026-04-22 16:11)*
 
 ---
 
@@ -74,9 +74,9 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 *Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 6*
 
 #### Lagt til
-- `specs/regulatorisk-kontekst.md` — strukturert oppslagsverk for summarizer-prompten med fem seksjoner: EU AI Act (risikoklassifisering, GPAI, håndhevelse), NIS2 (scope, varslingsplikter 24t/72t/1mnd, leverandørkjede), ISO 42001 (AIMS, risikovurdering, sertifisering), Datatilsynet (DPIA, GDPR-krysningspunkter, dataoverføring), NSM grunnprinsipper (leverandørkjede-sikkerhet, tilgangsstyring, hendelseshåndtering) *(2026-04-22)*
-- `specs/features/2026-04-21-a0-fundament/validation.md` oppdatert: valideringsbullet for `regulatorisk-kontekst.md` inkluderer nå Datatilsynet og NSM grunnprinsipper *(2026-04-22)*
-- `specs/features/2026-04-21-a0-fundament/plan.md` oppdatert: oppgavegruppe 6 nevner Datatilsynet og NSM eksplisitt *(2026-04-22)*
+- `specs/regulatorisk-kontekst.md` — strukturert oppslagsverk for summarizer-prompten med fem seksjoner: EU AI Act (risikoklassifisering, GPAI, håndhevelse), NIS2 (scope, varslingsplikter 24t/72t/1mnd, leverandørkjede), ISO 42001 (AIMS, risikovurdering, sertifisering), Datatilsynet (DPIA, GDPR-krysningspunkter, dataoverføring), NSM grunnprinsipper (leverandørkjede-sikkerhet, tilgangsstyring, hendelseshåndtering) *(2026-04-22 15:57)*
+- `specs/features/2026-04-21-a0-fundament/validation.md` oppdatert: valideringsbullet for `regulatorisk-kontekst.md` inkluderer nå Datatilsynet og NSM grunnprinsipper *(2026-04-22 15:57)*
+- `specs/features/2026-04-21-a0-fundament/plan.md` oppdatert: oppgavegruppe 6 nevner Datatilsynet og NSM eksplisitt *(2026-04-22 16:12)*
 
 ---
 
@@ -84,7 +84,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 *Forespørsel utenom plan — strukturforbedring*
 
 #### Endret
-- `specs/features/2026-04-21-a0-fundament/plan.md`: Gruppe 5 delt i to — Opik-konfigurasjon (gruppe 5) og Regulatorisk kontekst (ny gruppe 6). Gammel gruppe 6 (Enhetstester) renummerert til 7. Rekkefølgeseksjon oppdatert. *(2026-04-22)*
+- `specs/features/2026-04-21-a0-fundament/plan.md`: Gruppe 5 delt i to — Opik-konfigurasjon (gruppe 5) og Regulatorisk kontekst (ny gruppe 6). Gammel gruppe 6 (Enhetstester) renummerert til 7. Rekkefølgeseksjon oppdatert. *(2026-04-22 15:34)*
 
 ---
 
@@ -99,7 +99,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 - Beskrivende kommentarer i `.gitignore` for vault-regler — forklarer hva som ignoreres og hva som bevares *(2026-04-22 11:57)*
 - Konvensjon for tidsstempel på CHANGELOG-oppføringer (`*(YYYY-MM-DD HH:MM)*`) dokumentert i `specs/teknologi.md` *(2026-04-22 12:05)*
 - Konvensjon for beskrivende kommentarer i konfigurasjonsfiler (`.gitignore`, `Makefile`, YAML, `.env.mal`) dokumentert i `specs/teknologi.md` *(2026-04-22 12:05)*
-- Overskrifter per oppdateringsgruppe lagt til i `CHANGELOG.md` — sporbar tilbake til plan eller ad hoc-forespørsel *(2026-04-22)*
+- Overskrifter per oppdateringsgruppe lagt til i `CHANGELOG.md` — sporbar tilbake til plan eller ad hoc-forespørsel *(2026-04-22 12:25)*
 
 ---
 
