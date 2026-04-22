@@ -13,6 +13,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Røyktesting: Web Clipper frontmatter og vault-sti
+
+##### Endret
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — aksepterer `source`-felt som fallback for `url` i frontmatter (Web Clipper bruker `source`) *(2026-04-23 00:22)*
+- `.env` — `VAULT_ROT` oppdatert til `OBSIDIAN\monitor-evals` (faktisk vault-mappe) *(2026-04-23 00:19)*
+
+---
+
 #### Røyktest-klargjøring: env var-mismatch
 
 ##### Endret
