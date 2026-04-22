@@ -50,6 +50,15 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ---
 
+### A0 Fundament — Opik-konfigurasjon
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 5*
+
+#### Lagt til
+- `src/intelligence_monitor/opik_konfig.py` — `konfigurer_opik()` henter `OPIK_API_NØKKEL` og `OPIK_PROSJEKTNAVN` fra miljø og kaller `opik.configure()`. Manglende nøkkel eller SDK-feil propagerer og stopper oppstart — Opik er obligatorisk *(2026-04-22)*
+- `src/intelligence_monitor/db/init.py` utvidet: importerer og kaller `konfigurer_opik()` øverst i `initialiser()` — Opik konfigureres før databasetilkobling *(2026-04-22)*
+
+---
+
 ### Ad hoc: plan.md — del opp gruppe 5 i to grupper
 *Forespørsel utenom plan — strukturforbedring*
 

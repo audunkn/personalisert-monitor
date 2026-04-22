@@ -15,6 +15,8 @@ from pathlib import Path
 
 import yaml
 
+from intelligence_monitor.opik_konfig import konfigurer_opik
+
 
 # Prosjektrot er tre nivåer opp fra denne filen (src/intelligence_monitor/db/)
 _PROSJEKTROT = Path(__file__).resolve().parents[3]
@@ -28,6 +30,7 @@ def initialiser(db_sti: str | Path) -> None:
     Args:
         db_sti: Sti til SQLite-databasefilen. Opprettes hvis den ikke finnes.
     """
+    konfigurer_opik()           # Opik konfigureres før databasetilkobling
     db_sti = Path(db_sti)
     db_sti.parent.mkdir(parents=True, exist_ok=True)
 
