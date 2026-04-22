@@ -290,6 +290,14 @@ Legg til `#`-kommentar der logikken ikke er umiddelbart lesbar:
 
 Unngå kommentarer som bare gjentar koden (`artikkel_id = 1  # setter artikkel_id til 1`).
 
+### Konfigurasjonsfiler
+Alle konfigurasjonsfiler skal ha beskrivende kommentarer slik at hensikt og konsekvenser er lette å forstå uten å lese kildekoden. Dette gjelder:
+
+- **`.gitignore`** — hver regel eller regelgruppe skal ha en kommentar som forklarer hva som ignoreres og hvorfor. Komplekse mønstre (f.eks. negasjonsregler) forklares med eksempler på hva som tas med og hva som holdes ute.
+- **`Makefile`** — hvert target skal ha en kommentar som beskriver funksjon, systemkonsekvenser og dataflyt.
+- **`konfig/kilder.yaml`** — hvert felt som ikke er selvforklarende skal ha en inline-kommentar.
+- **`.env.mal`** — hvert felt skal ha en kommentar som forklarer hva verdien brukes til.
+
 ### Planleggingsdokumenter (plan.md)
 Hvert `plan.md` under `specs/features/` skal ha én beskrivende innledning per oppgavegruppe.
 Innledningen plasseres mellom gruppeoverskriften og sjekklisten og skal:
@@ -340,6 +348,15 @@ specs/
 ## Git-arbeidsflyt og changelog
 
 `CHANGELOG.md` oppdateres ved **hver commit og merge** — en commit uten changelog-oppdatering er ufullstendig. Følger [Keep a Changelog](https://keepachangelog.com) med seksjonene **Lagt til**, **Endret**, **Fikset**, **Fjernet**.
+
+Hver oppføring under `[Uutgitt]` skal avsluttes med et tidsstempel som samsvarer med commit-tidspunktet:
+
+```
+- Vault-mappestruktur opprettet: `artikler/`, ... *(2026-04-22 11:51)*
+- `.gitignore` justert for vault-regler *(2026-04-22 11:57)*
+```
+
+Format: `*(YYYY-MM-DD HH:MM)*`. Hentes fra `git log --format="%ad" --date=format:"%Y-%m-%d %H:%M"` etter commit.
 
 Commit-konvensjon ([Conventional Commits](https://www.conventionalcommits.org)):
 ```
