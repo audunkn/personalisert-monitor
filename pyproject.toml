@@ -30,3 +30,9 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/intelligence_monitor"]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "jupyter>=1.1.1",
+]
