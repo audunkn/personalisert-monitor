@@ -6,9 +6,9 @@ Alle punkter under **Obligatorisk** må være krysset av før merge til `main`.
 
 ## Obligatorisk: Enhetstester
 
-- [ ] `tester/test_db_init.py` — idempotens: kjør `init.py` to ganger mot midlertidig SQLite-fil, verifiser at alle fire tabeller finnes og ingen rader er slettet
-- [ ] `tester/test_db_init.py` — YAML→SQLite-synk: ny kilde med `hent_fra` dukker opp korrekt; fjernet kilde merkes `aktiv = false`
-- [ ] `make test` returnerer exit code 0 (alle tester grønne)
+- [x] `tester/test_db_init.py` — idempotens: kjør `init.py` to ganger mot midlertidig SQLite-fil, verifiser at alle fire tabeller finnes og ingen rader er slettet
+- [x] `tester/test_db_init.py` — YAML→SQLite-synk: ny kilde med `hent_fra` dukker opp korrekt; fjernet kilde merkes `aktiv = false`
+- [x] `make test` returnerer exit code 0 (alle tester grønne)
 
 ---
 

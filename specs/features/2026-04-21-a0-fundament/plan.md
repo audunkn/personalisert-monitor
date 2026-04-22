@@ -85,10 +85,10 @@ Produserer det regulatoriske referansedokumentet som summarizer-prompten bruker 
 
 Verifiserer at databaselaget fungerer korrekt: at tabeller kan opprettes gjentatte ganger uten feil (idempotens), og at kildelisten i YAML-konfig alltid reflekteres korrekt i databasen. Grønne tester her er inngangskriteriet for å starte på A1.
 
-- [ ] Skriv `tester/test_db_init.py` — to tester:
+- [x] Skriv `tester/test_db_init.py` — to tester:
   1. **Idempotens**: Kjør `init.py` to ganger mot midlertidig SQLite-fil. Verifiser at alle tabeller finnes og ingen data er slettet.
   2. **YAML→SQLite-synk**: Legg til ny kilde i YAML, kjør `init.py`. Verifiser at kilden dukker opp med korrekt `hent_fra` og `aktiv = true`. Fjern kilden fra YAML, kjør på nytt. Verifiser `aktiv = false`.
-- [ ] Kjør `make test` — alle tester grønne
+- [x] Kjør `make test` — alle tester grønne
 
 ---
 

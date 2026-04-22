@@ -59,6 +59,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ---
 
+### A0 Fundament — Enhetstester
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 7*
+
+#### Lagt til
+- `tester/test_db_init.py` — to enhetstester for `db/init.py`: `test_idempotens` (kjør `initialiser()` to ganger, verifiser alle fire tabeller og at radantall ikke dobbles) og `test_yaml_synk` (legg til/fjern kilde via YAML, verifiser `aktiv`-flagg). Opik og `_YAML_STI` mocket for å kjøre uten ekstern infrastruktur *(2026-04-22)*
+
+---
+
 ### A0 Fundament — Regulatorisk kontekst
 *Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 6*
 
