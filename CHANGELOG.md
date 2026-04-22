@@ -11,6 +11,16 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Ad hoc-endringer
+
+#### Ad hoc: A0 Fundament — validering og klargjøring for merge
+*Forespørsel utenom plan — kvalitetssikring*
+
+##### Endret
+- `specs/features/2026-04-21-a0-fundament/validation.md`: alle obligatoriske punkter krysset av — røyktester, struktur og manuell gjennomgang verifisert *(2026-04-22 17:00)*
+
+---
+
 ### Planlagte implementeringer
 
 #### A0 Fundament — Opik-konfigurasjon
