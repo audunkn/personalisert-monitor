@@ -22,10 +22,11 @@ def konfigurer_opik() -> None:
     import opik  # noqa: PLC0415
 
     api_nøkkel = os.getenv("OPIK_API_NØKKEL")
+    arbeidsrom = os.getenv("OPIK_ARBEIDSROM")
     prosjektnavn = os.getenv("OPIK_PROSJEKTNAVN", "intelligence-monitor")
 
     if not api_nøkkel:
         raise EnvironmentError("OPIK_API_NØKKEL er ikke satt — systemet kan ikke starte uten Opik-sporing.")
 
-    opik.configure(api_key=api_nøkkel, project_name=prosjektnavn)
+    opik.configure(api_key=api_nøkkel, workspace=arbeidsrom, project_name=prosjektnavn)
     logger.info("Opik konfigurert for prosjekt '%s'.", prosjektnavn)

@@ -64,7 +64,7 @@ Definerer og oppretter SQLite-databasen som er systemets primærkilde for metada
 Kobler systemet til Opik for sporbarhet av alle LLM-kall. Opik-integrasjon er en forutsetning for observabilitet i fase A og videre.
 
 - [x] Konfigurer Opik i egen modul `src/intelligence_monitor/opik_konfig.py`: obligatorisk, les nøkkel fra env, kall fra `db/init.py`
-- [ ] Verifiser at Opik-kontoen er opprettet og API-nøkkel fungerer
+- [x] Verifiser at Opik-kontoen er opprettet og API-nøkkel fungerer
 
 ---
 

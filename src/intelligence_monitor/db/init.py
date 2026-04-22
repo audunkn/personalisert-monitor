@@ -14,6 +14,9 @@ import sqlite3
 from pathlib import Path
 
 import yaml
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from intelligence_monitor.opik_konfig import konfigurer_opik
 

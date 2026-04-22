@@ -56,6 +56,9 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 #### Lagt til
 - `src/intelligence_monitor/opik_konfig.py` — `konfigurer_opik()` henter `OPIK_API_NØKKEL` og `OPIK_PROSJEKTNAVN` fra miljø og kaller `opik.configure()`. Manglende nøkkel eller SDK-feil propagerer og stopper oppstart — Opik er obligatorisk *(2026-04-22)*
 - `src/intelligence_monitor/db/init.py` utvidet: importerer og kaller `konfigurer_opik()` øverst i `initialiser()` — Opik konfigureres før databasetilkobling *(2026-04-22)*
+- `load_dotenv()` lagt til i `db/init.py` slik at `.env`-fil leses ved kjøring som modul *(2026-04-22)*
+- `OPIK_ARBEIDSROM`-variabel lagt til `.env` og sendt som `workspace`-parameter til `opik.configure()` — unngår interaktivt arbeidsrom-spørsmål ved oppstart *(2026-04-22)*
+- Opik API-nøkkel verifisert: `python -m intelligence_monitor.db.init` returnerer exit code 0 og logger konfigurasjon mot `intelligence-monitor`-prosjektet *(2026-04-22)*
 
 ---
 
