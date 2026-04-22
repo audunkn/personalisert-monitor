@@ -11,7 +11,86 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Planlagte implementeringer
+
+#### A0b Obsidian Web Clipper — FULLFØRT
+
+##### Lagt til
+- `notebooks/datakontroll.ipynb` — Jupyter-notebook for sanity-sjekk av siste N artikler fra SQLite og vault *(2026-04-23 00:21)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/VERIFICATION.md` — verifikasjonsrapport, 6/6 tester grønne, røyktest bestått med 3 artikler *(2026-04-23 00:44)*
+
+##### Endret
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — justert frontmatter-spec: tittel som H1 (ikke frontmatter-felt), kilde_id kun i SQLite *(2026-04-23 00:44)*
+- `specs/veikart.md` — røyktest krysset av under A0b *(2026-04-23 00:44)*
+
+---
+
 ### Ad hoc-endringer
+
+#### Røyktesting: Web Clipper frontmatter og vault-sti
+
+##### Endret
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — aksepterer `source`-felt som fallback for `url` i frontmatter (Web Clipper bruker `source`) *(2026-04-23 00:22)*
+- `.env` — `VAULT_ROT` oppdatert til `OBSIDIAN\monitor-evals` (faktisk vault-mappe) *(2026-04-23 00:19)*
+
+---
+
+#### Røyktest-klargjøring: env var-mismatch
+
+##### Endret
+- `.env.mal` — omdøpte `VAULT_STI=` → `VAULT_ROT=` for å matche `os.getenv("VAULT_ROT")` i `obsidian_vakt.py` *(2026-04-22 23:59)*
+- `.env` — omdøpte `VAULT_STI=` → `VAULT_ROT=` (behold eksisterende verdi) *(2026-04-22 23:59)*
+
+---
+
+### Planlagte implementeringer
+
+#### A0b Obsidian Web Clipper — Gruppe 3 og 4: obsidian_vakt.py og enhetstester
+*Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — watchdog-vakt på `vault/innboks/`: frontmatter-parsing, dedup-sjekk, kall til `vault_skriver`, flytting til `vault/behandlet/`, feilisolering per fil *(2026-04-22 23:55)*
+- `tester/test_vault_skriver.py` — fire enhetstester: filnavn/frontmatter, UUID-konsistens, ugyldig bilde-URL, rollback *(2026-04-22 23:55)*
+- `tester/konfig/fixtures.py` — delte pytest-fixtures: midlertidig vault-mappe og SQLite-database med fase A-skjema *(2026-04-22 23:55)*
+
+##### Endret
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — alle fire grupper krysset av *(2026-04-22 23:55)*
+- `specs/veikart.md` — obsidian_vakt.py og alle fire enhetstester krysset av under A0b *(2026-04-22 23:55)*
+
+---
+
+#### A0b Obsidian Web Clipper — Gruppe 2: vault_skriver.py
+*Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — atomisk lagring til vault og SQLite: UUID-generering, bildehåndtering (httpx), YAML-frontmatter, rollback ved SQLite-feil *(2026-04-22 23:30)*
+- `konfig/kilder.yaml`: `manuell-klipp`-kilde med `url: lokal` som plassholder *(2026-04-22 23:30)*
+
+##### Endret
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/requirements.md` — to nye beslutninger: bildehåndtering i A0b og `manuell-klipp`-kilde med plassholder-URL *(2026-04-22 23:30)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/validation.md` — røyktest utvidet med bildeverifisering (nedlasting til `vault/ressurser/bilder/` + relativ sti i markdown) *(2026-04-22 23:30)*
+
+---
+
+#### A0b Obsidian Web Clipper — Feature-spesifikasjon
+*Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
+
+##### Lagt til
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — 4 oppgavegrupper: Web Clipper-konfig, vault_skriver.py, obsidian_vakt.py, enhetstester *(2026-04-22 23:12)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/requirements.md` — scope, beslutninger (UUID-prefix filnavn, stille dedup, ingen datointervall-sjekk for manuell klipping), kontekst og avhengigheter *(2026-04-22 23:12)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/validation.md` — merge-kriterier: 4 enhetstester + røyktest (1 klipp, SQLite-verifisering, dedup-verifisering) *(2026-04-22 23:12)*
+
+---
+
+### Ad hoc-endringer
+
+#### Ad hoc: A0b Gruppe 1 — Obsidian Web Clipper installert manuelt
+*Manuell brukeroppgave fullført*
+
+##### Endret
+- `specs/veikart.md`: Web Clipper-installasjons- og vault_skriver.py-punktene krysset av under A0b *(2026-04-22 23:45)*
+
+---
 
 #### Ad hoc: veikart.md — kryss av alle A0-punkter
 *Forespørsel utenom plan — konsistens etter merge*

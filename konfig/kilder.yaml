@@ -28,3 +28,9 @@ kilder:
     url: https://magazine.sebastianraschka.com
     hent_fra: "2024-01-01"
     hent_til: null
+
+  - navn: manuell-klipp
+    type: manuell
+    url: lokal
+    hent_fra: null
+    hent_til: null

@@ -37,16 +37,16 @@
 ## A0b — Obsidian Web Clipper
 
 **Implementering:**
-- [ ] Installer og konfigurer Web Clipper mot `innboks/` med YAML-frontmatter: `url`, `klippet_dato`, `kildetype: manuell`.
-- [ ] Skriv `vault_skriver.py` med konsistensrekkefølge: UUID → fil → SQLite → rollback ved feil.
-- [ ] Skriv `obsidian_vakt.py` med `watchdog`. Manuelt klippede artikler får ingen datointervall-sjekk — de lagres alltid.
-- [ ] Røyktest: klipp nettside, verifiser i Obsidian og SQLite.
+- [x] Installer og konfigurer Web Clipper mot `innboks/` med YAML-frontmatter: `url`, `klippet_dato`, `kildetype: manuell`.
+- [x] Skriv `vault_skriver.py` med konsistensrekkefølge: UUID → fil → SQLite → rollback ved feil.
+- [x] Skriv `obsidian_vakt.py` med `watchdog`. Manuelt klippede artikler får ingen datointervall-sjekk — de lagres alltid.
+- [x] Røyktest: klipp nettside, verifiser i Obsidian og SQLite.
 
 **Tester:**
-- [ ] `test_vault_skriver.py`: korrekt filnavn, YAML-frontmatter og UUID mot midlertidig testmappe.
-- [ ] `test_vault_skriver.py`: UUID i frontmatter matcher `element_id` i SQLite.
-- [ ] `test_vault_skriver.py`: ugyldig bilde-URL håndteres uten krasj.
-- [ ] `test_vault_skriver.py`: rollback — fil slettes hvis SQLite-skriving feiler.
+- [x] `test_vault_skriver.py`: korrekt filnavn, YAML-frontmatter og UUID mot midlertidig testmappe.
+- [x] `test_vault_skriver.py`: UUID i frontmatter matcher `element_id` i SQLite.
+- [x] `test_vault_skriver.py`: ugyldig bilde-URL håndteres uten krasj.
+- [x] `test_vault_skriver.py`: rollback — fil slettes hvis SQLite-skriving feiler.
 
 ---
 
