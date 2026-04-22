@@ -60,6 +60,22 @@ Samme modul brukes av alle innhentingskanaler (RSS, nett, YouTube, manuell). Den
 
 ---
 
+### Bildehåndtering implementeres i A0b
+
+Bilder i artikkelteksten lastes ned og lagres lokalt i `vault/ressurser/bilder/` allerede i A0b — ikke utsatt til A1.
+
+**Begrunnelse:** `vault_skriver.py` er det eneste stedet bilde-URL-er erstattes. Å utsette dette til A1 ville betydd at manuelt klippede artikler fikk ødelagte bildereferanser fra dag én, og at A1 måtte retrofitte eksisterende filer. Det er enklere å gjøre det riktig én gang i `lagre_artikkel()`.
+
+**Implementering:** `httpx.get()` (synkron, allerede i avhengigheter). Ugyldig URL eller HTTP-feil → log `WARNING`, behold original-URL. Filendelse bestemmes fra `Content-Type`-header, med URL-suffix som fallback.
+
+### Manuell kilde i `kilder.yaml` med plassholder-URL
+
+`manuell-klipp`-kilden er lagt til i `konfig/kilder.yaml` med `url: lokal` som plassholder, siden `url`-kolonnen i `kilder`-tabellen er `NOT NULL`.
+
+**Begrunnelse:** Manuelt klippede artikler har ingen nettverks-URL for selve kilden (bare for den individuelle artikkelen). `url: lokal` er en tydelig markør på at dette er en lokal kanal, uten å bryte databaseskjemaet.
+
+---
+
 ## Åpne spørsmål
 
 *Ingen — alle beslutninger er avklart.*

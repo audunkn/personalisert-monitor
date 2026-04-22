@@ -22,6 +22,7 @@
 - [ ] Verifiser at filen har korrekt YAML-frontmatter: `element_id`, `url`, `kildetype: manuell`, `klippet_dato`.
 - [ ] Verifiser at `element_id` i frontmatter matcher en rad i `elementer`-tabellen i SQLite.
 - [ ] Klipp samme URL på nytt — verifiser at filen i `innboks/` slettes og at INFO logges (dedup).
+- [ ] Klipp nettside med minst ett bilde — verifiser at bildet er lastet ned til `vault/ressurser/bilder/` og at markdown-innholdet bruker relativ sti (`../ressurser/bilder/{uuid8}.{ext}`).
 
 ---
 

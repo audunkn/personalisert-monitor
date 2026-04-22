@@ -13,6 +13,19 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### A0b Obsidian Web Clipper — Gruppe 2: vault_skriver.py
+*Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — atomisk lagring til vault og SQLite: UUID-generering, bildehåndtering (httpx), YAML-frontmatter, rollback ved SQLite-feil *(2026-04-22 23:30)*
+- `konfig/kilder.yaml`: `manuell-klipp`-kilde med `url: lokal` som plassholder *(2026-04-22 23:30)*
+
+##### Endret
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/requirements.md` — to nye beslutninger: bildehåndtering i A0b og `manuell-klipp`-kilde med plassholder-URL *(2026-04-22 23:30)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/validation.md` — røyktest utvidet med bildeverifisering (nedlasting til `vault/ressurser/bilder/` + relativ sti i markdown) *(2026-04-22 23:30)*
+
+---
+
 #### A0b Obsidian Web Clipper — Feature-spesifikasjon
 *Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
 
@@ -24,6 +37,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ---
 
 ### Ad hoc-endringer
+
+#### Ad hoc: A0b Gruppe 1 — Obsidian Web Clipper installert manuelt
+*Manuell brukeroppgave fullført*
+
+##### Endret
+- `specs/veikart.md`: Web Clipper-installasjons- og vault_skriver.py-punktene krysset av under A0b *(2026-04-22 23:45)*
+
+---
 
 #### Ad hoc: veikart.md — kryss av alle A0-punkter
 *Forespørsel utenom plan — konsistens etter merge*
