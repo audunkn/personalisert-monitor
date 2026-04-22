@@ -17,9 +17,9 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 *Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
 
 ##### Lagt til
-- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — 4 oppgavegrupper: Web Clipper-konfig, vault_skriver.py, obsidian_vakt.py, enhetstester *(2026-04-22 HH:MM)*
-- `specs/features/2026-04-22-a0b-obsidian-web-clipper/requirements.md` — scope, beslutninger (UUID-prefix filnavn, stille dedup, ingen datointervall-sjekk for manuell klipping), kontekst og avhengigheter *(2026-04-22 HH:MM)*
-- `specs/features/2026-04-22-a0b-obsidian-web-clipper/validation.md` — merge-kriterier: 4 enhetstester + røyktest (1 klipp, SQLite-verifisering, dedup-verifisering) *(2026-04-22 HH:MM)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — 4 oppgavegrupper: Web Clipper-konfig, vault_skriver.py, obsidian_vakt.py, enhetstester *(2026-04-22 23:12)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/requirements.md` — scope, beslutninger (UUID-prefix filnavn, stille dedup, ingen datointervall-sjekk for manuell klipping), kontekst og avhengigheter *(2026-04-22 23:12)*
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/validation.md` — merge-kriterier: 4 enhetstester + røyktest (1 klipp, SQLite-verifisering, dedup-verifisering) *(2026-04-22 23:12)*
 
 ---
 
