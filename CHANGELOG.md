@@ -13,6 +13,20 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### A0b Obsidian Web Clipper — Gruppe 3 og 4: obsidian_vakt.py og enhetstester
+*Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — watchdog-vakt på `vault/innboks/`: frontmatter-parsing, dedup-sjekk, kall til `vault_skriver`, flytting til `vault/behandlet/`, feilisolering per fil *(2026-04-22 23:55)*
+- `tester/test_vault_skriver.py` — fire enhetstester: filnavn/frontmatter, UUID-konsistens, ugyldig bilde-URL, rollback *(2026-04-22 23:55)*
+- `tester/konfig/fixtures.py` — delte pytest-fixtures: midlertidig vault-mappe og SQLite-database med fase A-skjema *(2026-04-22 23:55)*
+
+##### Endret
+- `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md` — alle fire grupper krysset av *(2026-04-22 23:55)*
+- `specs/veikart.md` — obsidian_vakt.py og alle fire enhetstester krysset av under A0b *(2026-04-22 23:55)*
+
+---
+
 #### A0b Obsidian Web Clipper — Gruppe 2: vault_skriver.py
 *Plan: `specs/features/2026-04-22-a0b-obsidian-web-clipper/plan.md`*
 
