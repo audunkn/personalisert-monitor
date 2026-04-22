@@ -29,6 +29,12 @@ vault/**
 !vault/*/*/
 !vault/**/.gitkeep
 
+# Jupyter
+.ipynb_checkpoints/
+
+# Claude Code
+.claude/
+
 # IDE
 .vscode/
 .idea/
