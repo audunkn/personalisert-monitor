@@ -50,6 +50,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ---
 
+### Ad hoc: plan.md — del opp gruppe 5 i to grupper
+*Forespørsel utenom plan — strukturforbedring*
+
+#### Endret
+- `specs/features/2026-04-21-a0-fundament/plan.md`: Gruppe 5 delt i to — Opik-konfigurasjon (gruppe 5) og Regulatorisk kontekst (ny gruppe 6). Gammel gruppe 6 (Enhetstester) renummerert til 7. Rekkefølgeseksjon oppdatert. *(2026-04-22)*
+
+---
+
 ### Ad hoc: Kodekonvensjoner og plan.md-forbedringer
 *Forespørsler utenom plan — konvensjoner og dokumentasjonsrydding*
 

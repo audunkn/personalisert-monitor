@@ -59,12 +59,19 @@ Definerer og oppretter SQLite-databasen som er systemets primærkilde for metada
 
 ---
 
-## Oppgavegruppe 5: Opik og regulatorisk kontekst
+## Oppgavegruppe 5: Opik-konfigurasjon
 
-Kobler systemet til Opik for sporbarhet av alle LLM-kall, og produserer det regulatoriske referansedokumentet som summarizer-prompten bruker for å koble AI-nyheter til relevant lovgivning (EU AI Act, NIS2, ISO 42001). Begge er forutsetninger for å starte fase A2a.
+Kobler systemet til Opik for sporbarhet av alle LLM-kall. Opik-integrasjon er en forutsetning for observabilitet i fase A og videre.
 
 - [ ] Konfigurer Opik i `src/intelligence_monitor/db/init.py` eller egen modul: `fail_silently=True`, les nøkkel fra env
 - [ ] Verifiser at Opik-kontoen er opprettet og API-nøkkel fungerer
+
+---
+
+## Oppgavegruppe 6: Regulatorisk kontekst
+
+Produserer det regulatoriske referansedokumentet som summarizer-prompten bruker for å koble artikkelinnhold til relevant lovgivning. Dokumentet er et selvstendig leverabel og kan oppdateres uavhengig av resten av systemet.
+
 - [ ] Skriv `specs/regulatorisk-kontekst.md` — strukturert utkast med høydepunkter fra:
   - EU AI Act (risikoklassifisering, krav til høyrisiko-systemer, transparens)
   - NIS2 (sikkerhetskrav, varslingsplikter, scope)
@@ -72,7 +79,7 @@ Kobler systemet til Opik for sporbarhet av alle LLM-kall, og produserer det regu
 
 ---
 
-## Oppgavegruppe 6: Enhetstester
+## Oppgavegruppe 7: Enhetstester
 
 Verifiserer at databaselaget fungerer korrekt: at tabeller kan opprettes gjentatte ganger uten feil (idempotens), og at kildelisten i YAML-konfig alltid reflekteres korrekt i databasen. Grønne tester her er inngangskriteriet for å starte på A1.
 
@@ -85,4 +92,4 @@ Verifiserer at databaselaget fungerer korrekt: at tabeller kan opprettes gjentat
 
 ## Rekkefølge
 
-Gruppe 1 → 2 → 3 → 4 → 5 → 6. Gruppe 4 avhenger av at konfig/kilder.yaml finnes (gruppe 2).
+Gruppe 1 → 2 → 3 → 4 → 5 → 6 → 7. Gruppe 4 avhenger av at konfig/kilder.yaml finnes (gruppe 2).
