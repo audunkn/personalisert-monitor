@@ -12,6 +12,10 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ## [Uutgitt]
 
 ### Lagt til
+- `src/intelligence_monitor/db/skjema.sql` — fire fase A-tabeller (`kilder`, `elementer`, `sammendrag`, `evalueringstriplets`) med CHECK-constraint på `komponent`-feltet *(2026-04-22 12:30)*
+- `src/intelligence_monitor/db/init.py` — idempotent tabellopprettelse og YAML→SQLite-synk for `kilder`-tabellen *(2026-04-22 12:30)*
+- `data/.gitkeep` — sporer `data/`-mappe for databasefil *(2026-04-22 12:30)*
+- `DATABASE_STI=data/monitor.db` lagt til `.env.mal`, `.env` og `specs/teknologi.md` *(2026-04-22 12:30)*
 - Beslutning om databaseplassering (`data/monitor.db`, `DATABASE_STI` i `.env`) dokumentert i `requirements.md` og `validation.md` *(2026-04-22 12:20)*
 - Konvensjon for tidsstempel på CHANGELOG-oppføringer (`*(YYYY-MM-DD HH:MM)*`) dokumentert i `specs/teknologi.md` *(2026-04-22 12:05)*
 - Konvensjon for beskrivende kommentarer i konfigurasjonsfiler (`.gitignore`, `Makefile`, YAML, `.env.mal`) dokumentert i `specs/teknologi.md` *(2026-04-22 12:05)*

@@ -8,7 +8,7 @@ Etablerer katalogstrukturen som all Python-kode, tester og spesifikasjoner bygge
 - [x] Opprett undermapper: `innhenter/`, `sammendrag/prompts/`, `evaluering/`, `rag/`, `prosessering/`, `levering/`, `analyse/`, `db/`
 - [x] Legg `__init__.py` i hver undermappe
 - [x] Opprett `tester/` med `konfig/` og tom `__init__.py` i begge
-- [ ] Opprett `specs/features/` (allerede gjort)
+- [x] Opprett `specs/features/` (allerede gjort)
 
 ---
 
@@ -47,12 +47,12 @@ Oppretter mappestrukturen i Obsidian-vaulten der artikkeltekst og bilder lagres.
 
 Definerer og oppretter SQLite-databasen som er systemets primærkilde for metadata, sammendrag og evalueringstriplets. Initialisering er idempotent — skriptet kan kjøres gjentatte ganger uten å slette eksisterende data, og synkroniserer automatisk kildelisten fra YAML-konfig til databasen.
 
-- [ ] Skriv `src/intelligence_monitor/db/skjema.sql` med fase A-tabeller:
+- [x] Skriv `src/intelligence_monitor/db/skjema.sql` med fase A-tabeller:
   - `kilder` — inkl. `hent_fra`, `hent_til`, `aktiv`-flagg
   - `elementer` — inkl. `vault_sti`, `guid`, `dead_letter`-flagg
   - `sammendrag` — inkl. `element_id`, `prompt_versjon`
   - `evalueringstriplets` — inkl. `komponent`, `er_regresjonstest`, `tidsstempel`
-- [ ] Skriv `src/intelligence_monitor/db/init.py`:
+- [x] Skriv `src/intelligence_monitor/db/init.py`:
   - Idempotent tabellopprettelse (`CREATE TABLE IF NOT EXISTS`)
   - Les `konfig/kilder.yaml` og synkroniser til `kilder`-tabellen
   - Ny kilde → insert. Fjernet kilde → sett `aktiv = false`. Eksisterende → oppdater.

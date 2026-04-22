@@ -146,6 +146,9 @@ Hvis kalibreringen viser at Markdown-referansen er for grov, vektoriseres lovtek
 ## Miljøvariabler — komplett feltsett
 
 ```
+# Database
+DATABASE_STI=data/monitor.db
+
 # Claude API
 ANTHROPIC_API_NØKKEL=
 

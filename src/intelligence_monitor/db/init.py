@@ -1,0 +1,90 @@
+"""Initialisering av Intelligence Monitor-databasen.
+
+Oppretter alle fase A-tabeller (idempotent) og synkroniserer kildelisten
+fra konfig/kilder.yaml til kilder-tabellen i SQLite.
+
+Bruk:
+    python -m intelligence_monitor.db.init
+"""
+
+from __future__ import annotations
+
+import os
+import sqlite3
+from pathlib import Path
+
+import yaml
+
+
+# Prosjektrot er tre nivåer opp fra denne filen (src/intelligence_monitor/db/)
+_PROSJEKTROT = Path(__file__).resolve().parents[3]
+_SKJEMA_STI = Path(__file__).parent / "skjema.sql"
+_YAML_STI = _PROSJEKTROT / "konfig" / "kilder.yaml"
+
+
+def initialiser(db_sti: str | Path) -> None:
+    """Oppretter databasen og synkroniserer kildelisten fra YAML.
+
+    Args:
+        db_sti: Sti til SQLite-databasefilen. Opprettes hvis den ikke finnes.
+    """
+    db_sti = Path(db_sti)
+    db_sti.parent.mkdir(parents=True, exist_ok=True)
+
+    with sqlite3.connect(db_sti) as tilkobling:
+        tilkobling.execute("PRAGMA foreign_keys = ON")
+        _opprett_tabeller(tilkobling)
+        _synkroniser_kilder(tilkobling)
+
+
+def _opprett_tabeller(tilkobling: sqlite3.Connection) -> None:
+    """Kjører skjema.sql mot databasen. Idempotent via CREATE TABLE IF NOT EXISTS."""
+    skjema = _SKJEMA_STI.read_text(encoding="utf-8")
+    tilkobling.executescript(skjema)
+
+
+def _synkroniser_kilder(tilkobling: sqlite3.Connection) -> None:
+    """Synkroniserer konfig/kilder.yaml til kilder-tabellen.
+
+    Ny kilde     → INSERT
+    Eksisterende → UPDATE url, type, hent_fra, hent_til, aktiv = 1
+    Fjernet kilde → sett aktiv = 0 (soft delete, bevarer historikk)
+    """
+    yaml_data = yaml.safe_load(_YAML_STI.read_text(encoding="utf-8"))
+    yaml_kilder = {k["navn"]: k for k in yaml_data["kilder"]}
+
+    # Hent alle eksisterende kildenavn fra databasen
+    eksisterende = {
+        rad[0] for rad in tilkobling.execute("SELECT navn FROM kilder").fetchall()
+    }
+
+    for navn, kilde in yaml_kilder.items():
+        if navn in eksisterende:
+            # Oppdater feltene — aktiv settes tilbake til 1 hvis den var deaktivert
+            tilkobling.execute(
+                """
+                UPDATE kilder
+                SET url = ?, type = ?, hent_fra = ?, hent_til = ?, aktiv = 1
+                WHERE navn = ?
+                """,
+                (kilde["url"], kilde["type"], kilde.get("hent_fra"), kilde.get("hent_til"), navn),
+            )
+        else:
+            tilkobling.execute(
+                """
+                INSERT INTO kilder (navn, url, type, aktiv, hent_fra, hent_til)
+                VALUES (?, ?, ?, 1, ?, ?)
+                """,
+                (navn, kilde["url"], kilde["type"], kilde.get("hent_fra"), kilde.get("hent_til")),
+            )
+
+    # Deaktiver kilder som er fjernet fra YAML
+    for navn in eksisterende - yaml_kilder.keys():
+        tilkobling.execute("UPDATE kilder SET aktiv = 0 WHERE navn = ?", (navn,))
+
+
+if __name__ == "__main__":
+    db_sti = os.getenv("DATABASE_STI", "data/monitor.db")
+    print(f"Initialiserer database: {db_sti}")
+    initialiser(db_sti)
+    print("Ferdig.")
