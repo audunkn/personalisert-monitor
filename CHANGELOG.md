@@ -11,10 +11,63 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
-### A0 Fundament — Oppsett og konfigurasjon
+### Planlagte implementeringer
+
+#### A0 Fundament — Opik-konfigurasjon
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 5*
+
+##### Lagt til
+- `src/intelligence_monitor/opik_konfig.py` — `konfigurer_opik()` henter `OPIK_API_NØKKEL` og `OPIK_PROSJEKTNAVN` fra miljø og kaller `opik.configure()`. Manglende nøkkel eller SDK-feil propagerer og stopper oppstart — Opik er obligatorisk *(2026-04-22 15:45)*
+- `src/intelligence_monitor/db/init.py` utvidet: importerer og kaller `konfigurer_opik()` øverst i `initialiser()` — Opik konfigureres før databasetilkobling *(2026-04-22 15:45)*
+- `load_dotenv()` lagt til i `db/init.py` slik at `.env`-fil leses ved kjøring som modul *(2026-04-22 16:22)*
+- `OPIK_ARBEIDSROM`-variabel lagt til `.env` og sendt som `workspace`-parameter til `opik.configure()` — unngår interaktivt arbeidsrom-spørsmål ved oppstart *(2026-04-22 16:22)*
+- Opik API-nøkkel verifisert: `python -m intelligence_monitor.db.init` returnerer exit code 0 og logger konfigurasjon mot `intelligence-monitor`-prosjektet *(2026-04-22 16:22)*
+
+---
+
+#### A0 Fundament — Regulatorisk kontekst
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 6*
+
+##### Lagt til
+- `specs/regulatorisk-kontekst.md` — strukturert oppslagsverk for summarizer-prompten med fem seksjoner: EU AI Act (risikoklassifisering, GPAI, håndhevelse), NIS2 (scope, varslingsplikter 24t/72t/1mnd, leverandørkjede), ISO 42001 (AIMS, risikovurdering, sertifisering), Datatilsynet (DPIA, GDPR-krysningspunkter, dataoverføring), NSM grunnprinsipper (leverandørkjede-sikkerhet, tilgangsstyring, hendelseshåndtering) *(2026-04-22 15:57)*
+- `specs/features/2026-04-21-a0-fundament/validation.md` oppdatert: valideringsbullet for `regulatorisk-kontekst.md` inkluderer nå Datatilsynet og NSM grunnprinsipper *(2026-04-22 15:57)*
+- `specs/features/2026-04-21-a0-fundament/plan.md` oppdatert: oppgavegruppe 6 nevner Datatilsynet og NSM eksplisitt *(2026-04-22 16:12)*
+
+---
+
+#### A0 Fundament — Enhetstester
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 7*
+
+##### Lagt til
+- `tester/test_db_init.py` — to enhetstester for `db/init.py`: `test_idempotens` (kjør `initialiser()` to ganger, verifiser alle fire tabeller og at radantall ikke dobbles) og `test_yaml_synk` (legg til/fjern kilde via YAML, verifiser `aktiv`-flagg). Opik og `_YAML_STI` mocket for å kjøre uten ekstern infrastruktur *(2026-04-22 16:11)*
+
+---
+
+#### A0 Fundament — Databasefundament
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 4*
+
+##### Lagt til
+- `src/intelligence_monitor/db/skjema.sql` — fire fase A-tabeller (`kilder`, `elementer`, `sammendrag`, `evalueringstriplets`) med CHECK-constraint på `komponent`-feltet *(2026-04-22 12:30)*
+- `src/intelligence_monitor/db/init.py` — idempotent tabellopprettelse og YAML→SQLite-synk for `kilder`-tabellen *(2026-04-22 12:30)*
+- `data/.gitkeep` — sporer `data/`-mappe for databasefil *(2026-04-22 12:30)*
+- `DATABASE_STI=data/monitor.db` lagt til `.env.mal`, `.env` og `specs/teknologi.md` *(2026-04-22 12:30)*
+- Beslutning om databaseplassering (`data/monitor.db`, `DATABASE_STI` i `.env`) dokumentert i `requirements.md` og `validation.md` *(2026-04-22 12:20)*
+
+---
+
+#### A0 Fundament — Vault-mappestruktur
+*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 3*
+
+##### Lagt til
+- Vault-mappestruktur opprettet: `vault/artikler/`, `vault/ressurser/bilder/`, `vault/innboks/`, `vault/behandlet/` — hver med `.gitkeep` for Git-sporing *(2026-04-22 11:51)*
+- `.gitignore` justert: `vault/**` ignorerer innhold, `!vault/*/`, `!vault/*/*/` og `!vault/**/.gitkeep` bevarer mappestruktur *(2026-04-22 11:51)*
+
+---
+
+#### A0 Fundament — Oppsett og konfigurasjon
 *Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 1 og 2*
 
-#### Lagt til
+##### Lagt til
 - `.gitignore` for `.env`, `*.db`, `__pycache__`, `.venv` *(2026-04-21 20:13)*
 - `pyproject.toml` med alle fase A–D-avhengigheter og dev-gruppe (pytest, pytest-mock) *(2026-04-21 20:24)*
 - Python 3.11 virtuelt miljø via `uv venv`, avhengigheter installert og verifisert med `uv pip install -e ".[dev]"` *(2026-04-21 20:24)*
@@ -29,69 +82,20 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ---
 
-### A0 Fundament — Vault-mappestruktur
-*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 3*
+### Ad hoc-endringer
 
-#### Lagt til
-- Vault-mappestruktur opprettet: `vault/artikler/`, `vault/ressurser/bilder/`, `vault/innboks/`, `vault/behandlet/` — hver med `.gitkeep` for Git-sporing *(2026-04-22 11:51)*
-- `.gitignore` justert: `vault/**` ignorerer innhold, `!vault/*/`, `!vault/*/*/` og `!vault/**/.gitkeep` bevarer mappestruktur *(2026-04-22 11:51)*
-
----
-
-### A0 Fundament — Databasefundament
-*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 4*
-
-#### Lagt til
-- `src/intelligence_monitor/db/skjema.sql` — fire fase A-tabeller (`kilder`, `elementer`, `sammendrag`, `evalueringstriplets`) med CHECK-constraint på `komponent`-feltet *(2026-04-22 12:30)*
-- `src/intelligence_monitor/db/init.py` — idempotent tabellopprettelse og YAML→SQLite-synk for `kilder`-tabellen *(2026-04-22 12:30)*
-- `data/.gitkeep` — sporer `data/`-mappe for databasefil *(2026-04-22 12:30)*
-- `DATABASE_STI=data/monitor.db` lagt til `.env.mal`, `.env` og `specs/teknologi.md` *(2026-04-22 12:30)*
-- Beslutning om databaseplassering (`data/monitor.db`, `DATABASE_STI` i `.env`) dokumentert i `requirements.md` og `validation.md` *(2026-04-22 12:20)*
-
----
-
-### A0 Fundament — Opik-konfigurasjon
-*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 5*
-
-#### Lagt til
-- `src/intelligence_monitor/opik_konfig.py` — `konfigurer_opik()` henter `OPIK_API_NØKKEL` og `OPIK_PROSJEKTNAVN` fra miljø og kaller `opik.configure()`. Manglende nøkkel eller SDK-feil propagerer og stopper oppstart — Opik er obligatorisk *(2026-04-22 15:45)*
-- `src/intelligence_monitor/db/init.py` utvidet: importerer og kaller `konfigurer_opik()` øverst i `initialiser()` — Opik konfigureres før databasetilkobling *(2026-04-22 15:45)*
-- `load_dotenv()` lagt til i `db/init.py` slik at `.env`-fil leses ved kjøring som modul *(2026-04-22 16:22)*
-- `OPIK_ARBEIDSROM`-variabel lagt til `.env` og sendt som `workspace`-parameter til `opik.configure()` — unngår interaktivt arbeidsrom-spørsmål ved oppstart *(2026-04-22 16:22)*
-- Opik API-nøkkel verifisert: `python -m intelligence_monitor.db.init` returnerer exit code 0 og logger konfigurasjon mot `intelligence-monitor`-prosjektet *(2026-04-22 16:22)*
-
----
-
-### A0 Fundament — Enhetstester
-*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 7*
-
-#### Lagt til
-- `tester/test_db_init.py` — to enhetstester for `db/init.py`: `test_idempotens` (kjør `initialiser()` to ganger, verifiser alle fire tabeller og at radantall ikke dobbles) og `test_yaml_synk` (legg til/fjern kilde via YAML, verifiser `aktiv`-flagg). Opik og `_YAML_STI` mocket for å kjøre uten ekstern infrastruktur *(2026-04-22 16:11)*
-
----
-
-### A0 Fundament — Regulatorisk kontekst
-*Plan: `specs/features/2026-04-21-a0-fundament/plan.md` — oppgavegruppe 6*
-
-#### Lagt til
-- `specs/regulatorisk-kontekst.md` — strukturert oppslagsverk for summarizer-prompten med fem seksjoner: EU AI Act (risikoklassifisering, GPAI, håndhevelse), NIS2 (scope, varslingsplikter 24t/72t/1mnd, leverandørkjede), ISO 42001 (AIMS, risikovurdering, sertifisering), Datatilsynet (DPIA, GDPR-krysningspunkter, dataoverføring), NSM grunnprinsipper (leverandørkjede-sikkerhet, tilgangsstyring, hendelseshåndtering) *(2026-04-22 15:57)*
-- `specs/features/2026-04-21-a0-fundament/validation.md` oppdatert: valideringsbullet for `regulatorisk-kontekst.md` inkluderer nå Datatilsynet og NSM grunnprinsipper *(2026-04-22 15:57)*
-- `specs/features/2026-04-21-a0-fundament/plan.md` oppdatert: oppgavegruppe 6 nevner Datatilsynet og NSM eksplisitt *(2026-04-22 16:12)*
-
----
-
-### Ad hoc: plan.md — del opp gruppe 5 i to grupper
+#### Ad hoc: plan.md — del opp gruppe 5 i to grupper
 *Forespørsel utenom plan — strukturforbedring*
 
-#### Endret
+##### Endret
 - `specs/features/2026-04-21-a0-fundament/plan.md`: Gruppe 5 delt i to — Opik-konfigurasjon (gruppe 5) og Regulatorisk kontekst (ny gruppe 6). Gammel gruppe 6 (Enhetstester) renummerert til 7. Rekkefølgeseksjon oppdatert. *(2026-04-22 15:34)*
 
 ---
 
-### Ad hoc: Kodekonvensjoner og plan.md-forbedringer
+#### Ad hoc: Kodekonvensjoner og plan.md-forbedringer
 *Forespørsler utenom plan — konvensjoner og dokumentasjonsrydding*
 
-#### Lagt til
+##### Lagt til
 - `regresjon`-target i `Makefile` dokumentert som bevisst fase A-placeholder — full implementasjon (LLM-dommer + sammenligning mot domeneekspert-score) er fase B-leverabel *(2026-04-21 22:03)*
 - Kodekonvensjon for docstrings (Google-stil) og inline-kommentarer dokumentert i `specs/teknologi.md` *(2026-04-21 22:09)*
 - Konvensjon for beskrivende innledning per oppgavegruppe i `plan.md`-dokumenter dokumentert i `specs/teknologi.md` *(2026-04-21 22:16)*
