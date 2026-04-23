@@ -73,6 +73,23 @@
 
 ---
 
+## A0d — Automatisk opprydning ved sletting av artikkel
+
+*Når en `.md`-fil slettes fra `vault/artikler/`, fjerner bakgrunnsvakten automatisk tilhørende bildefiler og SQLite-rad. Løsningen utvider watchdog-observeren fra A0b med en ny `_ArtikkelHandler` og legger til `bilder_json`-kolonne i `elementer`-tabellen for å holde styr på hvilke bilder en artikkel eier.*
+
+**Implementering:**
+- [x] `db/skjema.sql` og `db/init.py` — ny `bilder_json TEXT`-kolonne, idempotent migrering.
+- [x] `vault_skriver.py` — `_behandle_bilder()` returnerer bildeliste; `lagre_artikkel()` lagrer som JSON i `bilder_json`.
+- [x] `obsidian_vakt.py` — `_ArtikkelHandler` med `on_deleted`; `_rydd_etter_slettet_artikkel()` sletter bilder og DB-rad; observer overvåker nå `innboks/` og `artikler/`.
+
+**Tester:**
+- [x] `test_artikkel_sletting.py`: slett artikkel med bilder.
+- [x] `test_artikkel_sletting.py`: slett artikkel uten bilder.
+- [x] `test_artikkel_sletting.py`: ukjent fil ignoreres.
+- [x] `test_artikkel_sletting.py`: bilder_json lagres ved opprettelse.
+
+---
+
 ## A1 — RSS-innhenting med datointervall
 
 *RSS er den viktigste automatiserte innhentingskanalen: feeder leses, publiseringsdato sjekkes mot konfigurerbart datointervall, og kun nye artikler innenfor intervallet skrives til vault og database. Duplikatsjekk sikrer at samme artikkel aldri lagres to ganger uansett hvor mange ganger kilden hentes.*
