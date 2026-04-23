@@ -1,14 +1,16 @@
 # Intelligence Monitor
 
-*Et personlig overvåkningssystem for AI og teknologi, bygget av noen som kjenner problemet fra innsiden.*
-
 ---
 
 ## Bakgrunnen
 
-I rollen som business controller brukte jeg mye tid på å orientere meg. Ikke fordi informasjonen manglet, men fordi den lå spredt på for mange steder: fagblogger, nyhetsbrev, YouTube, Twitter, Substack. Summen av alt du burde lese ble raskt større enn det du faktisk hadde tid til å lese. Resultatet var at beslutninger ble tatt på et tynnere grunnlag enn nødvendig.
+I rollen som business controller hadde jeg aldri mangel på informasjon. Problemet var mengden av den. E-poster, møtereferater, rapporter, regneark og chatmeldinger hopet seg opp fra alle kanter. Noe var kritisk. Det meste var støy. Og det tok altfor lang tid å finne ut av forskjellen.
 
-Intelligence Monitor er bygget for å løse det. Systemet følger kildene på dine vegne og leverer deg det som faktisk er relevant.
+Resultatet var beslutninger tatt på et tynnere grunnlag enn nødvendig, fordi informasjonsarbeidet i seg selv kostet for mye tid.
+
+Dette systemet er bygget på den samme erfaringen, men brukt i en annen sammenheng. Som AI Solution Engineer er informasjonsbehovet et annet: fagblogger, forskningsartikler, nyhetsbrev og YouTube-kanaler om AI og teknologi. Kildene er åpne og offentlige, tempoet er høyt og volumet vokser hver uke. Problemet er gjenkjennelig.
+
+Intelligence Monitor følger kildene på mine vegne og leverer det som faktisk er relevant.
 
 ---
 
