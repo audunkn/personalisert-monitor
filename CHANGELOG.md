@@ -11,6 +11,15 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Ad hoc-endringer
+
+#### CI/CD — Secrets-skanning
+
+##### Lagt til
+- `.github/workflows/secrets-scan.yml` — TruffleHog-workflow som scanner commits og PRer for eksponerte secrets; kjører på push og pull_request mot master; `--only-verified` reduserer falske positiver *(2026-04-23 14:00)*
+
+---
+
 ### Planlagte implementeringer
 
 #### A1 RSS-innhenting — FULLFØRT
