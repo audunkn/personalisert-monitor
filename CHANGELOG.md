@@ -13,6 +13,19 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Automatisk opprydning ved sletting av artikkel
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — ny `_ArtikkelHandler` som reagerer på `on_deleted` for `.md`-filer i `vault/artikler/`; hjelpefunksjon `_rydd_etter_slettet_artikkel()` sletter bilder og DB-rad; observer overvåker nå både `innboks/` og `artikler/` *(2026-04-23 18:00)*
+- `tester/test_artikkel_sletting.py` — 4 enhetstester: slett artikkel med bilder, slett artikkel uten bilder, ukjent fil ignoreres, bilder_json lagres ved opprettelse *(2026-04-23 18:00)*
+
+##### Endret
+- `src/intelligence_monitor/db/skjema.sql` — ny `bilder_json TEXT`-kolonne i `elementer`-tabellen *(2026-04-23 18:00)*
+- `src/intelligence_monitor/db/init.py` — idempotent `ALTER TABLE elementer ADD COLUMN bilder_json TEXT` for migrering av eksisterende DB *(2026-04-23 18:00)*
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — `_behandle_bilder()` returnerer nå `(innhold, bildefilnavn_liste)`; `lagre_artikkel()` lagrer listen som JSON i `bilder_json`-kolonnen; `_skriv_til_db()` tar ny `bilder_json`-parameter *(2026-04-23 18:00)*
+
+---
+
 #### PDF-støtte via vault innboks
 
 ##### Lagt til

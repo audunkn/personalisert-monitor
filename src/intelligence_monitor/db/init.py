@@ -57,6 +57,8 @@ def _opprett_tabeller(tilkobling: sqlite3.Connection) -> None:
     for kolonne_sql in [
         "ALTER TABLE kilder ADD COLUMN sist_feil_tidsstempel TEXT",
         "ALTER TABLE kilder ADD COLUMN sist_feil_melding TEXT",
+        # A0c/artikkel-opprydning: bildeliste for automatisk sletting
+        "ALTER TABLE elementer ADD COLUMN bilder_json TEXT",
     ]:
         try:
             tilkobling.execute(kolonne_sql)

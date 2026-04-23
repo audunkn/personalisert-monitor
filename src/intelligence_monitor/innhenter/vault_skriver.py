@@ -12,6 +12,7 @@ for å lagre artikler konsistent. Skrivesekvensen er:
 
 from __future__ import annotations
 
+import json
 import logging
 import re
 import sqlite3
@@ -64,7 +65,7 @@ def lagre_artikkel(
     uuid_kort = element_id.replace("-", "")[:8]
 
     # Steg 2: Last ned bilder og erstatt URL-er
-    innhold_behandlet = _behandle_bilder(innhold, vault_rot)
+    innhold_behandlet, bildefilnavn = _behandle_bilder(innhold, vault_rot)
 
     # Steg 3: Skriv .md-fil til vault/artikler/
     effektiv_publisert = publisert or klippet_dato
@@ -87,6 +88,7 @@ def lagre_artikkel(
     # Steg 4 + 5: Skriv SQLite — rollback på feil
     hentet = datetime.now(timezone.utc).isoformat()
     vault_sti = str(Path("artikler") / filnavn)
+    bilder_json = json.dumps(bildefilnavn) if bildefilnavn else None
     try:
         _skriv_til_db(
             db_sti=db_sti,
@@ -97,6 +99,7 @@ def lagre_artikkel(
             publisert=effektiv_publisert,
             hentet=hentet,
             vault_sti=vault_sti,
+            bilder_json=bilder_json,
         )
     except sqlite3.Error:
         fil_sti.unlink(missing_ok=True)
@@ -169,7 +172,7 @@ def _bygg_markdown(
     return f"{frontmatter}\n\n# {tittel}\n\n{innhold}\n"
 
 
-def _behandle_bilder(innhold: str, vault_rot: Path) -> str:
+def _behandle_bilder(innhold: str, vault_rot: Path) -> tuple[str, list[str]]:
     """Laster ned alle bilder i innholdet og erstatter URL-er med lokale stier.
 
     Finner bilder på formene:
@@ -184,7 +187,7 @@ def _behandle_bilder(innhold: str, vault_rot: Path) -> str:
         vault_rot: Rot-mappe for Obsidian-vault.
 
     Returns:
-        Innhold med lokale bildestier der nedlasting var vellykket.
+        Tuple (innhold med lokale bildestier, liste med nedlastede bildefilnavn).
     """
     bilde_mappe = vault_rot / "ressurser" / "bilder"
     bilde_mappe.mkdir(parents=True, exist_ok=True)
@@ -209,10 +212,12 @@ def _behandle_bilder(innhold: str, vault_rot: Path) -> str:
             if lokal:
                 url_til_lokal[bilde_url] = lokal
 
+    bildefilnavn: list[str] = []
     for original_url, lokal_sti in url_til_lokal.items():
         innhold = innhold.replace(original_url, lokal_sti)
+        bildefilnavn.append(Path(lokal_sti).name)
 
-    return innhold
+    return innhold, bildefilnavn
 
 
 def _last_ned_bilde(url: str, bilde_mappe: Path) -> str | None:
@@ -288,6 +293,7 @@ def _skriv_til_db(
     publisert: str | None,
     hentet: str,
     vault_sti: str,
+    bilder_json: str | None = None,
 ) -> None:
     """Skriver én rad til elementer-tabellen.
 
@@ -300,13 +306,14 @@ def _skriv_til_db(
         publisert: Effektiv publiseringsdato (kan være None).
         hentet: ISO-datetime for henting.
         vault_sti: Relativ sti til .md-filen i vaulten.
+        bilder_json: JSON-liste med filnavn for nedlastede bilder, eller None.
     """
     with sqlite3.connect(db_sti) as tilkobling:
         tilkobling.execute("PRAGMA foreign_keys = ON")
         tilkobling.execute(
             """
-            INSERT INTO elementer (kilde_id, guid, url, tittel, publisert, hentet, vault_sti)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO elementer (kilde_id, guid, url, tittel, publisert, hentet, vault_sti, bilder_json)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (kilde_id, guid, url, tittel, publisert, hentet, vault_sti),
+            (kilde_id, guid, url, tittel, publisert, hentet, vault_sti, bilder_json),
         )

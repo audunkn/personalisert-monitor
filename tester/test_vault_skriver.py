@@ -41,7 +41,7 @@ def test_filnavn_og_frontmatter(vault_rot, db_sti, mocker) -> None:
     # Hopp over bildehåndtering — ikke relevant for denne testen
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot: innhold,
+        side_effect=lambda innhold, vault_rot: (innhold, []),
     )
 
     element_id = vault_skriver.lagre_artikkel(
@@ -80,7 +80,7 @@ def test_element_id_konsistens(vault_rot, db_sti, mocker) -> None:
     """
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot: innhold,
+        side_effect=lambda innhold, vault_rot: (innhold, []),
     )
 
     element_id = vault_skriver.lagre_artikkel(
@@ -141,7 +141,7 @@ def test_rollback(vault_rot, db_sti, mocker) -> None:
     """
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot: innhold,
+        side_effect=lambda innhold, vault_rot: (innhold, []),
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._skriv_til_db",

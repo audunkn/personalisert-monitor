@@ -10,6 +10,7 @@ Bruk:
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 import re
@@ -21,7 +22,7 @@ from pathlib import Path
 import pypdf
 import yaml
 from dotenv import load_dotenv
-from watchdog.events import FileCreatedEvent, FileSystemEventHandler
+from watchdog.events import FileCreatedEvent, FileDeletedEvent, FileSystemEventHandler
 from watchdog.observers import Observer
 
 from intelligence_monitor.innhenter import vault_skriver
@@ -197,6 +198,85 @@ class _InnboksHandler(FileSystemEventHandler):
         logger.info("Lagret og flyttet til behandlet/: %s", fil_sti.name)
 
 
+class _ArtikkelHandler(FileSystemEventHandler):
+    """Håndterer sletting av .md-filer i vault/artikler/.
+
+    Når en .md-fil slettes fra artikler/, ryddes tilhørende bilder og
+    DB-raden automatisk opp.
+
+    Args:
+        db_sti: Sti til SQLite-databasefilen.
+        vault_rot: Rot-mappe for Obsidian-vault.
+    """
+
+    def __init__(self, db_sti: Path, vault_rot: Path) -> None:
+        self._db_sti = db_sti
+        self._vault_rot = vault_rot
+
+    def on_deleted(self, event: FileDeletedEvent) -> None:  # type: ignore[override]
+        """Kalles av watchdog når en fil slettes fra artikler/.
+
+        Ignorerer mapper og ikke-.md-filer. Feil isoleres per fil.
+        """
+        if event.is_directory or not str(event.src_path).endswith(".md"):
+            return
+        fil_sti = Path(str(event.src_path))
+        vault_sti = str(fil_sti.relative_to(self._vault_rot))
+        try:
+            _rydd_etter_slettet_artikkel(self._db_sti, self._vault_rot, vault_sti)
+        except Exception as feil:
+            logger.error(
+                "Ubehandlet feil ved rydding etter slettet %s: %s",
+                fil_sti.name,
+                feil,
+                exc_info=True,
+            )
+
+
+def _rydd_etter_slettet_artikkel(db_sti: Path, vault_rot: Path, vault_sti: str) -> None:
+    """Rydder opp bilder og DB-rad etter at en artikkel er slettet.
+
+    Rekkefølge:
+    1. Hent rad fra elementer WHERE vault_sti = ?
+    2. Parse bilder_json → slett hver bildefil fra vault/ressurser/bilder/
+    3. DELETE rad fra elementer
+    4. Logg INFO med antall slettede bilder
+
+    Args:
+        db_sti: Sti til SQLite-databasefilen.
+        vault_rot: Rot-mappe for Obsidian-vault.
+        vault_sti: Relativ sti til den slettede .md-filen (f.eks. 'artikler/abc-slug.md').
+    """
+    with sqlite3.connect(db_sti) as tilkobling:
+        rad = tilkobling.execute(
+            "SELECT id, bilder_json FROM elementer WHERE vault_sti = ?", (vault_sti,)
+        ).fetchone()
+
+    if rad is None:
+        logger.info("Ingen DB-rad funnet for slettet fil: %s — hopper over", vault_sti)
+        return
+
+    element_id, bilder_json_tekst = rad
+    bildefilnavn: list[str] = json.loads(bilder_json_tekst) if bilder_json_tekst else []
+
+    bilde_mappe = vault_rot / "ressurser" / "bilder"
+    antall_slettet = 0
+    for filnavn in bildefilnavn:
+        bilde_fil = bilde_mappe / filnavn
+        if bilde_fil.exists():
+            bilde_fil.unlink()
+            antall_slettet += 1
+
+    with sqlite3.connect(db_sti) as tilkobling:
+        tilkobling.execute("DELETE FROM elementer WHERE id = ?", (element_id,))
+
+    logger.info(
+        "Ryddet etter slettet artikkel '%s': %d bilde(r) fjernet, DB-rad slettet",
+        vault_sti,
+        antall_slettet,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Hjelpefunksjoner
 # ---------------------------------------------------------------------------
@@ -331,12 +411,16 @@ def start(vault_rot: Path, db_sti: Path) -> None:
     """
     innboks = vault_rot / "innboks"
     innboks.mkdir(parents=True, exist_ok=True)
+    artikler = vault_rot / "artikler"
+    artikler.mkdir(parents=True, exist_ok=True)
 
     handler = _InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
+    artikkel_handler = _ArtikkelHandler(db_sti=db_sti, vault_rot=vault_rot)
     observer = Observer()
     observer.schedule(handler, str(innboks), recursive=False)
+    observer.schedule(artikkel_handler, str(artikler), recursive=False)
     observer.start()
-    logger.info("Vakt startet — overvåker %s", innboks)
+    logger.info("Vakt startet — overvåker %s og %s", innboks, artikler)
 
     try:
         while True:

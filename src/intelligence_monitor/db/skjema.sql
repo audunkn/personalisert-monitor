@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS elementer (
     publisert   TEXT,                           -- ISO-dato eller datetime fra kilden
     hentet      TEXT    NOT NULL,               -- ISO-datetime for når elementet ble hentet
     vault_sti   TEXT,                           -- Relativ sti til Markdown-fil i Obsidian-vault
-    dead_letter INTEGER NOT NULL DEFAULT 0      -- 1 = feilet permanent, hoppes alltid over
+    dead_letter INTEGER NOT NULL DEFAULT 0,     -- 1 = feilet permanent, hoppes alltid over
+    bilder_json TEXT                            -- JSON-liste med filnavn for nedlastede bilder, f.eks. ["abc123.jpg"]
 );
 
 CREATE TABLE IF NOT EXISTS sammendrag (
