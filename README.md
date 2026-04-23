@@ -25,7 +25,7 @@ I denne versjonen følger systemet kurerte AI- og teknologikilder. Det er domene
 
 ---
 
-## Potensialet
+## Potensialet for andre domener og roller
 
 Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan like gjerne settes til å følge bransjenyhetsbrev, interne kunnskapskilder, konkurranserapporter eller juridiske endringer. Personaliseringen vokser frem gjennom bruk, ikke gjennom konfigurasjon.
 
