@@ -12,7 +12,7 @@ Intelligence Monitor er et forsøk på å strukturere den prosessen med moderne 
 
 ---
 
-![Oversikt over løsningen](../oversikt_løsninig.png)
+![Oversikt over løsningen](oversikt_løsninig.png)
 
 ---
 
@@ -78,9 +78,9 @@ Python, Claude API fra Anthropic, SQLite, Obsidian-vault, Opik, Streamlit, Whisp
 
 | Dokument | Formål |
 |---|---|
-| [`visjon.md`](./visjon.md) | Hva systemet gjør, hvem det er for og hvilke prinsipper som styrer valgene |
-| [`teknologi.md`](./teknologi.md) | Teknologivalg, arkitektur og testfilosofi |
-| [`veikart.md`](./veikart.md) | Implementasjonssekvens med avkrysning per modul |
+| [`visjon.md`](specs/visjon.md) | Hva systemet gjør, hvem det er for og hvilke prinsipper som styrer valgene |
+| [`teknologi.md`](specs/teknologi.md) | Teknologivalg, arkitektur og testfilosofi |
+| [`veikart.md`](specs/veikart.md) | Implementasjonssekvens med avkrysning per modul |
 
 ---
 
