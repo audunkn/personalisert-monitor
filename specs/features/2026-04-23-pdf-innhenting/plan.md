@@ -14,9 +14,9 @@
 - [x] Legg til _trekk_ut_pdf_innhold()-hjelpefunksjon
 
 ## Gruppe 3: Enhetstester
-- [ ] Opprett tester/test_pdf_innhenting.py
-- [ ] test_pdf_lagres_korrekt
-- [ ] test_pdf_tittel_fra_metadata
-- [ ] test_pdf_duplikat_hoppes_over
-- [ ] test_pdf_uten_tekst_hoppes_over
-- [ ] Kjør make test — alle grønne
+- [x] Opprett tester/test_pdf_innhenting.py
+- [x] test_pdf_lagres_korrekt
+- [x] test_pdf_tittel_fra_metadata
+- [x] test_pdf_duplikat_hoppes_over
+- [x] test_pdf_uten_tekst_hoppes_over
+- [x] Kjør make test — alle grønne
