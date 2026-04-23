@@ -6,7 +6,7 @@ En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater
 
 Problemet er ikke informasjonsmangel. Det er at kostnaden ved å bearbeide informasjon overstiger verdien den tilfører.
 
-Intelligence Monitor er et forsøk på å strukturere den prosessen med moderne AI-verktøy. I denne implementeringen er domenet et annet: rollen som AI Solution Engineer krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Systemet er det samme, kildene er byttet ut.
+Swnn løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. I denne implementeringen er domenet et annet: Min daglige rolle i krysniningspunktet AI solution Engineer og Business Controller krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Systemet er det samme jeg ville brukt i rendyrket rolle som Business Controller, kildene er byttet ut for å vise at systemet er generelt og kan tilpasset et valgt domene eller rolle.
 
 ---
 
