@@ -12,6 +12,10 @@ Intelligence Monitor er et forsøk på å strukturere den prosessen med moderne 
 
 ---
 
+![Oversikt over løsningen](../oversikt_løsninig.png)
+
+---
+
 ## Hva gjør det?
 
 Tenk deg at du abonnerer på 20 fagblogger og nyhetsbrev. Hver dag publiseres det kanskje 30 nye artikler på tvers av kildene. Du har tid til å lese fem. Hvordan oppdaterer du deg på de resterende 25?
