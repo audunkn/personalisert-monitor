@@ -1,10 +1,10 @@
 # Intelligence Monitor
 
----
+### Personlig system for beslutningsstøtte
 
 ## Bakgrunnen
 
-En business controller jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, budsjettkommentarer og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
+En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, budsjettkommentarer og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
 
 Problemet er ikke informasjonsmangel. Det er at kostnaden ved å bearbeide informasjon overstiger verdien den tilfører.
 
