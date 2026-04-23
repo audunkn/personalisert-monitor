@@ -1,6 +1,4 @@
-# Intelligence Monitor
-
-### Personlig system for beslutningsstøtte
+# PERSONLIG SYSTEM FOR BESLUTNINGSSTØTTE
 
 ## Bakgrunnen
 
