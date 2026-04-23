@@ -11,6 +11,7 @@ Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack 
 
 ![Oversikt over løsningen](oversikt_løsninig.png)
 
+(Illustrasjon: ChatGPT Images 2.0)
 ---
 
 ## Hvordan fungerer det?
@@ -21,7 +22,7 @@ Systemet henter artiklene automatisk, leser dem og destillerer innholdet til str
 
 Over tid lærer systemet hva du finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: du godkjenner eller avviser sammendrag med en kort kommentar, og systemet bruker disse tilbakemeldingene til å stille inn seg selv på akkurat din måte å tenke på.
 
-I denne versjonen følger systemet kurerte AI- og teknologikilder. Det er domenet jeg trenger oversikt over som AI-løsningsleder.
+I denne versjonen følger systemet kurerte AI- og teknologikilder. Det er domenet jeg trenger oversikt over i det daglige, hvor jeg hjelper bedrifer med å skape skalerbar tillit og verdi med AI.
 
 ---
 
