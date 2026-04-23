@@ -61,22 +61,22 @@
 *RSS er den viktigste automatiserte innhentingskanalen: feeder leses, publiseringsdato sjekkes mot konfigurerbart datointervall, og kun nye artikler innenfor intervallet skrives til vault og database. Duplikatsjekk sikrer at samme artikkel aldri lagres to ganger uansett hvor mange ganger kilden hentes.*
 
 **Implementering:**
-- [ ] Skriv `rss.py` med `feedparser` og følgende logikk per element:
+- [x] Skriv `rss.py` med `feedparser` og følgende logikk per element:
   1. Les `hent_fra` og `hent_til` per kilde fra `kilder`-tabellen (env-override hvis `HENT_FRA`/`HENT_TIL` er satt)
   2. Sjekk publiseringsdato — utenfor intervall → hopp over stille, ingen logging
-  3. Innenfor intervall → sjekk `guid`/`url` mot `elementer`-tabellen
+  3. Innenfor intervall → sjekk `url` mot `elementer`-tabellen (URL-basert dedup)
   4. Kjent fra før → hopp over stille
   5. Ny → kall `vault_skriver.py`, lagre `vault_sti` i SQLite
-- [ ] Kjørbar via `make innhent`.
-- [ ] Røyktest: tre startkilder med smalt `HENT_FRA`-intervall, verifiser at kun artikler i intervallet lagres.
+- [x] Kjørbar via `make innhent`.
+- [x] Røyktest: tre startkilder med smalt `HENT_FRA`-intervall, verifiser at kun artikler i intervallet lagres.
 
 **Tester:**
-- [ ] `test_rss.py`: artikkel innenfor intervall lagres korrekt.
-- [ ] `test_rss.py`: artikkel utenfor `hent_fra` hoppes over stille.
-- [ ] `test_rss.py`: artikkel utenfor `hent_til` hoppes over stille.
-- [ ] `test_rss.py`: kjent `guid` lagres ikke på nytt selv om den er innenfor intervallet.
-- [ ] `test_rss.py`: env-override `HENT_FRA` overstyrer per-kilde-konfig korrekt.
-- [ ] `test_rss.py`: tom feed håndteres uten feil.
+- [x] `test_rss.py`: artikkel innenfor intervall lagres korrekt.
+- [x] `test_rss.py`: artikkel utenfor `hent_fra` hoppes over stille.
+- [x] `test_rss.py`: artikkel utenfor `hent_til` hoppes over stille.
+- [x] `test_rss.py`: kjent URL lagres ikke på nytt selv om den er innenfor intervallet.
+- [x] `test_rss.py`: env-override `HENT_FRA` overstyrer per-kilde-konfig korrekt.
+- [x] `test_rss.py`: tom feed håndteres uten feil.
 
 ---
 

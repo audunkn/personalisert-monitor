@@ -2,14 +2,16 @@
 -- Fase C-tabeller (vektorer, rag_spor) legges til inkrementelt når fase C starter
 
 CREATE TABLE IF NOT EXISTS kilder (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    navn        TEXT    NOT NULL UNIQUE,
-    url         TEXT    NOT NULL,
-    type        TEXT    NOT NULL,               -- 'rss', 'substack', 'nett', 'youtube'
-    aktiv       INTEGER NOT NULL DEFAULT 1,     -- 1 = aktiv, 0 = deaktivert via YAML-synk
-    hent_fra    TEXT,                           -- ISO-dato YYYY-MM-DD, null = ingen nedre grense
-    hent_til    TEXT,                           -- ISO-dato YYYY-MM-DD, null = ingen øvre grense
-    emnemerker  TEXT    NOT NULL DEFAULT '[]'   -- JSON-array med emneord
+    id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+    navn                  TEXT    NOT NULL UNIQUE,
+    url                   TEXT    NOT NULL,
+    type                  TEXT    NOT NULL,               -- 'rss', 'substack', 'nett', 'youtube'
+    aktiv                 INTEGER NOT NULL DEFAULT 1,     -- 1 = aktiv, 0 = deaktivert via YAML-synk
+    hent_fra              TEXT,                           -- ISO-dato YYYY-MM-DD, null = ingen nedre grense
+    hent_til              TEXT,                           -- ISO-dato YYYY-MM-DD, null = ingen øvre grense
+    emnemerker            TEXT    NOT NULL DEFAULT '[]',  -- JSON-array med emneord
+    sist_feil_tidsstempel TEXT,                           -- ISO-datetime for siste feed-feil, null ved suksess
+    sist_feil_melding     TEXT                            -- Feilmelding fra siste mislykkede henting
 );
 
 CREATE TABLE IF NOT EXISTS elementer (
