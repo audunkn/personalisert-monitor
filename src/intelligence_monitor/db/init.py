@@ -44,9 +44,24 @@ def initialiser(db_sti: str | Path) -> None:
 
 
 def _opprett_tabeller(tilkobling: sqlite3.Connection) -> None:
-    """Kjører skjema.sql mot databasen. Idempotent via CREATE TABLE IF NOT EXISTS."""
+    """Kjører skjema.sql mot databasen og legger til nye kolonner idempotent.
+
+    CREATE TABLE IF NOT EXISTS er allerede idempotent. Nye kolonner som ble
+    lagt til etter at databasen først ble opprettet, håndteres eksplisitt med
+    ALTER TABLE — feil fordi kolonnen allerede finnes ignoreres stille.
+    """
     skjema = _SKJEMA_STI.read_text(encoding="utf-8")
     tilkobling.executescript(skjema)
+
+    # A1: feilfelt på kilder — idempotent (ignorerer feil hvis kolonnen finnes)
+    for kolonne_sql in [
+        "ALTER TABLE kilder ADD COLUMN sist_feil_tidsstempel TEXT",
+        "ALTER TABLE kilder ADD COLUMN sist_feil_melding TEXT",
+    ]:
+        try:
+            tilkobling.execute(kolonne_sql)
+        except Exception:
+            pass  # Kolonnen finnes allerede — trygt å ignorere
 
 
 def _synkroniser_kilder(tilkobling: sqlite3.Connection) -> None:
