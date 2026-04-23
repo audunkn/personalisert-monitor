@@ -18,6 +18,7 @@ import sqlite3
 import time
 from pathlib import Path
 
+import pypdf
 import yaml
 from dotenv import load_dotenv
 from watchdog.events import FileCreatedEvent, FileSystemEventHandler
@@ -33,6 +34,7 @@ _H1_MONSTER = re.compile(r"^#\s+(.+)$", re.MULTILINE)
 
 # Navn på manuell-kilde i kilder-tabellen
 _MANUELL_KILDENAVN = "manuell-klipp"
+_PDF_KILDENAVN = "manuell-pdf"
 
 
 class _InnboksHandler(FileSystemEventHandler):
@@ -50,20 +52,25 @@ class _InnboksHandler(FileSystemEventHandler):
     def on_created(self, event: FileCreatedEvent) -> None:  # type: ignore[override]
         """Kalles av watchdog når en ny fil opprettes i innboks/.
 
-        Ignorerer mapper og ikke-.md-filer. Feil isoleres per fil.
+        Ignorerer mapper og ukjente filtyper. Feil isoleres per fil.
         """
-        if event.is_directory or not str(event.src_path).endswith(".md"):
+        if event.is_directory:
             return
-        fil_sti = Path(str(event.src_path))
-        try:
-            self._prosesser(fil_sti)
-        except Exception as feil:
-            logger.error(
-                "Ubehandlet feil ved prosessering av %s: %s",
-                fil_sti.name,
-                feil,
-                exc_info=True,
-            )
+        src = str(event.src_path)
+        if src.endswith(".md"):
+            fil_sti = Path(src)
+            try:
+                self._prosesser(fil_sti)
+            except Exception as feil:
+                logger.error("Ubehandlet feil ved prosessering av %s: %s", fil_sti.name, feil, exc_info=True)
+            return
+        if src.endswith(".pdf"):
+            fil_sti = Path(src)
+            try:
+                self._prosesser_pdf(fil_sti)
+            except Exception as feil:
+                logger.error("Ubehandlet feil ved prosessering av %s: %s", fil_sti.name, feil, exc_info=True)
+            return
 
     def _prosesser(self, fil_sti: Path) -> None:
         """Prosesserer én .md-fil fra innboks/.
@@ -133,10 +140,92 @@ class _InnboksHandler(FileSystemEventHandler):
         shutil.move(str(fil_sti), str(behandlet_mappe / fil_sti.name))
         logger.info("Lagret og flyttet til behandlet/: %s", fil_sti.name)
 
+    def _prosesser_pdf(self, fil_sti: Path) -> None:
+        """Prosesserer én .pdf-fil fra innboks/.
+
+        Rekkefølge:
+        1. Vent kort slik at filen rekker å bli ferdigskrevet.
+        2. Sjekk URL-dedupnøkkel mot elementer-tabellen.
+        3. Dedup → slett fil og logg INFO.
+        4. Ny → ekstrakt tekst, lagre via vault_skriver, flytt til behandlet/.
+
+        Args:
+            fil_sti: Sti til den nye .pdf-filen i innboks/.
+        """
+        time.sleep(0.3)
+
+        if not fil_sti.exists():
+            logger.warning("Fil forsvant før prosessering: %s", fil_sti.name)
+            return
+
+        url = f"pdf://{fil_sti.stem}"
+
+        if _url_finnes(self._db_sti, url):
+            logger.info("Duplikat PDF — sletter: %s (%s)", fil_sti.name, url)
+            fil_sti.unlink(missing_ok=True)
+            return
+
+        kilde_id = _hent_kilde_id(self._db_sti, _PDF_KILDENAVN)
+        if kilde_id is None:
+            logger.error(
+                "Kilde '%s' ikke funnet i databasen — kjør db.init først",
+                _PDF_KILDENAVN,
+            )
+            return
+
+        tittel, innhold = _trekk_ut_pdf_innhold(fil_sti)
+
+        if not innhold.strip():
+            logger.warning("Ingen tekst å hente fra %s — hopper over", fil_sti.name)
+            return
+
+        vault_skriver.lagre_artikkel(
+            kilde_id=kilde_id,
+            url=url,
+            tittel=tittel,
+            innhold=innhold,
+            publisert=None,
+            kildetype="pdf",
+            db_sti=self._db_sti,
+            vault_rot=self._vault_rot,
+            klippet_dato=None,
+        )
+
+        behandlet_mappe = self._vault_rot / "behandlet"
+        behandlet_mappe.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(fil_sti), str(behandlet_mappe / fil_sti.name))
+        logger.info("Lagret og flyttet til behandlet/: %s", fil_sti.name)
+
 
 # ---------------------------------------------------------------------------
 # Hjelpefunksjoner
 # ---------------------------------------------------------------------------
+
+
+def _trekk_ut_pdf_innhold(fil_sti: Path) -> tuple[str, str]:
+    """Trekker ut tittel og tekstinnhold fra en PDF-fil.
+
+    Tittel hentes fra PDF-metadata (/Title) hvis tilgjengelig, ellers brukes filnavn.
+    Innhold er alle sider slått sammen med dobbelt linjeskift.
+
+    Args:
+        fil_sti: Sti til .pdf-filen.
+
+    Returns:
+        Tuple (tittel, innhold).
+    """
+    reader = pypdf.PdfReader(fil_sti)
+
+    tittel = ""
+    if reader.metadata and reader.metadata.get("/Title"):
+        tittel = str(reader.metadata["/Title"]).strip()
+    if not tittel:
+        tittel = fil_sti.stem
+
+    sider = [side.extract_text() or "" for side in reader.pages]
+    innhold = "\n\n".join(s for s in sider if s.strip())
+
+    return tittel, innhold
 
 
 def _les_frontmatter_og_kropp(fil_sti: Path) -> tuple[dict, str]:

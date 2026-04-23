@@ -56,6 +56,23 @@
 
 ---
 
+## A0c — PDF-innhenting via vault innboks
+
+*PDFer lastet ned eller mottatt lokalt kan legges direkte i `vault/innboks/` og behandles automatisk av bakgrunnsvakten. Mønsteret er identisk med Obsidian Web Clipper: dedup → ekstrakt tekst → lagre i vault og SQLite → flytt til `behandlet/`. OCR støttes ikke; skannede PDFer uten digitalt tekstlag hoppes over med advarsel.*
+
+**Implementering:**
+- [x] Legg til `pypdf>=4.0.0` i `pyproject.toml`.
+- [x] Legg til `manuell-pdf`-kilde i `konfig/kilder.yaml`.
+- [x] Utvid `obsidian_vakt.py` med `_prosesser_pdf()` og `_trekk_ut_pdf_innhold()`.
+
+**Tester:**
+- [x] `test_pdf_innhenting.py`: gyldig PDF lagres korrekt.
+- [x] `test_pdf_innhenting.py`: tittel hentes fra PDF-metadata hvis tilgjengelig.
+- [x] `test_pdf_innhenting.py`: duplikat PDF hoppes over.
+- [x] `test_pdf_innhenting.py`: PDF uten tekst hoppes over med advarsel.
+
+---
+
 ## A1 — RSS-innhenting med datointervall
 
 *RSS er den viktigste automatiserte innhentingskanalen: feeder leses, publiseringsdato sjekkes mot konfigurerbart datointervall, og kun nye artikler innenfor intervallet skrives til vault og database. Duplikatsjekk sikrer at samme artikkel aldri lagres to ganger uansett hvor mange ganger kilden hentes.*
