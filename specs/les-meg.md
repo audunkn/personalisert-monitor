@@ -4,9 +4,9 @@
 
 ## Bakgrunnen
 
-En business controller jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, budsjettkommentarer og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk angår deg tar tid, og den tiden tas fra analyse og vurdering.
+En business controller jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, budsjettkommentarer og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
 
-Problemet er ikke informasjonsmangel. Det er at kostnaden ved å bearbeide informasjon overstiger verdien den tilfører, med mindre prosessen er strukturert.
+Problemet er ikke informasjonsmangel. Det er at kostnaden ved å bearbeide informasjon overstiger verdien den tilfører.
 
 Intelligence Monitor er et forsøk på å strukturere den prosessen med moderne AI-verktøy. I denne implementeringen er domenet et annet: rollen som AI Solution Engineer krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Systemet er det samme, kildene er byttet ut.
 
@@ -14,7 +14,7 @@ Intelligence Monitor er et forsøk på å strukturere den prosessen med moderne 
 
 ## Hva gjør det?
 
-Tenk deg at du abonnerer på 20 fagblogger og nyhetsbrev. Hver dag publiseres det kanskje 30 nye artikler på tvers av kildene. Du har tid til å lese fem. Hvem velger ut de fem?
+Tenk deg at du abonnerer på 20 fagblogger og nyhetsbrev. Hver dag publiseres det kanskje 30 nye artikler på tvers av kildene. Du har tid til å lese fem. Hvordan oppdaterer du deg på de resterende 25?
 
 Intelligence Monitor gjør det. Den henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset brukerens preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som AI Act, NIS2 og ISO 42001. Til slutt leveres alt samlet i en daglig e-post.
 
