@@ -4,13 +4,11 @@
 
 ## Bakgrunnen
 
-I rollen som business controller hadde jeg aldri mangel på informasjon. Problemet var mengden av den. E-poster, møtereferater, rapporter, regneark og chatmeldinger hopet seg opp fra alle kanter. Noe var kritisk. Det meste var støy. Og det tok altfor lang tid å finne ut av forskjellen.
+En business controller jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, budsjettkommentarer og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk angår deg tar tid, og den tiden tas fra analyse og vurdering.
 
-Resultatet var beslutninger tatt på et tynnere grunnlag enn nødvendig, fordi informasjonsarbeidet i seg selv kostet for mye tid.
+Problemet er ikke informasjonsmangel. Det er at kostnaden ved å bearbeide informasjon overstiger verdien den tilfører, med mindre prosessen er strukturert.
 
-Dette systemet er bygget på den samme erfaringen, men brukt i en annen sammenheng. Som AI Solution Engineer er informasjonsbehovet et annet: fagblogger, forskningsartikler, nyhetsbrev og YouTube-kanaler om AI og teknologi. Kildene er åpne og offentlige, tempoet er høyt og volumet vokser hver uke. Problemet er gjenkjennelig.
-
-Intelligence Monitor følger kildene på mine vegne og leverer det som faktisk er relevant.
+Intelligence Monitor er et forsøk på å strukturere den prosessen med moderne AI-verktøy. I denne implementeringen er domenet et annet: rollen som AI Solution Engineer krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Systemet er det samme, kildene er byttet ut.
 
 ---
 
