@@ -13,6 +13,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Veikart — kvalitative beskrivelser
+
+##### Endret
+- `specs/veikart.md` — lagt til innledende kvalitativ beskrivelse for alle faser (A–D) og alle steg (A0–D3); gir ikke-tekniske og tekniske lesere raskt innsikt i hva som implementeres og hvorfor *(2026-04-23 10:30)*
+
+---
+
 #### A0b Obsidian Web Clipper — FULLFØRT
 
 ##### Lagt til
