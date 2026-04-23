@@ -34,3 +34,9 @@ kilder:
     url: lokal
     hent_fra: null
     hent_til: null
+
+  - navn: manuell-pdf
+    type: pdf
+    url: lokal
+    hent_fra: null
+    hent_til: null

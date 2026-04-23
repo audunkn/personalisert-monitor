@@ -11,6 +11,21 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Planlagte implementeringer
+
+#### PDF-støtte via vault innboks
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — utvid med `_prosesser_pdf()`-metode og `_trekk_ut_pdf_innhold()`-hjelpefunksjon; `on_created` håndterer nå både `.md` og `.pdf`; URL-dedupnøkkel `pdf://{filnavn}` hindrer dobbeltbehandling *(2026-04-23 17:21)*
+- `tester/test_pdf_innhenting.py` — 4 enhetstester: lagres korrekt, tittel fra metadata, duplikat hoppes over, tom PDF hoppes over *(2026-04-23 17:21)*
+- `specs/features/2026-04-23-pdf-innhenting/` — plan.md, requirements.md, validation.md *(2026-04-23 17:21)*
+
+##### Endret
+- `pyproject.toml` — legg til `pypdf>=4.0.0` i dependencies *(2026-04-23 17:21)*
+- `konfig/kilder.yaml` — legg til `manuell-pdf`-kilde med `type: pdf` *(2026-04-23 17:21)*
+
+---
+
 ### Ad hoc-endringer
 
 #### CI/CD — make push med Actions-overvåking
