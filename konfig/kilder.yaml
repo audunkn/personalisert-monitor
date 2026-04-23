@@ -5,15 +5,15 @@ kilder:
     hent_fra: "2024-01-01"
     hent_til: null
 
-  - navn: anthropic-blogg
+  - navn: huggingface-blogg
     type: rss
-    url: https://anthropic.com/rss.xml
+    url: https://huggingface.co/blog/feed.xml
     hent_fra: "2024-01-01"
     hent_til: null
 
   - navn: langchain-blogg
     type: rss
-    url: https://blog.langchain.dev/rss/
+    url: https://www.langchain.com/blog/rss.xml
     hent_fra: "2024-01-01"
     hent_til: null
 

@@ -126,8 +126,10 @@ def _innhent_kilde(
         _oppdater_kilde_feil(db_sti, kilde_id, feil_melding)
         return 0
 
-    # Hent kjente guider fra databasen for dedup
-    kjente_guider = _hent_kjente_guider(db_sti, kilde_id)
+    # Hent kjente URL-er fra databasen for dedup.
+    # vault_skriver lagrer UUID4 som guid i SQLite, så vi deduper på url-kolonnen
+    # som alltid inneholder den kanoniske artikkellenkens URL.
+    kjente_urls = _hent_kjente_urls(db_sti, kilde_id)
 
     nye = 0
     for entry in feed.entries:
@@ -136,8 +138,10 @@ def _innhent_kilde(
             logger.warning("Element uten guid/link i %s — hoppes over", kilde_navn)
             continue
 
-        # Dedup — kjent guid lagres ikke på nytt
-        if guid in kjente_guider:
+        link = getattr(entry, "link", guid)
+
+        # Dedup — kjent URL lagres ikke på nytt
+        if link in kjente_urls:
             continue
 
         pub_dato = _hent_publisert(entry)
@@ -149,7 +153,6 @@ def _innhent_kilde(
             continue
 
         tittel = getattr(entry, "title", "") or "Uten tittel"
-        link = getattr(entry, "link", guid)
 
         # Hent innhold — foretrekk summary/description over content
         innhold = _hent_innhold(entry)
@@ -167,7 +170,7 @@ def _innhent_kilde(
                 db_sti=db_sti,
                 vault_rot=vault_rot,
             )
-            kjente_guider.add(guid)
+            kjente_urls.add(link)
             nye += 1
             logger.info("Lagret: %s", tittel)
         except Exception as feil:
@@ -235,19 +238,23 @@ def _hent_innhold(entry: object) -> str:
     return ""
 
 
-def _hent_kjente_guider(db_sti: Path, kilde_id: int) -> set[str]:
-    """Henter alle kjente guider for én kilde fra databasen.
+def _hent_kjente_urls(db_sti: Path, kilde_id: int) -> set[str]:
+    """Henter alle kjente URL-er for én kilde fra databasen.
+
+    vault_skriver lagrer UUID4 som guid i SQLite, ikke feedparser-guiden.
+    Derfor bruker vi url-kolonnen for dedup — den inneholder alltid den
+    kanoniske artikkellenkens URL fra feedparser.
 
     Args:
         db_sti: Sti til SQLite-databasefilen.
         kilde_id: Primærnøkkel for kilden.
 
     Returns:
-        Sett av guid-strenger (URL-er eller RSS guid-er).
+        Sett av URL-strenger for allerede lagrede artikler.
     """
     with sqlite3.connect(db_sti) as tilkobling:
         rader = tilkobling.execute(
-            "SELECT guid FROM elementer WHERE kilde_id = ?", (kilde_id,)
+            "SELECT url FROM elementer WHERE kilde_id = ?", (kilde_id,)
         ).fetchall()
     return {rad[0] for rad in rader}
 
