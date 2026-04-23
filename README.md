@@ -2,7 +2,7 @@
 
 ## Bakgrunn
 
-En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, budsjettkommentarer og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
+En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, chat og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
 
 Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. I denne implementeringen er domenet et annet: Min daglige rolle i krysniningspunktet AI solution Engineer og Business Controller krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Systemet er det samme jeg ville brukt i rendyrket rolle som Business Controller, men her er kildene byttet ut for å vise at systemet er generelt og kan tilpasset et valgt domene eller rolle
 
@@ -92,4 +92,4 @@ Systemet henter i dag artikler automatisk fra RSS-kilder, lagrer dem i Obsidian-
 
 ## Forfatter
 
-Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audunklarholm/), AI Solution Engineer og Business Controller, som hjelper bedrifter med å skape skalerbar tillit og gevisnt med AI
+Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audunklarholm/), AI Solution Engineer og Business Controller, som hjelper bedrifter med å skape skalerbar tillit og gevinst med AI
