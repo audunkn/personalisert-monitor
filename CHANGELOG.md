@@ -13,6 +13,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### CI/CD — make push med Actions-overvåking
+
+##### Lagt til
+- `Makefile` — nytt `push`-target som kjører `git push`, venter 5 sekunder og overvåker siste GitHub Actions-kjøring med `gh run watch --exit-status`; viser live fremgang i terminalen og returnerer feilkode hvis workflowen feiler *(2026-04-23 15:00)*
+
+---
+
 #### CI/CD — Secrets-skanning
 
 ##### Lagt til

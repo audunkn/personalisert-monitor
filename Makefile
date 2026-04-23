@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help innhent sammendrag review synk regresjon rapport test test-enkelt alle produksjon
+.PHONY: help innhent sammendrag review synk regresjon rapport test test-enkelt alle produksjon push
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Intelligence Monitor — Makefile
@@ -32,6 +32,7 @@ help:
 	@echo "  test-enkelt  Kjør én testfil: make test-enkelt fil=tester/test_foo.py"
 	@echo "  alle         Kjør full innhentings- og sammendragssyklus (innhent + sammendrag)"
 	@echo "  produksjon   Full produksjonskjøring: innhent + sammendrag + rapport"
+	@echo "  push         Push til GitHub og vis GitHub Actions-resultat direkte i terminalen"
 	@echo ""
 	@echo "Vanlig arbeidsflyt:"
 	@echo "  make alle        → daglig innhenting"
@@ -144,3 +145,23 @@ alle: innhent sammendrag
 
 ## produksjon: Full kjøring med rapport (egnet for cron/planlagt kjøring)
 produksjon: innhent sammendrag rapport
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PUSH MED ACTIONS-OVERVÅKING
+# Kjører git push og venter deretter på at GitHub Actions registrerer kjøringen.
+# Bruker gh run watch for å vise live fremgang i terminalen.
+# Returnerer feil hvis workflowen feiler — ingen grunn til å åpne nettleseren.
+# Krever gh CLI installert og autentisert (gh auth login).
+# ─────────────────────────────────────────────────────────────────────────────
+## push: Push til GitHub og overvåk GitHub Actions-resultat i terminalen
+push:
+	@OUTPUT=$$(git push 2>&1); \
+	echo "$$OUTPUT"; \
+	if echo "$$OUTPUT" | grep -q "Everything up-to-date"; then \
+		echo "Ingenting å pushe."; \
+	else \
+		echo ""; \
+		echo "Venter på GitHub Actions..."; \
+		sleep 5; \
+		gh run watch $$(gh run list --limit 1 --json databaseId --jq '.[0].databaseId') --exit-status; \
+	fi
