@@ -16,7 +16,7 @@ Intelligence Monitor er bygget for å løse det. Systemet følger kildene på di
 
 Tenk deg at du abonnerer på 20 fagblogger og nyhetsbrev. Hver dag publiseres det kanskje 30 nye artikler på tvers av kildene. Du har tid til å lese fem. Hvem velger ut de fem?
 
-Intelligence Monitor gjør det. Den henter artiklene automatisk, leser dem og skriver et norsk sammendrag av hver enkelt. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som AI Act, NIS2 og ISO 42001. Til slutt leveres alt samlet i en daglig e-post.
+Intelligence Monitor gjør det. Den henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset brukerens preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som AI Act, NIS2 og ISO 42001. Til slutt leveres alt samlet i en daglig e-post.
 
 Over tid lærer systemet hva du finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: du godkjenner eller avviser sammendrag med en kort kommentar, og systemet bruker disse tilbakemeldingene til å stille inn seg selv på akkurat din måte å tenke på.
 
