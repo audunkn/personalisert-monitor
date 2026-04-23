@@ -13,6 +13,21 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### A1 RSS-innhenting — FULLFØRT
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/rss.py` — RSS/Atom-innhenting med feedparser, datointervall-filtrering, URL-basert dedup og kilde-nivå feilhåndtering *(2026-04-23 11:40)*
+- `src/intelligence_monitor/innhenter/kjører.py` — minimal innhentings-shell; kaller rss.innhent_alle() med logging; `make innhent` fungerer fra dag én *(2026-04-23 11:40)*
+- `tester/test_rss.py` — 6 enhetstester for intervall- og dedup-logikk *(2026-04-23 11:40)*
+- `specs/features/2026-04-23-a1-rss-innhenting/` — plan.md, requirements.md, validation.md *(2026-04-23 11:40)*
+
+##### Endret
+- `src/intelligence_monitor/db/skjema.sql` — ny `sist_feil_tidsstempel TEXT` og `sist_feil_melding TEXT` på `kilder`-tabellen *(2026-04-23 11:40)*
+- `src/intelligence_monitor/db/init.py` — idempotent ALTER TABLE for de nye feilfeltene *(2026-04-23 11:40)*
+- `konfig/kilder.yaml` — erstatter utdaterte anthropic/langchain-URL-er med huggingface-blogg og langchain.com/blog/rss.xml *(2026-04-23 11:40)*
+
+---
+
 #### Veikart — kvalitative beskrivelser
 
 ##### Endret
