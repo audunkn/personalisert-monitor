@@ -138,8 +138,8 @@
 *Menneskelig vurdering er det primære kvalitetssignalet i systemet. En enkel Streamlit-app viser artikkel og sammendrag side om side og lar deg godkjenne eller avvise med kommentar — via tekst eller tale. Vurderingene lagres som evalueringstriplets (input, output, vurdering) og er råmaterialet for all videre automatisert kvalitetsmåling i fase B.*
 
 **Implementering:**
-- [ ] Skriv `triplet_lager.py` — datalag for `evalueringstriplets`.
-- [ ] Bygg `vurderingsapp.py` i Streamlit med:
+- [x] Skriv `triplet_lager.py` — datalag for `evalueringstriplets`.
+- [x] Bygg `vurderingsapp.py` i Streamlit med:
   - Kildenavn, URL, artikkeltekst (komprimert/ekspanderbar), bilder, sammendrag og `prompt_versjon`
   - Godkjent/avvist-knapper
   - Kommentarfelt med valg mellom **tekst** og **tale** (Whisper lokalt, sky som reserve)
@@ -149,10 +149,10 @@
 - [ ] Røyktest: review 5 sammendrag inkl. vurdering av regulatorisk paragraf.
 
 **Tester:**
-- [ ] `test_triplet_lager.py`: triplet skrives og leses korrekt.
-- [ ] `test_triplet_lager.py`: godkjenningsrate og antall avviste beregnes korrekt.
-- [ ] `test_triplet_lager.py`: filtrering på `komponent` fungerer.
-- [ ] `test_triplet_lager.py`: duplikate innsendinger håndteres.
+- [x] `test_triplet_lager.py`: triplet skrives og leses korrekt.
+- [x] `test_triplet_lager.py`: godkjenningsrate og antall avviste beregnes korrekt.
+- [x] `test_triplet_lager.py`: filtrering på `komponent` fungerer.
+- [x] `test_triplet_lager.py`: duplikate innsendinger håndteres.
 
 ---
 
