@@ -416,6 +416,14 @@ def start(vault_rot: Path, db_sti: Path) -> None:
 
     handler = _InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
     artikkel_handler = _ArtikkelHandler(db_sti=db_sti, vault_rot=vault_rot)
+
+    # Skann eksisterende filer i innboks ved oppstart
+    for fil in sorted(innboks.iterdir()):
+        if fil.suffix == ".md":
+            handler._prosesser(fil)
+        elif fil.suffix == ".pdf":
+            handler._prosesser_pdf(fil)
+
     observer = Observer()
     observer.schedule(handler, str(innboks), recursive=False)
     observer.schedule(artikkel_handler, str(artikler), recursive=False)
