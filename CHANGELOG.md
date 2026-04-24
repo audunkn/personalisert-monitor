@@ -18,6 +18,12 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 ##### Lagt til
 - `specs/features/2026-04-24-sammendragsmodul/` — plan.md, requirements.md, validation.md for A2a *(2026-04-24 19:30)*
 
+##### Lagt til (fortsettelse)
+- `src/intelligence_monitor/sammendrag/lag_sammendrag.py` — sammendragsmodul: leser prompt og artikkeltekst, inkluderer `regulatorisk-kontekst.md`, kutter til `MAKS_ARTIKKEL_TOKENS`, pakker i XML-tagger, kaller OpenAI API (gpt-4.1) med Opik-sporing, lagrer i `sammendrag`-tabellen med `prompt_versjon` *(2026-04-24 20:24)*
+- `src/intelligence_monitor/sammendrag/__init__.py` — pakkemarkør *(2026-04-24 20:24)*
+- `tester/test_lag_sammendrag.py` — 6 enhetstester: XML-innramming, kutt ved grense, bevaring av kort tekst, prompt_versjon i SQLite, regulatorisk kontekst i brukermelding, FileNotFoundError for manglende vault-fil *(2026-04-24 20:24)*
+- Røyktest fullført: 3 artikler oppsummert, alle sammendrag lagret i SQLite med `prompt_versjon=v1`, spor synlig i Opik UI *(2026-04-24 20:24)*
+
 ##### Endret
 - `pyproject.toml` — erstatter `anthropic>=0.50.0` med `openai>=1.0.0` *(2026-04-24 19:51)*
 - `.env.mal` — erstatter `ANTHROPIC_API_NØKKEL` med OpenAI-seksjon (`OPENAI_API_NØKKEL`, `OPENAI_MODELL=gpt-4.1`, `MAKS_SAMMENDRAG_TOKENS`, `TEMPERATURE`); `OPENAI_API_NØKKEL` dekker nå både sammendrag og Whisper sky-reserve *(2026-04-24 19:51)*

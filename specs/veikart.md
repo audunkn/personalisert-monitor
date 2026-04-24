@@ -119,17 +119,17 @@
 *Kjernen i systemet: en artikkel leses fra Obsidian-vault, pakkes inn med regulatorisk kontekst (AI Act, NIS2, ISO 42001) og sendes til OpenAI (gpt-4.1) for å produsere et norskspråklig sammendrag med en koblingsparagraf som peker på relevante regulatoriske implikasjoner. Hvert sammendrag knyttes til en spesifikk prompt-versjon slik at man alltid kan spore tilbake hvilken prompt som produserte et gitt resultat — og sammenligne versjoner mot hverandre.*
 
 **Implementering:**
-- [ ] Opprett `sammendrag/prompts/v1.txt` som baseline-prompt. Inkluder instruksjon om å produsere en regulatorisk koblingsparagraf basert på `specs/regulatorisk-kontekst.md`. Tag `prompt-v1`. Oppdater `CHANGELOG.md`.
-- [ ] Skriv `lag_sammendrag.py`: les aktiv prompt, les artikkeltekst fra vault-fil, les `regulatorisk-kontekst.md` og inkluder som kontekst, kutt til `MAKS_ARTIKKEL_TOKENS`, pakk i XML-tagger, kall OpenAI API med `@opik.track`, lagre i `sammendrag`-tabellen med `prompt_versjon`.
-- [ ] Kjørbar via `make sammendrag`.
-- [ ] Røyktest: 3 artikler, verifiser sammendrag med regulatorisk paragraf i SQLite og spor i Opik.
+- [x] Opprett `sammendrag/prompts/v1.txt` som baseline-prompt. Inkluder instruksjon om å produsere en regulatorisk koblingsparagraf basert på `specs/regulatorisk-kontekst.md`. Tag `prompt-v1`. Oppdater `CHANGELOG.md`.
+- [x] Skriv `lag_sammendrag.py`: les aktiv prompt, les artikkeltekst fra vault-fil, les `regulatorisk-kontekst.md` og inkluder som kontekst, kutt til `MAKS_ARTIKKEL_TOKENS`, pakk i XML-tagger, kall OpenAI API med `@opik.track`, lagre i `sammendrag`-tabellen med `prompt_versjon`.
+- [x] Kjørbar via `make sammendrag`.
+- [x] Røyktest: 3 artikler, verifiser sammendrag med regulatorisk paragraf i SQLite og spor i Opik.
 
 **Tester:**
-- [ ] `test_lag_sammendrag.py`: XML-innramming korrekt formatert.
-- [ ] `test_lag_sammendrag.py`: tekst over `MAKS_ARTIKKEL_TOKENS` kuttes riktig.
-- [ ] `test_lag_sammendrag.py`: `prompt_versjon` lagres korrekt.
-- [ ] `test_lag_sammendrag.py`: `regulatorisk-kontekst.md` inkluderes i prompten.
-- [ ] `test_lag_sammendrag.py`: manglende vault-fil gir meningsfull feilmelding.
+- [x] `test_lag_sammendrag.py`: XML-innramming korrekt formatert.
+- [x] `test_lag_sammendrag.py`: tekst over `MAKS_ARTIKKEL_TOKENS` kuttes riktig.
+- [x] `test_lag_sammendrag.py`: `prompt_versjon` lagres korrekt.
+- [x] `test_lag_sammendrag.py`: `regulatorisk-kontekst.md` inkluderes i prompten.
+- [x] `test_lag_sammendrag.py`: manglende vault-fil gir meningsfull feilmelding.
 
 ---
 
