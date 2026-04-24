@@ -116,11 +116,11 @@
 
 ## A2a — Sammendragsmodul med regulatorisk kontekst
 
-*Kjernen i systemet: en artikkel leses fra Obsidian-vault, pakkes inn med regulatorisk kontekst (AI Act, NIS2, ISO 42001) og sendes til Claude for å produsere et norskspråklig sammendrag med en koblingsparagraf som peker på relevante regulatoriske implikasjoner. Hvert sammendrag knyttes til en spesifikk prompt-versjon slik at man alltid kan spore tilbake hvilken prompt som produserte et gitt resultat — og sammenligne versjoner mot hverandre.*
+*Kjernen i systemet: en artikkel leses fra Obsidian-vault, pakkes inn med regulatorisk kontekst (AI Act, NIS2, ISO 42001) og sendes til OpenAI (gpt-4.1) for å produsere et norskspråklig sammendrag med en koblingsparagraf som peker på relevante regulatoriske implikasjoner. Hvert sammendrag knyttes til en spesifikk prompt-versjon slik at man alltid kan spore tilbake hvilken prompt som produserte et gitt resultat — og sammenligne versjoner mot hverandre.*
 
 **Implementering:**
 - [ ] Opprett `sammendrag/prompts/v1.txt` som baseline-prompt. Inkluder instruksjon om å produsere en regulatorisk koblingsparagraf basert på `specs/regulatorisk-kontekst.md`. Tag `prompt-v1`. Oppdater `CHANGELOG.md`.
-- [ ] Skriv `lag_sammendrag.py`: les aktiv prompt, les artikkeltekst fra vault-fil, les `regulatorisk-kontekst.md` og inkluder som kontekst, kutt til `MAKS_ARTIKKEL_TOKENS`, pakk i XML-tagger, kall Claude API med `@opik.track`, lagre i `sammendrag`-tabellen med `prompt_versjon`.
+- [ ] Skriv `lag_sammendrag.py`: les aktiv prompt, les artikkeltekst fra vault-fil, les `regulatorisk-kontekst.md` og inkluder som kontekst, kutt til `MAKS_ARTIKKEL_TOKENS`, pakk i XML-tagger, kall OpenAI API med `@opik.track`, lagre i `sammendrag`-tabellen med `prompt_versjon`.
 - [ ] Kjørbar via `make sammendrag`.
 - [ ] Røyktest: 3 artikler, verifiser sammendrag med regulatorisk paragraf i SQLite og spor i Opik.
 
@@ -317,7 +317,7 @@
 
 # FASE C — Semantisk søk
 
-*Fase C gjør arkivet søkbart på naturlig språk: i stedet for å bla gjennom innhentede artikler kan du stille spørsmål og få et sammenstilt svar med kildehenvisninger. Teknisk bygges en RAG-pipeline (Retrieval-Augmented Generation) der artikler vektoriseres, relevante tekstdeler hentes frem ved søk, og Claude genererer et svar basert på disse. Evalueringsinfrastrukturen fra fase B gjenbrukes og utvides til å dekke søkekvalitet.*
+*Fase C gjør arkivet søkbart på naturlig språk: i stedet for å bla gjennom innhentede artikler kan du stille spørsmål og få et sammenstilt svar med kildehenvisninger. Teknisk bygges en RAG-pipeline (Retrieval-Augmented Generation) der artikler vektoriseres, relevante tekstdeler hentes frem ved søk, og OpenAI genererer et svar basert på disse. Evalueringsinfrastrukturen fra fase B gjenbrukes og utvides til å dekke søkekvalitet.*
 
 *Forutsetter: stabil fase B, ≥ 500 elementer.*
 
@@ -343,7 +343,7 @@
 
 ## C2 — Generering
 
-*Gjenfinning alene er ikke nok — brukeren trenger et sammenhengende svar, ikke en liste med tekstfragmenter. De hentede tekstdelene sendes til Claude som kontekst, og systemet genererer et norsk svar på spørringen. Hvert trinn i pipelinen (gjenfinning og generering) spores separat i Opik slik at man kan isolere feil til riktig komponent.*
+*Gjenfinning alene er ikke nok — brukeren trenger et sammenhengende svar, ikke en liste med tekstfragmenter. De hentede tekstdelene sendes til OpenAI som kontekst, og systemet genererer et norsk svar på spørringen. Hvert trinn i pipelinen (gjenfinning og generering) spores separat i Opik slik at man kan isolere feil til riktig komponent.*
 
 **Implementering:**
 - [ ] Skriv `generer.py` med XML-innramming og `@opik.track` med separate spenn.

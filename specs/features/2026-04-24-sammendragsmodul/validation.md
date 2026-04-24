@@ -31,4 +31,4 @@
 ## Kode
 
 - [ ] Alle nye funksjoner og klasser har Google-stil docstring — jf. `teknologi.md`.
-- [ ] `.env.mal` oppdatert med `CLAUDE_MODELL`, `MAKS_SAMMENDRAG_TOKENS` og `TEMPERATURE`.
+- [ ] `.env.mal` oppdatert med `OPENAI_MODELL`, `MAKS_SAMMENDRAG_TOKENS` og `TEMPERATURE`.

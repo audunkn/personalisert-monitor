@@ -6,7 +6,7 @@
 
 ## Scope
 
-A2a implementerer kjernen i prosesseringslaget (jf. `teknologi.md` — fire logiske lag): en artikkel leses fra Obsidian-vault, kombineres med regulatorisk kontekst og en versjonert prompt, og sendes til Claude for å produsere et norskspråklig sammendrag med en regulatorisk koblingsparagraf. Resultatet lagres i SQLite.
+A2a implementerer kjernen i prosesseringslaget (jf. `teknologi.md` — fire logiske lag): en artikkel leses fra Obsidian-vault, kombineres med regulatorisk kontekst og en versjonert prompt, og sendes til OpenAI (gpt-4.1) for å produsere et norskspråklig sammendrag med en regulatorisk koblingsparagraf. Resultatet lagres i SQLite.
 
 Utenfor scope for A2a:
 - Vurderingsapp og triplet-lager (A2b).
@@ -30,18 +30,21 @@ Utenfor scope for A2a:
 
 ## Beslutninger
 
-### Claude API-konfigurasjon via .env
+### OpenAI API-konfigurasjon via .env
 
 Modell, temperature og maks antall output-tokens styres av `.env`-variabler. Dette gjør det mulig å bytte modell eller justere parametere uten kodeendring — nyttig under kalibreringsfasen (A3).
 
 Nye felter som legges til `.env.mal`:
 
 ```
-# Sammendragsmodul — Claude API
-CLAUDE_MODELL=claude-sonnet-4-6
+# OpenAI
+OPENAI_API_NØKKEL=          # API-nøkkel fra platform.openai.com — brukes til sammendrag og Whisper sky-reserve
+OPENAI_MODELL=gpt-4.1
 MAKS_SAMMENDRAG_TOKENS=1024
 TEMPERATURE=0.3
 ```
+
+`OPENAI_API_NØKKEL` dekker både sammendragsmodulen og Whisper sky-reserve — én nøkkel for begge.
 
 `MAKS_ARTIKKEL_TOKENS` er allerede definert i `.env.mal` fra A0.
 

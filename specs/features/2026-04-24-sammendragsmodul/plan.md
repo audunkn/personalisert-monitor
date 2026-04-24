@@ -16,7 +16,7 @@ Prompts er versjonerte tekstfiler — dette gjør det mulig å spore nøyaktig h
 
 ## Gruppe 2 — lag_sammendrag.py
 
-Kjernemodulen leser en artikkels vault-fil, kombinerer innholdet med regulatorisk kontekst og prompt, kaller Claude API og lagrer resultatet i SQLite. Alle API-kall spores via Opik slik at hvert sammendrag er sporbart til nøyaktig hvilken prompt-versjon og hvilke input-tokens som ble brukt.
+Kjernemodulen leser en artikkels vault-fil, kombinerer innholdet med regulatorisk kontekst og prompt, kaller OpenAI API og lagrer resultatet i SQLite. Alle API-kall spores via Opik slik at hvert sammendrag er sporbart til nøyaktig hvilken prompt-versjon og hvilke input-tokens som ble brukt.
 
 - [ ] Opprett `src/intelligence_monitor/sammendrag/__init__.py` (tom).
 - [ ] Skriv `src/intelligence_monitor/sammendrag/lag_sammendrag.py`:
@@ -25,7 +25,7 @@ Kjernemodulen leser en artikkels vault-fil, kombinerer innholdet med regulatoris
   - Les hele `specs/regulatorisk-kontekst.md` og inkluder som kontekst i prompten.
   - Kutt artikkeltekst til `MAKS_ARTIKKEL_TOKENS` (fra `.env`) før innramming.
   - Pakk artikkelteksten i XML-tagger (`<artikkel>…</artikkel>`).
-  - Kall Claude API med modell, temperature og maks tokens fra `.env`; dekor med `@opik.track`.
+  - Kall OpenAI API med modell, temperature og maks tokens fra `.env`; dekor med `@opik.track`.
   - Lagre sammendrag i `sammendrag`-tabellen med `element_id` og `prompt_versjon`.
 - [ ] Oppdater `CHANGELOG.md`.
 

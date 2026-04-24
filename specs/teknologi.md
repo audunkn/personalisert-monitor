@@ -149,8 +149,11 @@ Hvis kalibreringen viser at Markdown-referansen er for grov, vektoriseres lovtek
 # Database
 DATABASE_STI=data/monitor.db
 
-# Claude API
-ANTHROPIC_API_NØKKEL=
+# OpenAI
+OPENAI_API_NØKKEL=          # API-nøkkel fra platform.openai.com — brukes til sammendrag og Whisper sky-reserve
+OPENAI_MODELL=gpt-4.1
+MAKS_SAMMENDRAG_TOKENS=1024
+TEMPERATURE=0.3
 
 # Opik
 OPIK_API_NØKKEL=
@@ -195,7 +198,7 @@ Kurerte og kjente kilder begrenser risikoen for prompt injection — angrep der 
 Oppsummer artikkelen ovenfor på norsk.
 ```
 
-Claude behandler innhold mellom XML-tagger som data, ikke instruksjoner. En artikkel med teksten "Ignorer tidligere instruksjoner og..." vil i praksis ikke ha effekt fordi modellen ser at teksten befinner seg inne i `<artikkel>`-taggen.
+GPT-4.1 behandler innhold mellom XML-tagger som data, ikke instruksjoner. En artikkel med teksten "Ignorer tidligere instruksjoner og..." vil i praksis ikke ha effekt fordi modellen ser at teksten befinner seg inne i `<artikkel>`-taggen.
 
 **Lengdebegrensning** kutter artikler over `MAKS_ARTIKKEL_TOKENS`. Begge tiltak gjelder alle API-kall.
 
