@@ -19,11 +19,10 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 - `src/intelligence_monitor/evaluering/triplet_lager.py` — datalag for evalueringstriplets: `lagre_triplet()`, `hent_til_vurdering()`, `beregn_statistikk()`, `filtrer_pa_komponent()`, `er_duplikat()` *(2026-04-24 21:00)*
 - `tester/test_triplet_lager.py` — 4 enhetstester: skriv og les, godkjenningsrate og avviste, filtrering på komponent, duplikathåndtering *(2026-04-24 21:00)*
 - `src/intelligence_monitor/evaluering/vurderingsapp.py` — Streamlit-vurderingsapp: sidenavigasjon med statistikk, artikkeltekst (ekspanderbar), sammendrag, godkjenn/avvis-knapper, kommentar via tekst eller tale (Whisper lokalt med sky-fallback), Opik-sync-stub *(2026-04-24 21:15)*
-- `specs/features/2026-04-24-sammendragsmodul/validation_a2b.md` — valideringskriterier for A2b krysset av *(2026-04-24 21:20)*
+- `specs/features/2026-04-24-a2b-triplet-lager-vurderingsapp/` — plan.md, requirements.md, validation.md for A2b *(2026-04-24 21:30)*
 
 ##### Endret
-- `specs/veikart.md` — A2b-oppgaver og tester krysset av *(2026-04-24 21:20)*
-- `specs/features/2026-04-24-sammendragsmodul/plan.md` — A2b-gruppe lagt til og krysset av *(2026-04-24 21:20)*
+- `specs/veikart.md` — A2b-oppgaver og tester krysset av *(2026-04-24 21:30)*
 
 ---
 

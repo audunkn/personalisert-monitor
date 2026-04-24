@@ -44,15 +44,6 @@ Kjernemodulen leser en artikkels vault-fil, kombinerer innholdet med regulatoris
 
 ---
 
-## Gruppe 5 — A2b: Triplet-lager og vurderingsapp
-
-- [x] Skriv `evaluering/triplet_lager.py` med fem funksjoner: `lagre_triplet`, `hent_til_vurdering`, `beregn_statistikk`, `filtrer_pa_komponent`, `er_duplikat`.
-- [x] Skriv `tester/test_triplet_lager.py` med 4 enhetstester — alle grønne.
-- [x] Bygg `evaluering/vurderingsapp.py` i Streamlit: sidenavigasjon med statistikk, artikkeltekst (ekspanderbar), sammendrag, godkjenn/avvis, kommentar via tekst/tale (Whisper + sky-fallback), Opik-sync-stub.
-- [x] Oppdater `CHANGELOG.md`.
-
----
-
 ## Gruppe 4 — Enhetstester
 
 Testene dekker de kritiske grensetilfellene: korrekt XML-innramming, at lange artikler kuttes riktig, at prompt-versjon lagres, at regulatorisk kontekst er til stede i API-kallet, og at manglende vault-fil gir en meningsfull feilmelding i stedet for et krasj.
