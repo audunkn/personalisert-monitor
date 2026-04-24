@@ -54,6 +54,9 @@
 - [x] `test_vault_skriver.py`: ugyldig bilde-URL håndteres uten krasj.
 - [x] `test_vault_skriver.py`: rollback — fil slettes hvis SQLite-skriving feiler.
 
+**Bugfikser:**
+- [x] Issue #7: `start()` skannar nå eksisterende filer i `innboks/` ved oppstart — filer lagt inn før vakten startes prosesseres i alfabetisk rekkefølge. *(2026-04-24)*
+
 ---
 
 ## A0c — PDF-innhenting via vault innboks
