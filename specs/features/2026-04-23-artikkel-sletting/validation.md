@@ -4,7 +4,7 @@
 
 - [x] `make test` passerer — 20 tester grønne etter implementering
 - [x] CHANGELOG oppdatert med tidsstempel `*(2026-04-23 18:00)*`
-- [ ] Manuell røyktest: importer artikkel med bilder via Web Clipper → start `obsidian_vakt.py` → slett `.md`-filen i Obsidian (med System Recycle Bin som slettemål) → verifiser at bildefiler er slettet fra `vault/ressurser/bilder/` og at DB-raden er borte
+- [x] Manuell røyktest: importer artikkel med bilder via Web Clipper → start `obsidian_vakt.py` → slett `.md`-filen i Obsidian (med System Recycle Bin som slettemål) → verifiser at bildefiler er slettet fra `vault/ressurser/bilder/` og at DB-raden er borte
 
 ## Merknader
 
