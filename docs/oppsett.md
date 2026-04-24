@@ -12,7 +12,7 @@
 | uv | siste | Pakke- og miljøhåndtering |
 | Git | siste | Versjonskontroll |
 | Obsidian | siste | Vault-visning og manuell klipping |
-| Anthropic API-nøkkel | — | Sammendragsmodul (fase A2+) |
+| OpenAI API-nøkkel | — | Sammendragsmodul (fase A2+) og Whisper sky-reserve |
 | Opik API-nøkkel | — | Observabilitet og triplet-lagring |
 
 Obsidian Web Clipper installeres som nettleserutvidelse. Se [Obsidian Web Clipper](https://obsidian.md/clipper) for installasjonsinstruksjoner.
@@ -51,7 +51,7 @@ cp .env.mal .env
 
 | Variabel | Påkrevd | Beskrivelse |
 |---|---|---|
-| `ANTHROPIC_API_NØKKEL` | Fase A2+ | API-nøkkel fra console.anthropic.com |
+| `OPENAI_API_NØKKEL` | Fase A2+ | API-nøkkel fra platform.openai.com — brukes til sammendrag og Whisper sky-reserve |
 | `OPIK_API_NØKKEL` | Fase A2+ | API-nøkkel fra Opik-kontoen |
 | `OPIK_PROSJEKTNAVN` | Nei | Standard: `intelligence-monitor` |
 | `DATABASE_STI` | Nei | Standard: `data/monitor.db` |

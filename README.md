@@ -41,7 +41,7 @@ Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan l
 | **Nettleserklipper** | Lagrer enkeltsider manuelt via Obsidian Web Clipper med ett klikk | Ferdig |
 | **Substack og nettskraping** | Henter Substack-nyhetsbrev og nettsider uten RSS-strøm | Planlagt A4 |
 | **YouTube og podkast** | Transkriberer video og lyd lokalt med Whisper | Planlagt A6 |
-| **Sammendragsmodul** | Norskspråklige sammendrag via Claude med regulatorisk kontekst | Planlagt A2 |
+| **Sammendragsmodul** | Norskspråklige sammendrag via OpenAI (gpt-4.1) med regulatorisk kontekst | Planlagt A2 |
 | **Vurderingsapp** | Streamlit-app der du godkjenner eller avviser sammendrag med tekst eller tale | Planlagt A2 |
 | **E-postdigest** | Daglig e-post med sammendrag gruppert per kilde | Planlagt A5 |
 | **LLM-dommer** | Automatisk kvalitetsvurdering av sammendrag basert på dine egne vurderinger | Planlagt B |
@@ -68,7 +68,7 @@ Enhetstester skrives parallelt med hver modul. Regresjonstestsettet vokser autom
 
 ## Teknologi
 
-Python, Claude API fra Anthropic, SQLite, Obsidian-vault, Opik, Streamlit, Whisper, uv, pytest.
+Python, OpenAI API (gpt-4.1), SQLite, Obsidian-vault, Opik, Streamlit, Whisper, uv, pytest.
 
 ---
 

@@ -7,7 +7,7 @@
 #
 # Alle targets forutsetter at:
 #   - Python-miljøet er aktivert (.venv via `uv venv`)
-#   - .env er fylt ut med ANTHROPIC_API_NØKKEL og VAULT_STI
+#   - .env er fylt ut med OPENAI_API_NØKKEL og VAULT_STI
 #   - konfig/kilder.yaml inneholder minst én aktiv kilde
 #
 # Dataflyt i systemet:
@@ -55,12 +55,12 @@ innhent:
 # ─────────────────────────────────────────────────────────────────────────────
 # SAMMENDRAG
 # Behandler elementer i SQLite der sammendrag mangler (ingen rad i sammendrag-tabellen).
-# Kaller Claude API med prompt fra src/intelligence_monitor/sammendrag/prompts/.
+# Kaller OpenAI API med prompt fra src/intelligence_monitor/sammendrag/prompts/.
 # Skriver ferdig sammendrag til sammendrag-tabellen med prompt_versjon og tidsstempel.
 # Artikler over MAKS_ARTIKKEL_TOKENS (standard: 4000) trunkeres før API-kall.
 # Endrer IKKE vault-innhold — kun SQLite-tabellen sammendrag.
 # ─────────────────────────────────────────────────────────────────────────────
-## sammendrag: Lag norskspråklige sammendrag for nye artikler via Claude API
+## sammendrag: Lag norskspråklige sammendrag for nye artikler via OpenAI API
 sammendrag:
 	python -m intelligence_monitor.sammendrag.lag_sammendrag
 
@@ -98,7 +98,7 @@ synk:
 # 'intelligence_monitor.evaluering.regresjonstest'" frem til fase B er levert.
 #
 # Når implementert (fase B):
-#   Kjører evalueringstriplets merket er_regresjonstest=true mot Claude API på nytt.
+#   Kjører evalueringstriplets merket er_regresjonstest=true mot OpenAI API på nytt.
 #   Sammenligner nye svar med lagrede referansesvar og rapporterer avvik.
 #   Brukes for å oppdage prompt-regresjoner etter modell- eller promptoppdateringer.
 #   Skriver IKKE nye rader — leser kun eksisterende triplets fra SQLite.

@@ -13,6 +13,34 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Sammendragsmodul med regulatorisk kontekst
+
+##### Lagt til
+- `specs/features/2026-04-24-sammendragsmodul/` — plan.md, requirements.md, validation.md for A2a *(2026-04-24 19:30)*
+
+##### Lagt til (fortsettelse)
+- `src/intelligence_monitor/sammendrag/lag_sammendrag.py` — sammendragsmodul: leser prompt og artikkeltekst, inkluderer `regulatorisk-kontekst.md`, kutter til `MAKS_ARTIKKEL_TOKENS`, pakker i XML-tagger, kaller OpenAI API (gpt-4.1) med Opik-sporing, lagrer i `sammendrag`-tabellen med `prompt_versjon` *(2026-04-24 20:24)*
+- `src/intelligence_monitor/sammendrag/__init__.py` — pakkemarkør *(2026-04-24 20:24)*
+- `tester/test_lag_sammendrag.py` — 6 enhetstester: XML-innramming, kutt ved grense, bevaring av kort tekst, prompt_versjon i SQLite, regulatorisk kontekst i brukermelding, FileNotFoundError for manglende vault-fil *(2026-04-24 20:24)*
+- Røyktest fullført: 3 artikler oppsummert, alle sammendrag lagret i SQLite med `prompt_versjon=v1`, spor synlig i Opik UI *(2026-04-24 20:24)*
+- `specs/features/2026-04-24-sammendragsmodul/validation.md` — alle kriterier krysset av, klar for merge *(2026-04-24 20:36)*
+
+##### Endret (fortsettelse)
+- `.gitignore` — legg til `.env.mal` for å hindre utilsiktet commit av API-nøkler i malfilen *(2026-04-24 20:36)*
+- `uv.lock` — fjerner `anthropic`-pakken etter overgang til OpenAI *(2026-04-24 20:36)*
+
+##### Endret
+- `pyproject.toml` — erstatter `anthropic>=0.50.0` med `openai>=1.0.0` *(2026-04-24 19:51)*
+- `.env.mal` — erstatter `ANTHROPIC_API_NØKKEL` med OpenAI-seksjon (`OPENAI_API_NØKKEL`, `OPENAI_MODELL=gpt-4.1`, `MAKS_SAMMENDRAG_TOKENS`, `TEMPERATURE`); `OPENAI_API_NØKKEL` dekker nå både sammendrag og Whisper sky-reserve *(2026-04-24 19:51)*
+- `Makefile` — oppdaterer kommentarer fra Claude API / Anthropic til OpenAI API *(2026-04-24 19:51)*
+- `docs/oppsett.md` — erstatter Anthropic API-nøkkel med OpenAI API-nøkkel i forutsetninger og variabeloversikt *(2026-04-24 19:51)*
+- `README.md` — oppdaterer teknologiliste og sammendragsmodul-beskrivelse til OpenAI (gpt-4.1) *(2026-04-24 19:51)*
+- `specs/teknologi.md` — oppdaterer env-eksempel og promptsikkerhet-seksjon til OpenAI/GPT-4.1 *(2026-04-24 19:51)*
+- `specs/veikart.md` — oppdaterer A2a og C-fase-beskrivelser fra Claude til OpenAI *(2026-04-24 19:51)*
+- `specs/features/2026-04-24-sammendragsmodul/` — oppdaterer alle tre filer fra Claude/Anthropic til OpenAI/gpt-4.1 *(2026-04-24 19:51)*
+
+---
+
 #### Automatisk opprydning ved sletting av artikkel
 
 ##### Lagt til
