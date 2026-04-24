@@ -1,6 +1,7 @@
 # Miljø og hemmeligheter
 .env
 .env.local
+.env.mal
 
 # Database
 *.db
