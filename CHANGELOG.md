@@ -11,6 +11,15 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Ad hoc-endringer
+
+#### Bugfikser
+
+##### Fikset
+- `src/intelligence_monitor/evaluering/vurderingsapp.py` — rettet `NameError: name 'kø' is not defined`; linjene 294–296 brukte `kø` i stedet for `ko` *(2026-04-24 22:00)*
+
+---
+
 ### Planlagte implementeringer
 
 #### Triplet-lager og vurderingsapp

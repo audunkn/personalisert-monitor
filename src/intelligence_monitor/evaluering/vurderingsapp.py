@@ -291,9 +291,9 @@ def main() -> None:
 
     _vis_artikkel(ko[indeks])
 
-    fremgang = f"{indeks + 1} av {len(kø)}"
+    fremgang = f"{indeks + 1} av {len(ko)}"
     st.caption(fremgang)
-    st.progress((indeks) / len(kø))
+    st.progress((indeks) / len(ko))
 
 
 if __name__ == "__main__":
