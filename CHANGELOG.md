@@ -13,6 +13,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Triplet-lager og vurderingsapp
+
+##### Lagt til
+- `src/intelligence_monitor/evaluering/triplet_lager.py` — datalag for evalueringstriplets: `lagre_triplet()`, `hent_til_vurdering()`, `beregn_statistikk()`, `filtrer_pa_komponent()`, `er_duplikat()` *(2026-04-24 21:00)*
+- `tester/test_triplet_lager.py` — 4 enhetstester: skriv og les, godkjenningsrate og avviste, filtrering på komponent, duplikathåndtering *(2026-04-24 21:00)*
+
+---
+
 #### Sammendragsmodul med regulatorisk kontekst
 
 ##### Lagt til
