@@ -13,6 +13,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Sammendragsmodul med regulatorisk kontekst
+
+##### Lagt til
+- `specs/features/2026-04-24-sammendragsmodul/` — plan.md, requirements.md, validation.md for A2a *(2026-04-24 19:30)*
+
+---
+
 #### Automatisk opprydning ved sletting av artikkel
 
 ##### Lagt til
