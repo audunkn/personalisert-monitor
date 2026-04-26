@@ -4,8 +4,7 @@
 
 En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, chat og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
 
-Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. I denne implementeringen er domenet et annet: Min daglige rolle i krysniningspunktet AI solution Engineer og Business Controller krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Systemet er det samme jeg ville brukt i rendyrket rolle som Business Controller, men her er kildene byttet ut for å vise at systemet er generelt og kan tilpasset et valgt domene eller rolle
-
+Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. Systemet er generisk og kan tilpasset et valgt domene eller rolle. Derfor har jeg tilpasset det til min daglige rolle som AI Solution Lead & Evals Engineer, som krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Jeg trenger derfor en løsning som hjelper meg med å holde meg oppdatert på det som skjer innenfor fagfeltet.
 
 ---
 
@@ -16,19 +15,17 @@ Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack 
 
 ## Hvordan fungerer det?
 
-Tenk deg at du abonnerer på 20 fagblogger og nyhetsbrev. Hver dag publiseres det kanskje 30 nye artikler på tvers av kildene. Du har tid til å lese fem. Hvordan oppdaterer du deg på de resterende 25? Hver dag.
+Tenk deg at du abonnerer på mange fagblogger og nyhetsbrev. Hver dag publiseres det mange nye artikler på tvers av kildene. Du har kanskje tid til å lese tre. Hvordan oppdaterer du deg på de resterende - hver dag?
 
-Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset brukerens preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som AI Act, NIS2 og ISO 42001. Til slutt leveres alt samlet i en daglig e-post.
+Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset mine preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som KI-lovenog ISO 42001. Til slutt leveres alt i en daglig e-post direkte i min innboks.
 
-Over tid lærer systemet hva du finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: du godkjenner eller avviser sammendrag med en kort kommentar, og systemet bruker disse tilbakemeldingene til å stille inn seg selv på akkurat din måte å tenke på.
-
-I denne versjonen følger systemet kurerte AI- og teknologikilder. Det er domenet jeg trenger oversikt over i det daglige, hvor jeg hjelper bedrifter med å skape skalerbar tillit og verdi med AI.
+Over tid lærer systemet hva jeg finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: jeg godkjenner eller avviser sammendrag med en kort kommentar, og systemet bruker disse tilbakemeldingene til å stille inn seg selv på akkurat min måte å tenke på.
 
 ---
 
 ## Potensialet for andre domener og roller
 
-Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan like gjerne settes til å følge andre interne eller eksterne inforamsjonskilder. Personaliseringen vokser frem gjennom bruk og tilbakemeldinger.
+Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan like gjerne settes til å følge andre interne eller eksterne informasjonskilder. Personaliseringen vokser frem gjennom bruk og tilbakemeldinger.
 
 ---
 
