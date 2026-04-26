@@ -61,4 +61,4 @@ Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins 
 
 ## Forfatter
 
-Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audunklarholm/), AI Solution Lead & AI Evals Engineer - hjelper bedrifter med å skape skalerbar tillit og verdi med AI
+Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audun-klarholm-nilsen-91b880174/), AI Solution Lead & AI Evals Engineer - hjelper bedrifter med å skape skalerbar tillit og verdi med AI
