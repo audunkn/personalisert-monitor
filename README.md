@@ -33,7 +33,7 @@ Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md`
 
 #### AI-first engineering
 
-Jeg har designet arkitektur og veikart i samrbeid med Claude, og bruker Claude Code for å planlegge og implementere en og en funksjon basert på spesifikasjonene. Kode testet programmatisk og den stegvise implementeringen loggføres kontinuerlig og detaljert. Før nye funkasjonalitet settes i produksjon, kontrollerer Github Actions at nye kode ikke innholder sensitiv informasjon.
+Jeg har designet arkitektur og veikart i samarbeid med Claude, og bruker Claude Code for å planlegge og implementere en og en funksjon basert på spesifikasjonene. Før nye funksjonalitet settes i produksjon, kontrollerer Github Actions blant annet at nye kode ikke innholder sensitiv informasjon. Opik brukes for loggføring av kjøringer.
 
 #### Human-on-the-loop for skalerbar tillit
 
