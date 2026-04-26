@@ -19,7 +19,7 @@ Tenk deg at du abonnerer på mange fagblogger og nyhetsbrev. Hver dag publiseres
 
 Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset mine preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som KI-loven og ISO 42001. Til slutt leveres alt i en daglig e-post direkte i min innboks.
 
-Over tid lærer systemet hva jeg finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: jeg godkjenner eller avviser sammendrag med en kommentar på hvorfor, og systemet bruker disse tilbakemeldingene til å justere seg inn mot mine personlige preferanser.
+Over tid lærer systemet hva jeg finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: jeg godkjenner eller avviser sammendrag med en kommentar på hvorfor, og systemet bruker disse tilbakemeldingene til å justere seg inn mot mine personlige preferanser - som også kan endres over tid.
 
 ---
 
