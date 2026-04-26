@@ -33,23 +33,9 @@ Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md`
 
 ---
 
-| [`visjon.md`](specs/visjon.md) | Hva systemet gjør, hvem det er for og hvilke prinsipper som styrer valgene |
-| [`teknologi.md`](specs/teknologi.md) | Teknologivalg, arkitektur og testfilosofi |
-| [`veikart.md`](specs/veikart.md) | Implementasjonssekvens med avkrysning per modul |
-
 ### Human-on-the-loop for skalerbar tillit
 
 Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins serie *AI Evals & Observability* fra Decoding AI (2026): start med menneskelig vurdering, bygg et evalueringssett, tren en automatisk dommer på dine egne preferanser.
-
-### Tester underveis
-
-Enhetstester skrives parallelt med hver modul. Regresjonstestsettet vokser automatisk etter hvert som vurderinger akkumuleres.
-
----
-
-## Teknologi
-
-Python, OpenAI API (gpt-4.1), SQLite, Obsidian-vault, Opik, Streamlit, Whisper, uv, pytest.
 
 ---
 
