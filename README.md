@@ -49,11 +49,11 @@ Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan l
 
 ## Slik er det bygget
 
-### Spesifikasjoner før kode
+### Spesifikasjonsdrevet utvikling
 
 Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md` og `veikart.md`. De er skrevet for å være forståelige både for de uten teknisk bakgrunn og for en utvikler som skal overta eller utvide systemet. Forretningsbegrunnelse og tekniske valg lever i samme dokument.
 
-### Evaluering som arbeidsform
+### Human-on-the-loop for skalerbar tillit
 
 Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins serie *AI Evals & Observability* fra Decoding AI (2026): start med menneskelig vurdering, bygg et evalueringssett, tren en automatisk dommer på dine egne preferanser.
 
