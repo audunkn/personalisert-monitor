@@ -28,7 +28,7 @@ I denne versjonen følger systemet kurerte AI- og teknologikilder. Det er domene
 
 ## Potensialet for andre domener og roller
 
-Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan like gjerne settes til å følge bransjenyhetsbrev, interne kunnskapskilder, konkurranserapporter eller juridiske endringer. Personaliseringen vokser frem gjennom bruk, ikke gjennom konfigurasjon.
+Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan like gjerne settes til å følge andre interne eller eksterne inforamsjonskilder. Personaliseringen vokser frem gjennom bruk og tilbakemeldinger.
 
 ---
 
@@ -54,7 +54,7 @@ Arkitekturen er ikke låst til ett fagfelt. Det som i dag leser AI-blogger kan l
 
 ### Spesifikasjoner før kode
 
-Prosjektet startet med tre levende spesifikasjonsdokumenter: `visjon.md`, `teknologi.md` og `veikart.md`. De er skrevet for å være forståelige både for deg uten teknisk bakgrunn og for en utvikler som skal overta eller utvide systemet. Forretningsbegrunnelse og tekniske valg lever i samme dokument.
+Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md` og `veikart.md`. De er skrevet for å være forståelige både for de uten teknisk bakgrunn og for en utvikler som skal overta eller utvide systemet. Forretningsbegrunnelse og tekniske valg lever i samme dokument.
 
 ### Evaluering som arbeidsform
 
