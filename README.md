@@ -4,7 +4,7 @@
 
 En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, chat og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
 
-Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. Systemet er generisk og kan tilpasset et valgt domene eller rolle. Derfor har jeg tilpasset det til min daglige rolle som AI Solution Lead & Evals Engineer, som krever løpende oversikt over fagblogger, forskningsartikler, nyhetsbrev og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Jeg trenger derfor en løsning som hjelper meg med å holde meg oppdatert på det som skjer innenfor fagfeltet.
+Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. Systemet er generisk og kan tilpasset et valgt domene eller rolle. Derfor har jeg tilpasset det til min daglige rolle som AI Solution Lead & Evals Engineer, som krever løpende oversikt over fagblogger, forskningsartikler og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Jeg trenger derfor en løsning som hjelper meg med å holde meg oppdatert på det som skjer innenfor fagfeltet.
 
 ---
 
@@ -15,7 +15,7 @@ Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack 
 
 ## Hvordan fungerer det?
 
-Tenk deg at du abonnerer på mange fagblogger og nyhetsbrev. Hver dag publiseres det nye artikler på tvers av kildene. Du har kanskje tid til å lese et par av dem. Hvordan oppdaterer du deg på de resterende - hver dag?
+Tenk deg at du abonnerer på mange fagblogger. Hver dag publiseres det nye artikler på tvers av kildene. Du har kanskje tid til å lese et par av dem. Hvordan oppdaterer du deg på de resterende - hver dag?
 
 Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset mine preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som KI-loven og ISO 42001. Til slutt leveres alt i en daglig e-post direkte i min innboks.
 
