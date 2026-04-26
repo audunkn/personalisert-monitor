@@ -17,7 +17,7 @@ Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack 
 
 Tenk deg at du abonnerer på mange fagblogger og nyhetsbrev. Hver dag publiseres det nye artikler på tvers av kildene. Du har kanskje tid til å lese et par av dem. Hvordan oppdaterer du deg på de resterende - hver dag?
 
-Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset mine preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som KI-lovenog ISO 42001. Til slutt leveres alt i en daglig e-post direkte i min innboks.
+Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset mine preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som KI-loven og ISO 42001. Til slutt leveres alt i en daglig e-post direkte i min innboks.
 
 Over tid lærer systemet hva jeg finner nyttig. Det skjer gjennom en innebygd vurderingsmekanisme: jeg godkjenner eller avviser sammendrag med en kort kommentar, og systemet bruker disse tilbakemeldingene til å stille inn seg selv på akkurat min måte å tenke på.
 
