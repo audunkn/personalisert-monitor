@@ -92,4 +92,4 @@ Systemet henter i dag artikler automatisk fra RSS-kilder, lagrer dem i Obsidian-
 
 ## Forfatter
 
-Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audunklarholm/), AI Solution Engineer og Business Controller, som hjelper bedrifter med å skape skalerbar tillit og gevinst med AI
+Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audunklarholm/), AI Solution Lead & AI Evals Engineer - hjelper bedrifter med å skape skalerbar tillit og gevinst med AI
