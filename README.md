@@ -31,6 +31,10 @@ Arkitekturen er ikke låst til ett fagfelt. Den kan settes opp til å følge fri
 
 Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md` og `veikart.md`. De er skrevet for å være forståelige både for de uten teknisk bakgrunn og for en utvikler som skal overta eller utvide systemet. Forretningsbegrunnelse og tekniske valg lever i samme dokument.
 
+#### AI-first engineering
+
+Jeg har designet arkitektur og veikart i samrbeid med Claude, og bruker Claude Code for å planlegge og implementere en og en funksjon basert på spesifikasjonene. Kode testet programmatisk og den stegvise implementeringen loggføres kontinuerlig og detaljert. Før nye funkasjonalitet settes i produksjon, kontrollerer Github Actions at nye kode ikke innholder sensitiv informasjon.
+
 #### Human-on-the-loop for skalerbar tillit
 
 Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins serie *AI Evals & Observability* fra Decoding AI (2026): start med menneskelig vurdering, bygg et evalueringssett, tren en automatisk dommer på dine egne preferanser.
