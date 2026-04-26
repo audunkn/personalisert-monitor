@@ -25,29 +25,17 @@ Arkitekturen er ikke låst til ett fagfelt. Den kan settes opp til å følge fri
 
 ---
 
-## Hva er bygget hittil
-
-| Modul | Hva den gjør | Status |
-|---|---|---|
-| **RSS-innhenter** | Henter artikler fra RSS- og Atom-strømmer med datointervall og duplikatsjekk | Ferdig |
-| **Vault-skriver** | Lagrer artikler som Markdown-filer med bilder i Obsidian-vault og registrerer dem i SQLite | Ferdig |
-| **Nettleserklipper** | Lagrer enkeltsider manuelt via Obsidian Web Clipper med ett klikk | Ferdig |
-| **Substack og nettskraping** | Henter Substack-nyhetsbrev og nettsider uten RSS-strøm | Planlagt A4 |
-| **YouTube og podkast** | Transkriberer video og lyd lokalt med Whisper | Planlagt A6 |
-| **Sammendragsmodul** | Norskspråklige sammendrag via OpenAI (gpt-4.1) med regulatorisk kontekst | Planlagt A2 |
-| **Vurderingsapp** | Streamlit-app der du godkjenner eller avviser sammendrag med tekst eller tale | Planlagt A2 |
-| **E-postdigest** | Daglig e-post med sammendrag gruppert per kilde | Planlagt A5 |
-| **LLM-dommer** | Automatisk kvalitetsvurdering av sammendrag basert på dine egne vurderinger | Planlagt B |
-| **Semantisk søk** | Still spørsmål til arkivet og få svar med kildehenvisninger | Planlagt C |
-| **Analysemodul** | Rapporter om innhentingskvalitet, kostnader og trender over tid | Planlagt D |
-
----
-
 ## Slik er det bygget
 
 ### Spesifikasjonsdrevet utvikling
 
 Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md` og `veikart.md`. De er skrevet for å være forståelige både for de uten teknisk bakgrunn og for en utvikler som skal overta eller utvide systemet. Forretningsbegrunnelse og tekniske valg lever i samme dokument.
+
+---
+
+| [`visjon.md`](specs/visjon.md) | Hva systemet gjør, hvem det er for og hvilke prinsipper som styrer valgene |
+| [`teknologi.md`](specs/teknologi.md) | Teknologivalg, arkitektur og testfilosofi |
+| [`veikart.md`](specs/veikart.md) | Implementasjonssekvens med avkrysning per modul |
 
 ### Human-on-the-loop for skalerbar tillit
 
@@ -65,21 +53,21 @@ Python, OpenAI API (gpt-4.1), SQLite, Obsidian-vault, Opik, Streamlit, Whisper, 
 
 ---
 
-## Prosjektdokumenter
+## Hva er bygget hittil
 
-| Dokument | Formål |
-|---|---|
-| [`visjon.md`](specs/visjon.md) | Hva systemet gjør, hvem det er for og hvilke prinsipper som styrer valgene |
-| [`teknologi.md`](specs/teknologi.md) | Teknologivalg, arkitektur og testfilosofi |
-| [`veikart.md`](specs/veikart.md) | Implementasjonssekvens med avkrysning per modul |
-
----
-
-## Status
-
-**A0 (fundament), A0b (manuell innhenting) og A1 (RSS-innhenting) er fullført.**
-
-Systemet henter i dag artikler automatisk fra RSS-kilder, lagrer dem i Obsidian-vault og SQLite, og deduper mot tidligere innhenting. Neste steg er sammendragsmodulen (A2).
+| Modul | Hva den gjør | Status |
+|---|---|---|
+| **RSS-innhenter** | Henter artikler fra RSS- og Atom-strømmer med datointervall og duplikatsjekk | Ferdig |
+| **Vault-skriver** | Lagrer artikler som Markdown-filer med bilder i Obsidian-vault og registrerer dem i SQLite | Ferdig |
+| **Nettleserklipper** | Lagrer enkeltsider manuelt via Obsidian Web Clipper med ett klikk | Ferdig |
+| **Substack og nettskraping** | Henter Substack-nyhetsbrev og nettsider uten RSS-strøm | Planlagt A4 |
+| **YouTube og podkast** | Transkriberer video og lyd lokalt med Whisper | Planlagt A6 |
+| **Sammendragsmodul** | Norskspråklige sammendrag via OpenAI (gpt-4.1) med regulatorisk kontekst | Planlagt A2 |
+| **Vurderingsapp** | Streamlit-app der du godkjenner eller avviser sammendrag med tekst eller tale | Planlagt A2 |
+| **E-postdigest** | Daglig e-post med sammendrag gruppert per kilde | Planlagt A5 |
+| **LLM-dommer** | Automatisk kvalitetsvurdering av sammendrag basert på dine egne vurderinger | Planlagt B |
+| **Semantisk søk** | Still spørsmål til arkivet og få svar med kildehenvisninger | Planlagt C |
+| **Analysemodul** | Rapporter om innhentingskvalitet, kostnader og trender over tid | Planlagt D |
 
 ---
 
