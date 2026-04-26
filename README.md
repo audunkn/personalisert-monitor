@@ -15,7 +15,7 @@ Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack 
 
 ## Hvordan fungerer det?
 
-Tenk deg at du abonnerer på mange fagblogger og nyhetsbrev. Hver dag publiseres det mange nye artikler på tvers av kildene. Du har kanskje tid til å lese tre. Hvordan oppdaterer du deg på de resterende - hver dag?
+Tenk deg at du abonnerer på mange fagblogger og nyhetsbrev. Hver dag publiseres det nye artikler på tvers av kildene. Du har kanskje tid til å lese et par av dem. Hvordan oppdaterer du deg på de resterende - hver dag?
 
 Systemet henter artiklene automatisk, leser dem og destillerer innholdet til strukturerte sammendrag tilpasset mine preferanser og informasjonsbehov. Sammendragene kobler innholdet til regulatorisk kontekst der det er relevant, som KI-lovenog ISO 42001. Til slutt leveres alt i en daglig e-post direkte i min innboks.
 
