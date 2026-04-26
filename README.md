@@ -9,7 +9,7 @@ Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack 
 
 ---
 
-![Oversikt over løsningen](oversikt_løsninig.png)
+![Oversikt over løsningen](oversikt_system.png)
 
 ###### (Illustrasjon: ChatGPT Images 2.0)
 ---

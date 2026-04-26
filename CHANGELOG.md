@@ -13,6 +13,11 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Dokumentasjon
+
+##### Endret
+- `README.md` — oppdatert innhold; `oversikt_løsninig.png` erstattet med `oversikt_system.png` *(2026-04-26 00:00)*
+
 #### Bugfikser
 
 ##### Fikset
