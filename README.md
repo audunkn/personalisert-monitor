@@ -33,7 +33,7 @@ Prosjektet startet med tre spesifikasjonsdokumenter: `visjon.md`, `teknologi.md`
 
 #### AI-first engineering
 
-Jeg har designet arkitektur og veikart i samarbeid med Claude, og bruker Claude Code for å planlegge og implementere en og en funksjon basert på spesifikasjonene. Språkmodell brukes for axialkoding og optimaliseirng av prompter.
+Arkitektur og veikart er utrabeidet i samarbeid med Claude, og Claude Code brukes for å planlegge og implementere en og en funksjon basert på spesifikasjonene. Språkmodell brukes for axialkoding og optimaliseirng av prompter.
 
 #### Human-on-the-loop for skalerbar tillit
 
