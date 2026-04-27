@@ -58,6 +58,8 @@ Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins 
 | **E-postdigest** | Daglig e-post med sammendrag gruppert per kilde | Planlagt A5 |
 | **LLM-dommer** | Automatisk kvalitetsvurdering av sammendrag basert på dine egne vurderinger | Planlagt B |
 | **Semantisk søk** | Still spørsmål til arkivet og få svar med kildehenvisninger | Planlagt C |
+| **RAG-evaluering** | Menneskelig kvalitetsmåling av gjenfinning og generering — alle seks relasjoner mellom spørring, kontekst og svar vurderes separat | Planlagt C |
+| **LLM-dommer for RAG** | Automatisk dommer kalibrert mot egne søkevurderinger, separat for gjenfinning og generering | Planlagt C |
 | **Analysemodul** | Rapporter om innhentingskvalitet, kostnader og trender over tid | Planlagt D |
 
 ---
