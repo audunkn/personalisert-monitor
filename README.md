@@ -48,10 +48,13 @@ Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins 
 | **RSS-innhenter** | Henter artikler fra RSS- og Atom-strømmer med datointervall og duplikatsjekk | Ferdig |
 | **Vault-skriver** | Lagrer artikler som Markdown-filer med bilder i Obsidian-vault og registrerer dem i SQLite | Ferdig |
 | **Nettleserklipper** | Lagrer enkeltsider manuelt via Obsidian Web Clipper med ett klikk | Ferdig |
+| **PDF-innhenting** | Behandler PDFer lagt i vault-innboks — tekst trekkes ut med pypdf og registreres i SQLite | Ferdig |
+| **Automatisk opprydning** | Sletter bildefiler og SQLite-rad automatisk når en artikkel-fil fjernes fra vault | Ferdig |
+| **Sammendragsmodul** | Norskspråklige sammendrag via OpenAI (gpt-4.1) med regulatorisk kontekst | Ferdig |
+| **Vurderingsapp** | Streamlit-app der du godkjenner eller avviser sammendrag med tekst eller tale | Ferdig |
+| **Opik-synkronisering** | Synkroniserer evalueringstriplets inkrementelt til Opik for backup og visualisering | Planlagt A2c |
 | **Substack og nettskraping** | Henter Substack-nyhetsbrev og nettsider uten RSS-strøm | Planlagt A4 |
 | **YouTube og podkast** | Transkriberer video og lyd lokalt med Whisper | Planlagt A6 |
-| **Sammendragsmodul** | Norskspråklige sammendrag via OpenAI (gpt-4.1) med regulatorisk kontekst | Planlagt A2 |
-| **Vurderingsapp** | Streamlit-app der du godkjenner eller avviser sammendrag med tekst eller tale | Planlagt A2 |
 | **E-postdigest** | Daglig e-post med sammendrag gruppert per kilde | Planlagt A5 |
 | **LLM-dommer** | Automatisk kvalitetsvurdering av sammendrag basert på dine egne vurderinger | Planlagt B |
 | **Semantisk søk** | Still spørsmål til arkivet og få svar med kildehenvisninger | Planlagt C |
