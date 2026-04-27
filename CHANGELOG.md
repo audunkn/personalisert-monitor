@@ -16,6 +16,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 #### Dokumentasjon
 
 ##### Endret
+- `README.md` — statustabellen oppdatert: PDF-innhenting, automatisk opprydning, sammendragsmodul og vurderingsapp markert som ferdig; Opik-synkronisering lagt til som planlagt A2c *(2026-04-27 12:00)*
 - `README.md` — oppdatert innhold; `oversikt_løsninig.png` erstattet med `oversikt_system.png` *(2026-04-26 00:00)*
 
 #### Bugfikser
