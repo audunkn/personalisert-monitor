@@ -172,6 +172,7 @@ def _innhent_kilde(
                 kildetype="rss",
                 db_sti=db_sti,
                 vault_rot=vault_rot,
+                kilde_mappe=kilde["navn"],
             )
             kjente_urls.add(link)
             nye += 1

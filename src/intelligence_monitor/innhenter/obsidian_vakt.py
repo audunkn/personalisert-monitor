@@ -21,6 +21,7 @@ from pathlib import Path
 
 import pypdf
 import yaml
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 from watchdog.events import FileCreatedEvent, FileDeletedEvent, FileSystemEventHandler
 from watchdog.observers import Observer
@@ -133,6 +134,7 @@ class _InnboksHandler(FileSystemEventHandler):
             db_sti=self._db_sti,
             vault_rot=self._vault_rot,
             klippet_dato=klippet_dato,
+            kilde_mappe=_domene_fra_url(url),
         )
 
         # Flytt til behandlet/
@@ -190,6 +192,7 @@ class _InnboksHandler(FileSystemEventHandler):
             db_sti=self._db_sti,
             vault_rot=self._vault_rot,
             klippet_dato=None,
+            kilde_mappe=_PDF_KILDENAVN,
         )
 
         behandlet_mappe = self._vault_rot / "behandlet"
@@ -221,7 +224,7 @@ class _ArtikkelHandler(FileSystemEventHandler):
         if event.is_directory or not str(event.src_path).endswith(".md"):
             return
         fil_sti = Path(str(event.src_path))
-        vault_sti = str(fil_sti.relative_to(self._vault_rot))
+        vault_sti = fil_sti.relative_to(self._vault_rot).as_posix()
         try:
             _rydd_etter_slettet_artikkel(self._db_sti, self._vault_rot, vault_sti)
         except Exception as feil:
@@ -288,6 +291,17 @@ def _rydd_etter_slettet_artikkel(db_sti: Path, vault_rot: Path, vault_sti: str) 
 # ---------------------------------------------------------------------------
 # Hjelpefunksjoner
 # ---------------------------------------------------------------------------
+
+
+def _domene_fra_url(url: str) -> str:
+    """Trekker ut domene fra URL for bruk som vault-mappe.
+
+    Fjerner www.-prefiks. Returnerer 'ukjent-kilde' ved tom netloc.
+    """
+    netloc = urlparse(url).netloc
+    if netloc.startswith("www."):
+        netloc = netloc[4:]
+    return netloc or "ukjent-kilde"
 
 
 def _trekk_ut_pdf_innhold(fil_sti: Path) -> tuple[str, str]:
@@ -434,7 +448,7 @@ def start(vault_rot: Path, db_sti: Path) -> None:
 
     observer = Observer()
     observer.schedule(handler, str(innboks), recursive=False)
-    observer.schedule(artikkel_handler, str(artikler), recursive=False)
+    observer.schedule(artikkel_handler, str(artikler), recursive=True)
     observer.start()
     logger.info("Vakt startet — overvåker %s og %s", innboks, artikler)
 

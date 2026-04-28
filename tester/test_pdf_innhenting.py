@@ -89,7 +89,7 @@ def test_pdf_lagres_korrekt(vault_rot: Path, db_sti: Path, mocker) -> None:
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     handler = obsidian_vakt._InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
@@ -100,7 +100,7 @@ def test_pdf_lagres_korrekt(vault_rot: Path, db_sti: Path, mocker) -> None:
     assert rad[2] == "pdf://testartikkel"
 
     assert (vault_rot / "behandlet" / "testartikkel.pdf").exists(), "PDF skal være i behandlet/"
-    filer = list((vault_rot / "artikler").glob("*.md"))
+    filer = list((vault_rot / "artikler").glob("**/*.md"))
     assert len(filer) == 1, f"Forventet 1 .md-fil i artikler/, fant {len(filer)}"
 
 
@@ -121,7 +121,7 @@ def test_pdf_tittel_fra_metadata(vault_rot: Path, db_sti: Path, mocker) -> None:
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     handler = obsidian_vakt._InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
@@ -149,7 +149,7 @@ def test_pdf_duplikat_hoppes_over(vault_rot: Path, db_sti: Path, mocker) -> None
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     handler = obsidian_vakt._InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)

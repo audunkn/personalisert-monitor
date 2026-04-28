@@ -42,6 +42,7 @@ def lagre_artikkel(
     db_sti: Path,
     vault_rot: Path,
     klippet_dato: str | None = None,
+    kilde_mappe: str | None = None,
 ) -> str:
     """Lagrer en artikkel atomisk til vault og SQLite.
 
@@ -55,6 +56,7 @@ def lagre_artikkel(
         db_sti: Sti til SQLite-databasefilen.
         vault_rot: Rot-mappe for Obsidian-vault.
         klippet_dato: ISO-dato for manuell klipping. Brukes som fallback for publisert.
+        kilde_mappe: Kildenavn — slugifiseres til undermappe under artikler/.
 
     Returns:
         element_id som full UUID4-streng.
@@ -65,10 +67,23 @@ def lagre_artikkel(
     element_id = str(uuid.uuid4())
     uuid_kort = element_id.replace("-", "")[:8]
 
-    # Steg 2: Last ned bilder og erstatt URL-er
-    innhold_behandlet, bildefilnavn = _behandle_bilder(innhold, vault_rot, url)
+    # Steg 2: Beregn mappe og bildeprefiks
+    slug = _lag_slug(tittel)
+    filnavn = f"{uuid_kort}-{slug}.md"
+    if kilde_mappe:
+        mappe_slug = _lag_slug(kilde_mappe)
+        artikkel_mappe = vault_rot / "artikler" / mappe_slug
+        bilde_prefix = "../../ressurser/bilder"
+    else:
+        mappe_slug = None
+        artikkel_mappe = vault_rot / "artikler"
+        bilde_prefix = "../ressurser/bilder"
+    artikkel_mappe.mkdir(parents=True, exist_ok=True)
 
-    # Steg 3: Skriv .md-fil til vault/artikler/
+    # Steg 3: Last ned bilder og erstatt URL-er
+    innhold_behandlet, bildefilnavn = _behandle_bilder(innhold, vault_rot, url, bilde_prefix)
+
+    # Steg 4: Skriv .md-fil
     effektiv_publisert = publisert or klippet_dato
     md_innhold = _bygg_markdown(
         element_id=element_id,
@@ -79,16 +94,15 @@ def lagre_artikkel(
         publisert=effektiv_publisert,
         innhold=innhold_behandlet,
     )
-    slug = _lag_slug(tittel)
-    filnavn = f"{uuid_kort}-{slug}.md"
-    artikkel_mappe = vault_rot / "artikler"
-    artikkel_mappe.mkdir(parents=True, exist_ok=True)
     fil_sti = artikkel_mappe / filnavn
     fil_sti.write_text(md_innhold, encoding="utf-8")
 
-    # Steg 4 + 5: Skriv SQLite — rollback på feil
+    # Steg 5 + rollback: Skriv SQLite — rollback på feil
     hentet = datetime.now(timezone.utc).isoformat()
-    vault_sti = str(Path("artikler") / filnavn)
+    if kilde_mappe:
+        vault_sti = (Path("artikler") / mappe_slug / filnavn).as_posix()
+    else:
+        vault_sti = (Path("artikler") / filnavn).as_posix()
     bilder_json = json.dumps(bildefilnavn) if bildefilnavn else None
     try:
         _skriv_til_db(
@@ -129,7 +143,7 @@ def _lag_slug(tittel: str) -> str:
     normalisert = unicodedata.normalize("NFKD", tittel)
     ascii_bytes = normalisert.encode("ascii", errors="ignore")
     slug = ascii_bytes.decode("ascii").lower()
-    slug = slug.replace(" ", "-")
+    slug = slug.replace(" ", "-").replace("_", "-").replace(".", "-")
     slug = re.sub(r"[^a-z0-9-]", "", slug)
     slug = re.sub(r"-+", "-", slug).strip("-")
     return slug or "artikkel"
@@ -173,7 +187,12 @@ def _bygg_markdown(
     return f"{frontmatter}\n\n# {tittel}\n\n{innhold}\n"
 
 
-def _behandle_bilder(innhold: str, vault_rot: Path, base_url: str = "") -> tuple[str, list[str]]:
+def _behandle_bilder(
+    innhold: str,
+    vault_rot: Path,
+    base_url: str = "",
+    bilde_prefix: str = "../ressurser/bilder",
+) -> tuple[str, list[str]]:
     """Laster ned alle bilder i innholdet og erstatter URL-er med lokale stier.
 
     Finner bilder på formene:
@@ -204,7 +223,7 @@ def _behandle_bilder(innhold: str, vault_rot: Path, base_url: str = "") -> tuple
         bilde_url = treff.group(2)
         if bilde_url not in url_til_lokal:
             abs_url = urljoin(base_url, bilde_url) if base_url else bilde_url
-            lokal = _last_ned_bilde(abs_url, bilde_mappe)
+            lokal = _last_ned_bilde(abs_url, bilde_mappe, bilde_prefix)
             if lokal:
                 url_til_lokal[bilde_url] = lokal
 
@@ -212,7 +231,7 @@ def _behandle_bilder(innhold: str, vault_rot: Path, base_url: str = "") -> tuple
         bilde_url = treff.group(1)
         if bilde_url not in url_til_lokal:
             abs_url = urljoin(base_url, bilde_url) if base_url else bilde_url
-            lokal = _last_ned_bilde(abs_url, bilde_mappe)
+            lokal = _last_ned_bilde(abs_url, bilde_mappe, bilde_prefix)
             if lokal:
                 url_til_lokal[bilde_url] = lokal
 
@@ -224,7 +243,11 @@ def _behandle_bilder(innhold: str, vault_rot: Path, base_url: str = "") -> tuple
     return innhold, bildefilnavn
 
 
-def _last_ned_bilde(url: str, bilde_mappe: Path) -> str | None:
+def _last_ned_bilde(
+    url: str,
+    bilde_mappe: Path,
+    bilde_prefix: str = "../ressurser/bilder",
+) -> str | None:
     """Laster ned ett bilde og lagrer det lokalt.
 
     Args:
@@ -252,8 +275,7 @@ def _last_ned_bilde(url: str, bilde_mappe: Path) -> str | None:
     filnavn = f"{uuid.uuid4().hex[:8]}.{ext}"
     (bilde_mappe / filnavn).write_bytes(respons.content)
 
-    # Relativ sti fra vault/artikler/ til vault/ressurser/bilder/
-    return f"../ressurser/bilder/{filnavn}"
+    return f"{bilde_prefix}/{filnavn}"
 
 
 def _finn_ext(innholdstype: str, url: str) -> str:

@@ -1,5 +1,5 @@
 kilder:
-  - navn: MLFlow Blog
+  - navn: mlflow_blog
     type: rss
     url: https://mlflow.org/blog/rss.xml
     hent_fra: null

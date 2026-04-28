@@ -13,6 +13,24 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Domene-mappe for klipping og slug-fiks for underscore/punktum
+
+##### Endret
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — `_lag_slug()` erstatter nå `_` og `.` med `-` før regex-opprydding; sikrer `mlflow_blog` → `mlflow-blog` og `anthropic.com` → `anthropic-com` *(2026-04-28 20:30)*
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — `_prosesser()` bruker nå `_domene_fra_url(url)` som `kilde_mappe` i stedet for konstanten `manuell-klipp`; ny hjelpefunksjon `_domene_fra_url()` trekker ut netloc og fjerner `www.`-prefiks *(2026-04-28 20:30)*
+- `tester/test_vault_skriver.py` — `test_kilde_mappe_oppretter_undermappe` bruker nå `kilde_mappe="mlflow_blog"` (YAML-navn) i stedet for `"MLFlow Blog"` for å verifisere underscore-slugifisering *(2026-04-28 20:30)*
+
+#### Kildebaserte undermapper i vault/artikler/
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — ny valgfri parameter `kilde_mappe`; artikkelen lagres i `artikler/{kilde-slug}/` med bildeprefiks `../../ressurser/bilder`; `vault_sti` i SQLite bruker alltid forward-slash via `as_posix()` *(2026-04-28 19:54)*
+- `tester/test_vault_skriver.py` — ny test `test_kilde_mappe_oppretter_undermappe` verifiserer undermappe og korrekt `vault_sti` i SQLite *(2026-04-28 19:54)*
+
+##### Endret
+- `src/intelligence_monitor/innhenter/rss.py` — `lagre_artikkel()` kalles nå med `kilde_mappe=kilde["navn"]` *(2026-04-28 19:54)*
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — `_prosesser()` og `_prosesser_pdf()` sender `kilde_mappe`; artikkel-observatøren er nå rekursiv (`recursive=True`); `vault_sti` i delete-handler normalisert til forward-slash *(2026-04-28 19:54)*
+- `tester/test_vault_skriver.py`, `tester/test_pdf_innhenting.py`, `tester/test_obsidian_vakt_oppstart.py` — mock-lambdaer for `_behandle_bilder` oppdatert med ny `bilde_prefix`-parameter *(2026-04-28 19:54)*
+
 #### Full artikkeltekst ved RSS-innhenting
 
 ##### Lagt til
