@@ -143,7 +143,7 @@ def _lag_slug(tittel: str) -> str:
     normalisert = unicodedata.normalize("NFKD", tittel)
     ascii_bytes = normalisert.encode("ascii", errors="ignore")
     slug = ascii_bytes.decode("ascii").lower()
-    slug = slug.replace(" ", "-")
+    slug = slug.replace(" ", "-").replace("_", "-").replace(".", "-")
     slug = re.sub(r"[^a-z0-9-]", "", slug)
     slug = re.sub(r"-+", "-", slug).strip("-")
     return slug or "artikkel"

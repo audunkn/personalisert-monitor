@@ -21,6 +21,7 @@ from pathlib import Path
 
 import pypdf
 import yaml
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 from watchdog.events import FileCreatedEvent, FileDeletedEvent, FileSystemEventHandler
 from watchdog.observers import Observer
@@ -133,7 +134,7 @@ class _InnboksHandler(FileSystemEventHandler):
             db_sti=self._db_sti,
             vault_rot=self._vault_rot,
             klippet_dato=klippet_dato,
-            kilde_mappe=_MANUELL_KILDENAVN,
+            kilde_mappe=_domene_fra_url(url),
         )
 
         # Flytt til behandlet/
@@ -290,6 +291,17 @@ def _rydd_etter_slettet_artikkel(db_sti: Path, vault_rot: Path, vault_sti: str) 
 # ---------------------------------------------------------------------------
 # Hjelpefunksjoner
 # ---------------------------------------------------------------------------
+
+
+def _domene_fra_url(url: str) -> str:
+    """Trekker ut domene fra URL for bruk som vault-mappe.
+
+    Fjerner www.-prefiks. Returnerer 'ukjent-kilde' ved tom netloc.
+    """
+    netloc = urlparse(url).netloc
+    if netloc.startswith("www."):
+        netloc = netloc[4:]
+    return netloc or "ukjent-kilde"
 
 
 def _trekk_ut_pdf_innhold(fil_sti: Path) -> tuple[str, str]:

@@ -13,6 +13,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Domene-mappe for klipping og slug-fiks for underscore/punktum
+
+##### Endret
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — `_lag_slug()` erstatter nå `_` og `.` med `-` før regex-opprydding; sikrer `mlflow_blog` → `mlflow-blog` og `anthropic.com` → `anthropic-com` *(2026-04-28 20:30)*
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — `_prosesser()` bruker nå `_domene_fra_url(url)` som `kilde_mappe` i stedet for konstanten `manuell-klipp`; ny hjelpefunksjon `_domene_fra_url()` trekker ut netloc og fjerner `www.`-prefiks *(2026-04-28 20:30)*
+- `tester/test_vault_skriver.py` — `test_kilde_mappe_oppretter_undermappe` bruker nå `kilde_mappe="mlflow_blog"` (YAML-navn) i stedet for `"MLFlow Blog"` for å verifisere underscore-slugifisering *(2026-04-28 20:30)*
+
 #### Kildebaserte undermapper i vault/artikler/
 
 ##### Lagt til

@@ -183,7 +183,7 @@ def test_kilde_mappe_oppretter_undermappe(vault_rot, db_sti, mocker) -> None:
         kildetype="rss",
         db_sti=db_sti,
         vault_rot=vault_rot,
-        kilde_mappe="MLFlow Blog",
+        kilde_mappe="mlflow_blog",
     )
 
     filer = list((vault_rot / "artikler" / "mlflow-blog").glob("*.md"))
