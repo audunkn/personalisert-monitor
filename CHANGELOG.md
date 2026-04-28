@@ -11,6 +11,19 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Planlagte implementeringer
+
+#### Full artikkeltekst ved RSS-innhenting
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/rss.py` — ny `_hent_full_artikkel(url)` henter og konverterer full artikkeltekst fra artikkelens URL via httpx + BeautifulSoup + markdownify; `_innhent_kilde()` bruker full tekst med fallback til RSS-summary *(2026-04-28 12:00)*
+- `tester/test_rss.py` — 2 nye tester: `test_full_artikkel_brukes_når_tilgjengelig` og `test_rss_summary_brukes_som_fallback`; alle 6 eksisterende tester oppdatert med mock for `_hent_full_artikkel` *(2026-04-28 12:00)*
+
+##### Endret
+- `pyproject.toml` — `markdownify>=0.11` lagt til som avhengighet *(2026-04-28 12:00)*
+
+---
+
 ### Ad hoc-endringer
 
 #### Dokumentasjon
@@ -23,6 +36,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 #### Bugfikser
 
 ##### Fikset
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — relative bilde-URL-er fra skrapede artikler løses nå mot artikkelens base-URL via `urljoin` før nedlasting; tester oppdatert *(2026-04-28 19:30)*
 - `src/intelligence_monitor/innhenter/obsidian_vakt.py` — kaskadesletting ved artikkelsletting: `_rydd_etter_slettet_artikkel()` sletter nå evalueringstriplets og sammendrag i riktig rekkefølge før elementer-raden, alt i én transaksjon *(2026-04-28 10:00)*
 - `tester/test_artikkel_sletting.py` — ny test `test_slett_artikkel_fjerner_sammendrag_og_triplets` verifiserer at sammendrag og triplets slettes korrekt *(2026-04-28 10:00)*
 - `src/intelligence_monitor/innhenter/obsidian_vakt.py` — oppstartsskanning av eksisterende innboks-filer: `start()` itererer nå over `innboks/` med `sorted()` og prosesserer `.md`- og `.pdf`-filer før Observer startes (issue #7) *(2026-04-24 23:00)*

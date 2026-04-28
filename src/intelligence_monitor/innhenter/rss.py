@@ -20,7 +20,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import feedparser
+import httpx
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from markdownify import markdownify
 
 from intelligence_monitor.innhenter.vault_skriver import lagre_artikkel
 
@@ -154,8 +157,8 @@ def _innhent_kilde(
 
         tittel = getattr(entry, "title", "") or "Uten tittel"
 
-        # Hent innhold — foretrekk summary/description over content
-        innhold = _hent_innhold(entry)
+        # Hent full artikkeltekst; fall tilbake til RSS-summary ved feil
+        innhold = _hent_full_artikkel(link) or _hent_innhold(entry)
 
         publisert_iso = pub_dato.date().isoformat() if pub_dato else None
 
@@ -236,6 +239,35 @@ def _hent_innhold(entry: object) -> str:
         return innhold_liste[0].get("value", "") if isinstance(innhold_liste[0], dict) else ""
 
     return ""
+
+
+def _hent_full_artikkel(url: str) -> str | None:
+    """Henter og konverterer full artikkeltekst fra artikkelens URL.
+
+    Bruker httpx til å hente HTML og BeautifulSoup til å finne
+    hovedinnholdet (<article> eller <main>). Konverterer til Markdown
+    via markdownify. Returnerer None ved nettverksfeil eller manglende innhold.
+
+    Args:
+        url: Artikkelens kanoniske URL.
+
+    Returns:
+        Markdown-streng med full artikkeltekst, eller None ved feil.
+    """
+    try:
+        respons = httpx.get(url, follow_redirects=True, timeout=15)
+        respons.raise_for_status()
+    except Exception as feil:
+        logger.warning("Kunne ikke hente full tekst fra %s: %s", url, feil)
+        return None
+
+    suppe = BeautifulSoup(respons.text, "html.parser")
+    hovedelement = suppe.find("article") or suppe.find("main") or suppe.find("body")
+    if hovedelement is None:
+        return None
+
+    tekst = markdownify(str(hovedelement), heading_style="ATX").strip()
+    return tekst or None
 
 
 def _hent_kjente_urls(db_sti: Path, kilde_id: int) -> set[str]:

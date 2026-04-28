@@ -89,7 +89,7 @@ def test_pdf_lagres_korrekt(vault_rot: Path, db_sti: Path, mocker) -> None:
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot: (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
     )
 
     handler = obsidian_vakt._InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
@@ -121,7 +121,7 @@ def test_pdf_tittel_fra_metadata(vault_rot: Path, db_sti: Path, mocker) -> None:
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot: (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
     )
 
     handler = obsidian_vakt._InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
@@ -149,7 +149,7 @@ def test_pdf_duplikat_hoppes_over(vault_rot: Path, db_sti: Path, mocker) -> None
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot: (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
     )
 
     handler = obsidian_vakt._InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)

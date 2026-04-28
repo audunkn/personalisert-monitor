@@ -118,7 +118,8 @@ def test_artikkel_innenfor_intervall_lagres(db_med_rss_kilde, vault_rot, monkeyp
     monkeypatch.delenv("HENT_FRA", raising=False)
     monkeypatch.delenv("HENT_TIL", raising=False)
 
-    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed):
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
         nye = rss.innhent_alle()
 
     assert nye == 1
@@ -141,7 +142,8 @@ def test_artikkel_utenfor_hent_fra_hoppes_over(db_med_rss_kilde, vault_rot, monk
     monkeypatch.delenv("HENT_FRA", raising=False)
     monkeypatch.delenv("HENT_TIL", raising=False)
 
-    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed):
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
         nye = rss.innhent_alle()
 
     assert nye == 0
@@ -164,7 +166,8 @@ def test_artikkel_utenfor_hent_til_hoppes_over(db_med_rss_kilde, vault_rot, monk
     monkeypatch.delenv("HENT_FRA", raising=False)
     monkeypatch.setenv("HENT_TIL", "2026-04-10")
 
-    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed):
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
         nye = rss.innhent_alle()
 
     assert nye == 0
@@ -181,7 +184,8 @@ def test_kjent_url_lagres_ikke_på_nytt(db_med_rss_kilde, vault_rot, monkeypatch
     monkeypatch.delenv("HENT_FRA", raising=False)
     monkeypatch.delenv("HENT_TIL", raising=False)
 
-    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed):
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
         første_kjøring = rss.innhent_alle()
         andre_kjøring = rss.innhent_alle()
 
@@ -209,7 +213,8 @@ def test_env_override_hent_fra_overstyrer_per_kilde(db_med_rss_kilde, vault_rot,
     monkeypatch.setenv("HENT_FRA", "2026-04-20")
     monkeypatch.delenv("HENT_TIL", raising=False)
 
-    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed):
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
         nye = rss.innhent_alle()
 
     assert nye == 0
@@ -224,7 +229,43 @@ def test_tom_feed_håndteres_uten_feil(db_med_rss_kilde, vault_rot, monkeypatch)
     monkeypatch.delenv("HENT_FRA", raising=False)
     monkeypatch.delenv("HENT_TIL", raising=False)
 
-    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed):
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
         nye = rss.innhent_alle()
 
     assert nye == 0
+
+
+def test_full_artikkel_brukes_når_tilgjengelig(db_med_rss_kilde, vault_rot, monkeypatch):
+    """_hent_full_artikkel kalles med artikkelens URL og resultatet lagres."""
+    entry = _lag_entry()
+    feed = _lag_feed([entry])
+    monkeypatch.setenv("DATABASE_STI", str(db_med_rss_kilde))
+    monkeypatch.setenv("VAULT_ROT", str(vault_rot))
+    monkeypatch.delenv("HENT_FRA", raising=False)
+    monkeypatch.delenv("HENT_TIL", raising=False)
+
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value="# Full tekst") as mock_hent:
+        rss.innhent_alle()
+
+    mock_hent.assert_called_once_with(_ARTIKKEL_URL)
+    with sqlite3.connect(db_med_rss_kilde) as con:
+        rad = con.execute("SELECT id FROM elementer WHERE kilde_id = ?", (_RSS_KILDE_ID,)).fetchone()
+    assert rad is not None
+
+
+def test_rss_summary_brukes_som_fallback(db_med_rss_kilde, vault_rot, monkeypatch):
+    """Når _hent_full_artikkel returnerer None brukes RSS-summary som fallback."""
+    entry = _lag_entry()
+    feed = _lag_feed([entry])
+    monkeypatch.setenv("DATABASE_STI", str(db_med_rss_kilde))
+    monkeypatch.setenv("VAULT_ROT", str(vault_rot))
+    monkeypatch.delenv("HENT_FRA", raising=False)
+    monkeypatch.delenv("HENT_TIL", raising=False)
+
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
+        nye = rss.innhent_alle()
+
+    assert nye == 1  # Artikkelen lagres med RSS-summary som fallback

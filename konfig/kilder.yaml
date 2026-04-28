@@ -1,33 +1,15 @@
 kilder:
-  - navn: simon-willison
+  - navn: MLFlow Blog
     type: rss
-    url: https://simonwillison.net/atom/everything/
-    hent_fra: "2024-01-01"
+    url: https://mlflow.org/blog/rss.xml
+    hent_fra: null
     hent_til: null
 
-  - navn: huggingface-blogg
-    type: rss
-    url: https://huggingface.co/blog/feed.xml
-    hent_fra: "2024-01-01"
-    hent_til: null
-
-  - navn: langchain-blogg
-    type: rss
-    url: https://www.langchain.com/blog/rss.xml
-    hent_fra: "2024-01-01"
-    hent_til: null
-
-  - navn: decoding-ai
-    type: substack
-    url: https://decodingai.substack.com
-    hent_fra: "2024-01-01"
-    hent_til: null
-
-  - navn: sebastian-raschka
-    type: substack
-    url: https://magazine.sebastianraschka.com
-    hent_fra: "2024-01-01"
-    hent_til: null
+  #- navn: sebastian-raschka
+  #  type: rss
+  #  url: https://sebastianraschka.com/rss_feed.xml
+  #  hent_fra: "2024-01-01"
+  #  hent_til: null
 
   - navn: manuell-klipp
     type: manuell
