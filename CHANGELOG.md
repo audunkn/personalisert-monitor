@@ -23,6 +23,8 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 #### Bugfikser
 
 ##### Fikset
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — kaskadesletting ved artikkelsletting: `_rydd_etter_slettet_artikkel()` sletter nå evalueringstriplets og sammendrag i riktig rekkefølge før elementer-raden, alt i én transaksjon *(2026-04-28 10:00)*
+- `tester/test_artikkel_sletting.py` — ny test `test_slett_artikkel_fjerner_sammendrag_og_triplets` verifiserer at sammendrag og triplets slettes korrekt *(2026-04-28 10:00)*
 - `src/intelligence_monitor/innhenter/obsidian_vakt.py` — oppstartsskanning av eksisterende innboks-filer: `start()` itererer nå over `innboks/` med `sorted()` og prosesserer `.md`- og `.pdf`-filer før Observer startes (issue #7) *(2026-04-24 23:00)*
 - `tester/test_obsidian_vakt_oppstart.py` — 2 integrasjonstester: pre-eksisterende .md prosesseres ved oppstart, duplikat-URL hoppes over ved ny skanning *(2026-04-24 23:00)*
 - `src/intelligence_monitor/evaluering/vurderingsapp.py` — rettet `NameError: name 'kø' is not defined`; linjene 294–296 brukte `kø` i stedet for `ko` *(2026-04-24 22:00)*
