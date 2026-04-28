@@ -5,6 +5,12 @@ kilder:
     hent_fra: null
     hent_til: null
 
+  - navn: huggingface_blog
+    type: rss
+    url: https://huggingface.co/blog/feed.xml
+    hent_fra: null
+    hent_til: null
+
   #- navn: langchain_blog  # Ingen RSS — bloggen er flyttet til Webflow (www.langchain.com/blog)
   #  type: rss
   #  url: https://blog.langchain.com/rss

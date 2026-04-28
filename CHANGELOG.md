@@ -13,6 +13,11 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### HuggingFace-blogg som RSS-kilde
+
+##### Lagt til
+- `konfig/kilder.yaml` — `huggingface_blog` lagt til som RSS-kilde (`https://huggingface.co/blog/feed.xml`) *(2026-04-29 00:00)*
+
 #### RSS bozo-toleranse — ugyldig XML er ikke fatal
 
 ##### Endret
