@@ -11,6 +11,19 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Planlagte implementeringer
+
+#### Full artikkeltekst ved RSS-innhenting
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/rss.py` — ny `_hent_full_artikkel(url)` henter og konverterer full artikkeltekst fra artikkelens URL via httpx + BeautifulSoup + markdownify; `_innhent_kilde()` bruker full tekst med fallback til RSS-summary *(2026-04-28 12:00)*
+- `tester/test_rss.py` — 2 nye tester: `test_full_artikkel_brukes_når_tilgjengelig` og `test_rss_summary_brukes_som_fallback`; alle 6 eksisterende tester oppdatert med mock for `_hent_full_artikkel` *(2026-04-28 12:00)*
+
+##### Endret
+- `pyproject.toml` — `markdownify>=0.11` lagt til som avhengighet *(2026-04-28 12:00)*
+
+---
+
 ### Ad hoc-endringer
 
 #### Dokumentasjon
