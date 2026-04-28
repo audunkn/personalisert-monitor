@@ -186,11 +186,11 @@ def test_kilde_mappe_oppretter_undermappe(vault_rot, db_sti, mocker) -> None:
         kilde_mappe="mlflow_blog",
     )
 
-    filer = list((vault_rot / "artikler" / "mlflow-blog").glob("*.md"))
+    filer = list((vault_rot / "artikler" / "mlflow_blog").glob("*.md"))
     assert len(filer) == 1
 
     with sqlite3.connect(db_sti) as con:
         rad = con.execute(
             "SELECT vault_sti FROM elementer WHERE guid = ?", (element_id,)
         ).fetchone()
-    assert rad[0].startswith("artikler/mlflow-blog/")
+    assert rad[0].startswith("artikler/mlflow_blog/")

@@ -71,11 +71,9 @@ def lagre_artikkel(
     slug = _lag_slug(tittel)
     filnavn = f"{uuid_kort}-{slug}.md"
     if kilde_mappe:
-        mappe_slug = _lag_slug(kilde_mappe)
-        artikkel_mappe = vault_rot / "artikler" / mappe_slug
+        artikkel_mappe = vault_rot / "artikler" / kilde_mappe
         bilde_prefix = "../../ressurser/bilder"
     else:
-        mappe_slug = None
         artikkel_mappe = vault_rot / "artikler"
         bilde_prefix = "../ressurser/bilder"
     artikkel_mappe.mkdir(parents=True, exist_ok=True)
@@ -100,7 +98,7 @@ def lagre_artikkel(
     # Steg 5 + rollback: Skriv SQLite — rollback på feil
     hentet = datetime.now(timezone.utc).isoformat()
     if kilde_mappe:
-        vault_sti = (Path("artikler") / mappe_slug / filnavn).as_posix()
+        vault_sti = (Path("artikler") / kilde_mappe / filnavn).as_posix()
     else:
         vault_sti = (Path("artikler") / filnavn).as_posix()
     bilder_json = json.dumps(bildefilnavn) if bildefilnavn else None
