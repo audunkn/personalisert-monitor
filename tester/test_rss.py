@@ -236,6 +236,25 @@ def test_tom_feed_håndteres_uten_feil(db_med_rss_kilde, vault_rot, monkeypatch)
     assert nye == 0
 
 
+def test_bozo_feed_med_entries_lagres(db_med_rss_kilde, vault_rot, monkeypatch):
+    """Bozo-feed med gyldige entries lagres — ugyldig XML er ikke fatal."""
+    entry = _lag_entry()
+    feed = _lag_feed([entry])
+    feed.bozo = True
+    feed.bozo_exception = Exception("not well-formed (invalid token)")
+
+    monkeypatch.setenv("DATABASE_STI", str(db_med_rss_kilde))
+    monkeypatch.setenv("VAULT_ROT", str(vault_rot))
+    monkeypatch.delenv("HENT_FRA", raising=False)
+    monkeypatch.delenv("HENT_TIL", raising=False)
+
+    with patch("intelligence_monitor.innhenter.rss.feedparser.parse", return_value=feed), \
+         patch("intelligence_monitor.innhenter.rss._hent_full_artikkel", return_value=None):
+        nye = rss.innhent_alle()
+
+    assert nye == 1
+
+
 def test_full_artikkel_brukes_når_tilgjengelig(db_med_rss_kilde, vault_rot, monkeypatch):
     """_hent_full_artikkel kalles med artikkelens URL og resultatet lagres."""
     entry = _lag_entry()

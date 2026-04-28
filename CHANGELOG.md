@@ -13,6 +13,14 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### RSS bozo-toleranse — ugyldig XML er ikke fatal
+
+##### Endret
+- `src/intelligence_monitor/innhenter/rss.py` — feed med `bozo = True` men gyldige entries behandles nå: logger WARNING og fortsetter; returnerer kun 0 og ERROR hvis entries er tomme *(2026-04-28 23:55)*
+
+##### Tester
+- `tester/test_rss.py` — ny test `test_bozo_feed_med_entries_lagres` verifiserer at bozo-feed med gyldige entries lagres korrekt *(2026-04-28 23:55)*
+
 #### YAML-navn som mappe-nøkkel for forhåndsdefinerte kilder
 
 ##### Endret
