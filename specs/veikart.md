@@ -56,6 +56,7 @@
 
 **Bugfikser:**
 - [x] Issue #7: `start()` skannar nå eksisterende filer i `innboks/` ved oppstart — filer lagt inn før vakten startes prosesseres i alfabetisk rekkefølge. *(2026-04-24)*
+- [x] `vault_skriver.py` — `kilde_mappe` brukes nå direkte uten slugifisering; RSS-mapper beholder `navn` fra YAML med underscore, klippede artikler bruker domene med `.` → `-` via `_domene_fra_url()` i `obsidian_vakt.py`. *(2026-04-28)*
 
 ---
 
