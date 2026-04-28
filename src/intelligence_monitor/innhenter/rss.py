@@ -122,12 +122,15 @@ def _innhent_kilde(
 
     feed = feedparser.parse(url)
 
-    # bozo = True indikerer ugyldig XML eller nettverksfeil
+    # bozo = True indikerer XML-valideringsfeil, men feedparser klarer ofte å parse
+    # elementene likevel. Logg advarsel og fortsett hvis det finnes entries.
     if feed.bozo:
         feil_melding = str(feed.bozo_exception) if feed.bozo_exception else "Ukjent feed-feil"
-        logger.error("Feed-feil for %s: %s", kilde_navn, feil_melding)
-        _oppdater_kilde_feil(db_sti, kilde_id, feil_melding)
-        return 0
+        if not feed.entries:
+            logger.error("Feed-feil for %s (ingen elementer): %s", kilde_navn, feil_melding)
+            _oppdater_kilde_feil(db_sti, kilde_id, feil_melding)
+            return 0
+        logger.warning("Feed-advarsel for %s (fortsetter med %d elementer): %s", kilde_navn, len(feed.entries), feil_melding)
 
     # Hent kjente URL-er fra databasen for dedup.
     # vault_skriver lagrer UUID4 som guid i SQLite, så vi deduper på url-kolonnen
