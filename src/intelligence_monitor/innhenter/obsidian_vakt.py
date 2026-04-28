@@ -268,12 +268,20 @@ def _rydd_etter_slettet_artikkel(db_sti: Path, vault_rot: Path, vault_sti: str) 
             antall_slettet += 1
 
     with sqlite3.connect(db_sti) as tilkobling:
+        antall_triplets = tilkobling.execute(
+            "DELETE FROM evalueringstriplets WHERE element_id = ?", (element_id,)
+        ).rowcount
+        antall_sammendrag = tilkobling.execute(
+            "DELETE FROM sammendrag WHERE element_id = ?", (element_id,)
+        ).rowcount
         tilkobling.execute("DELETE FROM elementer WHERE id = ?", (element_id,))
 
     logger.info(
-        "Ryddet etter slettet artikkel '%s': %d bilde(r) fjernet, DB-rad slettet",
+        "Ryddet etter slettet artikkel '%s': %d bilde(r), %d sammendrag og %d triplet(s) fjernet",
         vault_sti,
         antall_slettet,
+        antall_sammendrag,
+        antall_triplets,
     )
 
 

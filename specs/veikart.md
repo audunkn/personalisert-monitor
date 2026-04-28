@@ -90,6 +90,10 @@
 - [x] `test_artikkel_sletting.py`: slett artikkel uten bilder.
 - [x] `test_artikkel_sletting.py`: ukjent fil ignoreres.
 - [x] `test_artikkel_sletting.py`: bilder_json lagres ved opprettelse.
+- [x] `test_artikkel_sletting.py`: sammendrag og evalueringstriplets slettes korrekt ved artikkelsletting.
+
+**Bugfikser:**
+- [x] `obsidian_vakt.py` — `_rydd_etter_slettet_artikkel()` slettet kun elementer-raden; evalueringstriplets og sammendrag ble liggende som foreldreløse rader. Nå slettes alle tre i riktig rekkefølge i én transaksjon. *(2026-04-28)*
 
 ---
 

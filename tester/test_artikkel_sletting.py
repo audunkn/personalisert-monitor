@@ -94,6 +94,40 @@ def test_slett_ukjent_fil_ignoreres(vault_rot: Path, db_sti: Path) -> None:
     obsidian_vakt._rydd_etter_slettet_artikkel(db_sti, vault_rot, vault_sti)
 
 
+def test_slett_artikkel_fjerner_sammendrag_og_triplets(vault_rot: Path, db_sti: Path) -> None:
+    """Kaskadesletting: slett .md → sammendrag og evalueringstriplets borte, ingen feil."""
+    vault_sti = "artikler/kaskade-test.md"
+    element_id = _sett_inn_element(db_sti, vault_sti)
+
+    with sqlite3.connect(db_sti) as con:
+        sammendrag_id = con.execute(
+            """
+            INSERT INTO sammendrag (element_id, tekst, prompt_versjon, opprettet)
+            VALUES (?, 'Testsammendrag', 'v1', '2026-04-28T10:00:00+00:00')
+            RETURNING id
+            """,
+            (element_id,),
+        ).fetchone()[0]
+        con.execute(
+            """
+            INSERT INTO evalueringstriplets
+                (element_id, resultat_id, komponent, tidsstempel)
+            VALUES (?, ?, 'sammendrag', '2026-04-28T10:00:00+00:00')
+            """,
+            (element_id, sammendrag_id),
+        )
+
+    obsidian_vakt._rydd_etter_slettet_artikkel(db_sti, vault_rot, vault_sti)
+
+    with sqlite3.connect(db_sti) as con:
+        assert con.execute(
+            "SELECT COUNT(*) FROM sammendrag WHERE element_id = ?", (element_id,)
+        ).fetchone()[0] == 0, "Sammendrag skal være slettet"
+        assert con.execute(
+            "SELECT COUNT(*) FROM evalueringstriplets WHERE element_id = ?", (element_id,)
+        ).fetchone()[0] == 0, "Evalueringstriplets skal være slettet"
+
+
 def test_bilder_json_lagres_ved_opprettelse(vault_rot: Path, db_sti: Path, mocker) -> None:
     """lagre_artikkel() med bilder: bilder_json er satt korrekt i DB."""
     mocker.patch(
