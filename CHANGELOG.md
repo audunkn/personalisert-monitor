@@ -13,6 +13,12 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Automatisk forsoningsrydding i oppdater()
+
+##### Endret
+- `src/intelligence_monitor/innhenter/kjører.py` — `kjør()` omdøpt til `oppdater()`; ny intern funksjon `_rydd_foreldreløse(db_sti, vault_rot)` rydder SQLite-rader der vault-filen mangler (bilder, evalueringstriplets, sammendrag og elementer-rad) før RSS-innhenting starter — systemet er selvhelende uavhengig av om obsidian_vakt har kjørt *(2026-04-29 14:00)*
+- `Makefile` — kommentar for `innhent`-target oppdatert til å reflektere at foreldreløse rader nå slettes *(2026-04-29 14:00)*
+
 #### HuggingFace-blogg som RSS-kilde
 
 ##### Lagt til
