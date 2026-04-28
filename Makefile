@@ -46,7 +46,7 @@ help:
 # Skriver artikkeltekst + bilder til Obsidian-vault (VAULT_STI/.env).
 # Skriver metadata (guid, url, tittel, kilde_id, tidsstempel) til SQLite.
 # Setter dead_letter=true på elementer som feiler etter 3 forsøk.
-# Endrer IKKE eksisterende rader i databasen — kun insert av nye elementer.
+# Sletter foreldreløse SQLite-rader (vault-fil mangler) før nye artikler hentes.
 # ─────────────────────────────────────────────────────────────────────────────
 ## innhent: Hent nye artikler fra alle aktive kilder
 innhent:
