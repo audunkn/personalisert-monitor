@@ -1,10 +1,11 @@
 """Enhetstester for src/intelligence_monitor/innhenter/vault_skriver.py.
 
-Verifiserer fire kritiske egenskaper:
+Verifiserer fem kritiske egenskaper:
 1. Korrekt filnavn (UUID8-prefix + slug) og YAML-frontmatter.
 2. UUID i frontmatter matcher element_id i SQLite.
 3. Ugyldig bilde-URL gir WARNING uten krasj.
 4. Rollback — filen slettes hvis SQLite-skriving feiler.
+5. kilde_mappe oppretter undermappe og vault_sti er korrekt.
 
 Alle tester bruker midlertidige mapper og mock slik at de kjøres
 raskt og uten nettverkskall eller ekstern infrastruktur.
@@ -41,7 +42,7 @@ def test_filnavn_og_frontmatter(vault_rot, db_sti, mocker) -> None:
     # Hopp over bildehåndtering — ikke relevant for denne testen
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     element_id = vault_skriver.lagre_artikkel(
@@ -80,7 +81,7 @@ def test_element_id_konsistens(vault_rot, db_sti, mocker) -> None:
     """
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     element_id = vault_skriver.lagre_artikkel(
@@ -141,7 +142,7 @@ def test_rollback(vault_rot, db_sti, mocker) -> None:
     """
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
-        side_effect=lambda innhold, vault_rot, base_url="": (innhold, []),
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
     mocker.patch(
         "intelligence_monitor.innhenter.vault_skriver._skriv_til_db",
@@ -164,3 +165,32 @@ def test_rollback(vault_rot, db_sti, mocker) -> None:
     assert len(filer) == 0, (
         f"Filen skal være slettet ved rollback, fant {len(filer)} fil(er)"
     )
+
+
+def test_kilde_mappe_oppretter_undermappe(vault_rot, db_sti, mocker) -> None:
+    """Med kilde_mappe lagres artikkelen i riktig undermappe og vault_sti er korrekt i SQLite."""
+    mocker.patch(
+        "intelligence_monitor.innhenter.vault_skriver._behandle_bilder",
+        side_effect=lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
+    )
+
+    element_id = vault_skriver.lagre_artikkel(
+        kilde_id=_KILDE_ID,
+        url="https://eksempel.no/test",
+        tittel="Undermappetest",
+        innhold="Innhold.",
+        publisert=None,
+        kildetype="rss",
+        db_sti=db_sti,
+        vault_rot=vault_rot,
+        kilde_mappe="MLFlow Blog",
+    )
+
+    filer = list((vault_rot / "artikler" / "mlflow-blog").glob("*.md"))
+    assert len(filer) == 1
+
+    with sqlite3.connect(db_sti) as con:
+        rad = con.execute(
+            "SELECT vault_sti FROM elementer WHERE guid = ?", (element_id,)
+        ).fetchone()
+    assert rad[0].startswith("artikler/mlflow-blog/")

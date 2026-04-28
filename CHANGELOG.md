@@ -13,6 +13,17 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Kildebaserte undermapper i vault/artikler/
+
+##### Lagt til
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — ny valgfri parameter `kilde_mappe`; artikkelen lagres i `artikler/{kilde-slug}/` med bildeprefiks `../../ressurser/bilder`; `vault_sti` i SQLite bruker alltid forward-slash via `as_posix()` *(2026-04-28 19:54)*
+- `tester/test_vault_skriver.py` — ny test `test_kilde_mappe_oppretter_undermappe` verifiserer undermappe og korrekt `vault_sti` i SQLite *(2026-04-28 19:54)*
+
+##### Endret
+- `src/intelligence_monitor/innhenter/rss.py` — `lagre_artikkel()` kalles nå med `kilde_mappe=kilde["navn"]` *(2026-04-28 19:54)*
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — `_prosesser()` og `_prosesser_pdf()` sender `kilde_mappe`; artikkel-observatøren er nå rekursiv (`recursive=True`); `vault_sti` i delete-handler normalisert til forward-slash *(2026-04-28 19:54)*
+- `tester/test_vault_skriver.py`, `tester/test_pdf_innhenting.py`, `tester/test_obsidian_vakt_oppstart.py` — mock-lambdaer for `_behandle_bilder` oppdatert med ny `bilde_prefix`-parameter *(2026-04-28 19:54)*
+
 #### Full artikkeltekst ved RSS-innhenting
 
 ##### Lagt til

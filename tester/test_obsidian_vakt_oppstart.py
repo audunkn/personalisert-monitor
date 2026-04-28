@@ -63,7 +63,7 @@ def test_oppstart_prosesserer_eksisterende_md(vault_rot: Path, db_sti: Path, mon
     monkeypatch.setattr(
         vault_skriver_modul,
         "_behandle_bilder",
-        lambda innhold, vault_rot, base_url="": (innhold, []),
+        lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     innboks = vault_rot / "innboks"
@@ -94,7 +94,7 @@ def test_oppstart_dedup_hopper_over_kjent_url(vault_rot: Path, db_sti: Path, mon
     monkeypatch.setattr(
         vault_skriver_modul,
         "_behandle_bilder",
-        lambda innhold, vault_rot, base_url="": (innhold, []),
+        lambda innhold, vault_rot, base_url="", bilde_prefix="../ressurser/bilder": (innhold, []),
     )
 
     innboks = vault_rot / "innboks"

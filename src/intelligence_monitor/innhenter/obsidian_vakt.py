@@ -133,6 +133,7 @@ class _InnboksHandler(FileSystemEventHandler):
             db_sti=self._db_sti,
             vault_rot=self._vault_rot,
             klippet_dato=klippet_dato,
+            kilde_mappe=_MANUELL_KILDENAVN,
         )
 
         # Flytt til behandlet/
@@ -190,6 +191,7 @@ class _InnboksHandler(FileSystemEventHandler):
             db_sti=self._db_sti,
             vault_rot=self._vault_rot,
             klippet_dato=None,
+            kilde_mappe=_PDF_KILDENAVN,
         )
 
         behandlet_mappe = self._vault_rot / "behandlet"
@@ -221,7 +223,7 @@ class _ArtikkelHandler(FileSystemEventHandler):
         if event.is_directory or not str(event.src_path).endswith(".md"):
             return
         fil_sti = Path(str(event.src_path))
-        vault_sti = str(fil_sti.relative_to(self._vault_rot))
+        vault_sti = fil_sti.relative_to(self._vault_rot).as_posix()
         try:
             _rydd_etter_slettet_artikkel(self._db_sti, self._vault_rot, vault_sti)
         except Exception as feil:
@@ -434,7 +436,7 @@ def start(vault_rot: Path, db_sti: Path) -> None:
 
     observer = Observer()
     observer.schedule(handler, str(innboks), recursive=False)
-    observer.schedule(artikkel_handler, str(artikler), recursive=False)
+    observer.schedule(artikkel_handler, str(artikler), recursive=True)
     observer.start()
     logger.info("Vakt startet — overvåker %s og %s", innboks, artikler)
 
