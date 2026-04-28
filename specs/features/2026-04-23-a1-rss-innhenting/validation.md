@@ -2,7 +2,7 @@
 
 ## Enhetstester (obligatorisk)
 - [x] `pytest tester/ -v` returnerer exit code 0
-- [x] Alle 6 tester i `test_rss.py` grønne
+- [x] Alle 8 tester i `test_rss.py` grønne (inkl. 2 nye for full artikkeltekst)
 - [x] Eksisterende tester (`test_db_init.py`, `test_vault_skriver.py`) fortsatt grønne etter skjemaendring
 
 ## Røyktest — manuell (obligatorisk)
