@@ -288,6 +288,35 @@ def _rydd_etter_slettet_artikkel(db_sti: Path, vault_rot: Path, vault_sti: str) 
     )
 
 
+def _rydd_foreldreløse(db_sti: Path, vault_rot: Path) -> int:
+    """Rydder opp DB-rader der vault-filen ikke lenger eksisterer.
+
+    Henter alle rader fra elementer der vault_sti IS NOT NULL og sjekker
+    om tilhørende fil finnes på disk. Manglende filer ryddes via
+    _rydd_etter_slettet_artikkel().
+
+    Args:
+        db_sti: Sti til SQLite-databasefilen.
+        vault_rot: Rot-mappe for Obsidian-vault.
+
+    Returns:
+        Antall slettede rader.
+    """
+    with sqlite3.connect(db_sti) as tilkobling:
+        rader = tilkobling.execute(
+            "SELECT vault_sti FROM elementer WHERE vault_sti IS NOT NULL"
+        ).fetchall()
+
+    antall = 0
+    for (vault_sti,) in rader:
+        if not (vault_rot / vault_sti).exists():
+            _rydd_etter_slettet_artikkel(db_sti, vault_rot, vault_sti)
+            antall += 1
+
+    logger.info("Ryddet %d foreldreløse element(er) fra SQLite", antall)
+    return antall
+
+
 # ---------------------------------------------------------------------------
 # Hjelpefunksjoner
 # ---------------------------------------------------------------------------
@@ -439,6 +468,9 @@ def start(vault_rot: Path, db_sti: Path) -> None:
 
     handler = _InnboksHandler(db_sti=db_sti, vault_rot=vault_rot)
     artikkel_handler = _ArtikkelHandler(db_sti=db_sti, vault_rot=vault_rot)
+
+    # Rydd foreldreløse DB-rader (slettede mens vakten var nede)
+    _rydd_foreldreløse(db_sti, vault_rot)
 
     # Skann eksisterende filer i innboks ved oppstart
     for fil in sorted(innboks.iterdir()):

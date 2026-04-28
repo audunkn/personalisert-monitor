@@ -13,6 +13,11 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Planlagte implementeringer
 
+#### Forsoningsrydding ved oppstart av obsidian_vakt
+
+##### Endret
+- `src/intelligence_monitor/innhenter/obsidian_vakt.py` — ny funksjon `_rydd_foreldreløse(db_sti, vault_rot)` kalt i `start()` etter handlere er instantiert; rydder SQLite-rader der vault-filen mangler (slettede mens vakten var nede) *(2026-04-29 15:00)*
+
 #### Automatisk forsoningsrydding i oppdater()
 
 ##### Endret
