@@ -36,6 +36,7 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 #### Bugfikser
 
 ##### Fikset
+- `src/intelligence_monitor/innhenter/vault_skriver.py` — relative bilde-URL-er fra skrapede artikler løses nå mot artikkelens base-URL via `urljoin` før nedlasting; tester oppdatert *(2026-04-28 19:30)*
 - `src/intelligence_monitor/innhenter/obsidian_vakt.py` — kaskadesletting ved artikkelsletting: `_rydd_etter_slettet_artikkel()` sletter nå evalueringstriplets og sammendrag i riktig rekkefølge før elementer-raden, alt i én transaksjon *(2026-04-28 10:00)*
 - `tester/test_artikkel_sletting.py` — ny test `test_slett_artikkel_fjerner_sammendrag_og_triplets` verifiserer at sammendrag og triplets slettes korrekt *(2026-04-28 10:00)*
 - `src/intelligence_monitor/innhenter/obsidian_vakt.py` — oppstartsskanning av eksisterende innboks-filer: `start()` itererer nå over `innboks/` med `sorted()` og prosesserer `.md`- og `.pdf`-filer før Observer startes (issue #7) *(2026-04-24 23:00)*

@@ -22,6 +22,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import httpx
+from urllib.parse import urljoin
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +66,7 @@ def lagre_artikkel(
     uuid_kort = element_id.replace("-", "")[:8]
 
     # Steg 2: Last ned bilder og erstatt URL-er
-    innhold_behandlet, bildefilnavn = _behandle_bilder(innhold, vault_rot)
+    innhold_behandlet, bildefilnavn = _behandle_bilder(innhold, vault_rot, url)
 
     # Steg 3: Skriv .md-fil til vault/artikler/
     effektiv_publisert = publisert or klippet_dato
@@ -172,7 +173,7 @@ def _bygg_markdown(
     return f"{frontmatter}\n\n# {tittel}\n\n{innhold}\n"
 
 
-def _behandle_bilder(innhold: str, vault_rot: Path) -> tuple[str, list[str]]:
+def _behandle_bilder(innhold: str, vault_rot: Path, base_url: str = "") -> tuple[str, list[str]]:
     """Laster ned alle bilder i innholdet og erstatter URL-er med lokale stier.
 
     Finner bilder på formene:
@@ -185,6 +186,7 @@ def _behandle_bilder(innhold: str, vault_rot: Path) -> tuple[str, list[str]]:
     Args:
         innhold: Markdown-tekst med potensielle bilde-URL-er.
         vault_rot: Rot-mappe for Obsidian-vault.
+        base_url: Artikkelens kanoniske URL — brukes til å løse relative bilde-URL-er.
 
     Returns:
         Tuple (innhold med lokale bildestier, liste med nedlastede bildefilnavn).
@@ -201,14 +203,16 @@ def _behandle_bilder(innhold: str, vault_rot: Path) -> tuple[str, list[str]]:
     for treff in md_monster.finditer(innhold):
         bilde_url = treff.group(2)
         if bilde_url not in url_til_lokal:
-            lokal = _last_ned_bilde(bilde_url, bilde_mappe)
+            abs_url = urljoin(base_url, bilde_url) if base_url else bilde_url
+            lokal = _last_ned_bilde(abs_url, bilde_mappe)
             if lokal:
                 url_til_lokal[bilde_url] = lokal
 
     for treff in html_monster.finditer(innhold):
         bilde_url = treff.group(1)
         if bilde_url not in url_til_lokal:
-            lokal = _last_ned_bilde(bilde_url, bilde_mappe)
+            abs_url = urljoin(base_url, bilde_url) if base_url else bilde_url
+            lokal = _last_ned_bilde(abs_url, bilde_mappe)
             if lokal:
                 url_til_lokal[bilde_url] = lokal
 
