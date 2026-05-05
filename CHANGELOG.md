@@ -11,6 +11,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ## [Uutgitt]
 
+### Ad hoc-endringer
+
+#### Artikkeloversikt-notebook
+
+##### Lagt til
+- `notebooks/artikkeloversikt.ipynb` — ny notebook for strukturert datautrekk; JOINer elementer, kilder, sammendrag og evalueringstriplets til én DataFrame med lesbar godkjenningsstatus; viser sammendrag avkortet til 200 tegn og eksporterer til `data/eksport/artikkeloversikt_YYYY-MM-DD.xlsx` *(2026-05-05 10:00)*
+
 ### Planlagte implementeringer
 
 #### Forsoningsrydding ved oppstart av obsidian_vakt
