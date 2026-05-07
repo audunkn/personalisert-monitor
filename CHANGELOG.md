@@ -13,6 +13,43 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### GitHub Wiki-synkronisering
+
+##### Lagt til
+- `github_wiki/` — ny mappe for wiki-dokumentasjon som spores i hovudrepoet; første fil: `github_wiki_vault_skriver_py.md` med fullstendig API-dokumentasjon for `vault_skriver.py` inkl. Mermaid-prosessdiagram, funksjonstabeller og datastruktur *(2026-05-07 12:00)*
+- `wiki.sh` — skript som kloner `REPO.wiki.git` til midlertidig mappe, kopierer `.md`-filer fra `github_wiki/` og pusher endringer tilbake; fungerer ved første gangs initialisering og ved påfølgende oppdateringer *(2026-05-07 12:00)*
+- `Makefile` — nytt `wiki`-target som wrapper `wiki.sh`-logikken; lagt til i `.PHONY` og `help`-output *(2026-05-07 12:00)*
+
+---
+
+#### Sammendragsprompt — ny målgruppe: AI Product Engineer
+
+##### Endret
+- `src/intelligence_monitor/sammendrag/prompts/v1.txt` — fullstendig omskriving: målgruppe endret fra CFO/finansleder til AI Product Engineer; fire seksjoner (Oppsummering, Hva er nytt, Hvorfor det er viktig, Regulatorisk kontekst) erstatter tre; Refleksjonsspørsmål fjernet; ingeniørrelevanstest og forklaringsregel justert for teknisk publikum; Regulatorisk kontekst-seksjon inkluderes kun når artikkelen berører personvern, AI Act eller sektorspesifikke krav *(2026-05-07 11:00)*
+
+---
+
+#### Regulatorisk kontekst — presiseringer
+
+##### Endret
+- `specs/regulatorisk-kontekst.md` — tydeliggjør at AI Act art. 12-loggingskrav gjelder høyrisiko-systemer, ikke all persondata-behandling; NIS2 beskrives som sektorbasert og funksjonell, ikke teknologispesifikk; GDPR art. 30-behandlingsprotokoll skilt fra transaksjonslogging; GDPR art. 5 nr. 2-ansvarlighetsprinsippet utdypet med skillet mellom revisjonsspor som god praksis og juridisk tilstrekkelighet *(2026-05-07 11:00)*
+
+---
+
+#### Ny RSS-kilde: copilot_studioblog
+
+##### Lagt til
+- `konfig/kilder.yaml` — `copilot_studioblog` lagt til som RSS-kilde (`https://www.microsoft.com/en-us/microsoft-copilot/blog/search/copilot-studio/feed/`) *(2026-05-07 11:00)*
+
+---
+
+#### Ny avhengighet: openpyxl
+
+##### Endret
+- `pyproject.toml` — `openpyxl>=3.1.5` lagt til for Excel-eksport fra notebooks *(2026-05-07 11:00)*
+
+---
+
 #### Artikkeloversikt-notebook
 
 ##### Lagt til
