@@ -13,6 +13,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Teknisk kodedokumentasjon — vault_skriver.py
+
+##### Lagt til
+- `vault_skriver_dokumentasjon.md` — teknisk kodedokumentasjon for `vault_skriver.py`; dekker overordnet beskrivelse, importer, offentlig funksjon, hjelpefunksjoner, feilhåndtering og rollback-strategi samt eksterne avhengigheter *(2026-05-08 00:00)*
+
+---
+
 #### GitHub Wiki-synkronisering
 
 ##### Lagt til
