@@ -14,6 +14,15 @@ regulatorisk koblingsparagraf.
   og biometrisk sanntidsovervåking på offentlig sted (med snevre unntak)
 - **Høyrisiko-systemer** (biometri, kritisk infrastruktur, utdanning, ansettelse, kreditt,
   rettshåndhevelse m.fl.) krever risikovurdering, teknisk dokumentasjon og menneskelig kontroll
+- **Loggingskrav (art. 12)**: høyrisiko-systemer skal logge hendelser for å identifisere
+  risikosituasjoner og støtte post-market monitoring — kravet gjelder ikke generelt for
+  alle systemer som håndterer persondata, og omfatter ikke transaksjonslogging av hva som
+  lå i konteksten ved hver enkelt modellkjøring
+- **Høyrisiko-klassifisering er triggerkriteriet**: AI Act-krav om logging, dokumentasjon og
+  risikovurdering slår inn ved høyrisiko-klassifisering, ikke ved persondata-behandling generelt
+- **Spenning mot GDPR**: AI Acts krav om lang oppbevaring av systemlogger kan kollidere med
+  GDPRs sletteplikt for persondata — dersom logger inneholder personopplysninger, gjelder GDPR
+  fullt ut for lagringen, og virksomheten må håndtere denne spenningen eksplisitt
 - **Transparenskrav**: brukere skal informeres om at de interagerer med AI; deepfake-innhold
   skal merkes; generelle AI-modeller (GPAI) med systemisk risiko har egne krav
 - **Konformitetsvurdering**: høyrisiko-systemer krever enten intern vurdering eller
@@ -29,7 +38,9 @@ regulatorisk koblingsparagraf.
 
 - **Scope**: skiller mellom «essensielle» (energi, transport, bank, helse, vann,
   digital infrastruktur, offentlig forvaltning) og «viktige» virksomheter (post, avfall,
-  kjemikalier, mat, industri, digitale tjenester) — ulike krav og tilsynsintensitet
+  kjemikalier, mat, industri, digitale tjenester) — ulike krav og tilsynsintensitet;
+  NIS2 er sektorbasert og funksjonell, ikke teknologispesifikk: direktivet regulerer
+  organisasjoner og sektorer, ikke enkeltteknologier eller systemarkitekturer
 - **Sikkerhetstiltak**: risikobasert tilnærming med krav om policy for informasjonssikkerhet,
   hendelseshåndtering, forretningskontinuitet, leverandørkjede-sikkerhet og kryptering
 - **Varslingsplikter**: tidlig varsling innen **24 timer**, fullstendig hendelsesrapport innen
@@ -74,6 +85,13 @@ regulatorisk koblingsparagraf.
   gir den registrerte rett til menneskelig overprøving — relevant for AI-baserte vedtak
 - **Grunnlag for behandling**: AI-systemer som trener på personopplysninger må ha gyldig
   behandlingsgrunnlag (samtykke, legitim interesse o.l.) og overholde formålsbegrensning
+- **Behandlingsprotokoll (art. 30)**: GDPR krever protokoll over behandlingsaktiviteter —
+  dette er ikke det samme som transaksjonslogging av enkeltmodellkjøringer; GDPR pålegger
+  ikke dokumentasjon av hvilke data som lå i konteksten ved hver inferens
+- **Ansvarlighetsprinsippet (art. 5 nr. 2)**: virksomheten skal kunne påvise etterlevelse —
+  revisjonsspor som knytter input til output er god praksis og støtter dette prinsippet,
+  men tilsynsmyndigheter vurderer selv hva som er tilstrekkelig dokumentasjon; et teknisk
+  sporingsopplegg er ikke automatisk juridisk tilstrekkelig
 - **Dataoverføring**: bruk av utenlandske AI-tjenester (f.eks. USA-baserte LLM-APIer) krever
   overføringsgrunnlag — standard kontraktsklausuler (SCC) eller tilsvarende
 - **Åpenhet og forklarbarhet**: GDPR art. 13–14 krever informasjon om automatisert behandling;
