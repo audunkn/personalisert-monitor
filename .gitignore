@@ -30,6 +30,9 @@ vault/**
 !vault/*/*/
 !vault/**/.gitkeep
 
+# Eksporterte filer — generert innhold som ikke skal versjoneres
+data/eksport/
+
 # Jupyter
 .ipynb_checkpoints/
 
