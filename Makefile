@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help innhent sammendrag review synk regresjon rapport test test-enkelt alle produksjon push
+.PHONY: help innhent sammendrag review synk regresjon rapport test test-enkelt alle produksjon push wiki
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Intelligence Monitor — Makefile
@@ -33,6 +33,7 @@ help:
 	@echo "  alle         Kjør full innhentings- og sammendragssyklus (innhent + sammendrag)"
 	@echo "  produksjon   Full produksjonskjøring: innhent + sammendrag + rapport"
 	@echo "  push         Push til GitHub og vis GitHub Actions-resultat direkte i terminalen"
+	@echo "  wiki         Push dokumentasjon fra github_wiki/ til GitHub Wiki"
 	@echo ""
 	@echo "Vanlig arbeidsflyt:"
 	@echo "  make alle        → daglig innhenting"
@@ -153,6 +154,31 @@ produksjon: innhent sammendrag rapport
 # Returnerer feil hvis workflowen feiler — ingen grunn til å åpne nettleseren.
 # Krever gh CLI installert og autentisert (gh auth login).
 # ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# GITHUB WIKI
+# Kloner wiki-repoet (REPO.wiki.git) til en midlertidig mappe, kopierer alle
+# .md-filer fra github_wiki/ og pusher endringer tilbake til GitHub.
+# Fungerer både ved første gangs initialisering og ved påfølgende oppdateringer.
+# Krever autentisering via gh CLI (gh auth login) eller SSH-nøkkel.
+# ─────────────────────────────────────────────────────────────────────────────
+## wiki: Push dokumentasjon fra github_wiki/ til GitHub Wiki
+wiki:
+	@WIKI_TMP=$$(mktemp -d) && \
+	cd "$$WIKI_TMP" && \
+	git init -q && \
+	git remote add origin https://github.com/audunkn/personalisert-monitor.wiki.git && \
+	git pull origin master -q 2>/dev/null || true && \
+	cp "$(CURDIR)/github_wiki/"*.md . && \
+	git add -A && \
+	if git diff --cached --quiet; then \
+		echo "Ingen endringer i wiki."; \
+	else \
+		git commit -q -m "oppdater wiki $$(date +%Y-%m-%d)" && \
+		git push -u origin master && \
+		echo "Wiki oppdatert."; \
+	fi; \
+	rm -rf "$$WIKI_TMP"
+
 ## push: Push til GitHub og overvåk GitHub Actions-resultat i terminalen
 push:
 	@OUTPUT=$$(git push 2>&1); \
