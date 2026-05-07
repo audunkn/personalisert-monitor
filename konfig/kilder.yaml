@@ -11,6 +11,12 @@ kilder:
     hent_fra: null
     hent_til: null
 
+  - navn: copilot_studioblog
+    type: rss
+    url: https://www.microsoft.com/en-us/microsoft-copilot/blog/search/copilot-studio/feed/
+    hent_fra: null
+    hent_til: null
+
   #- navn: langchain_blog  # Ingen RSS — bloggen er flyttet til Webflow (www.langchain.com/blog)
   #  type: rss
   #  url: https://blog.langchain.com/rss
