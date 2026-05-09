@@ -13,6 +13,13 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Teknisk kodedokumentasjon — kjører.py
+
+##### Lagt til
+- `github_wiki/kjører_py_dokumentasjon.md` — teknisk kodedokumentasjon for `kjører.py`; dekker overordnet beskrivelse, flytdiagram, importer, offentlig API, hjelpefunksjon med linje-for-linje-tabeller, feilhåndtering og eksterne avhengigheter *(2026-05-09 00:00)*
+
+---
+
 #### Oppdatert GitHub Wiki-dokumentasjon for vault_skriver.py
 
 ##### Endret
