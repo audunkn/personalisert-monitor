@@ -13,6 +13,17 @@ Enumverdier for `komponent`-feltet: `sammendrag`, `dommer_validering`, `rag_gjen
 
 ### Ad hoc-endringer
 
+#### Teknisk kodedokumentasjon — obsidian_vakt.py og rss.py
+
+##### Lagt til
+- `github_wiki/obsidian_vakt_py_dokumentasjon.md` — teknisk kodedokumentasjon for `obsidian_vakt.py`; dekker watchdog-arkitektur, begge event-handler-klasser, alle hjelpefunksjoner med linje-for-linje-tabeller, feilhåndtering og avhengigheter *(2026-05-09 00:00)*
+- `github_wiki/rss_py_dokumentasjon.md` — teknisk kodedokumentasjon for `rss.py`; dekker RSS/Atom-innhenting, datointervall-filtrering, dedup-strategi, full artikkeltekst-henting og alle hjelpefunksjoner *(2026-05-09 00:00)*
+
+##### Endret
+- `wiki.sh` — utvidet med mappestruktur-støtte; filer kopieres til korrekt wiki-undermappe (`innhenter/`) basert på filnavn-mapping i `_wiki_mappe()`-funksjon *(2026-05-09 00:00)*
+
+---
+
 #### Teknisk kodedokumentasjon — kjører.py
 
 ##### Lagt til
