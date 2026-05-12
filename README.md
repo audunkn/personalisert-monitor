@@ -4,7 +4,7 @@
 
 En beslutninigstaker jobber med informasjon hele dagen. E-poster, møtereferater, rapporter, chat og beslutningsnotater strømmer inn fra mange hold. Det meste er relevant for noen, men sjelden alt relevant for deg. Å finne det som faktisk er viktig for dine beslutninigner tar mye tid.
 
-Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. Systemet er generisk og kan tilpasset et valgt domene eller rolle. Derfor har jeg tilpasset det til min daglige rolle som Business- og AI Controller, som krever løpende oversikt over fagblogger, forskningsartikler og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Jeg trenger derfor en løsning som hjelper meg med å holde meg oppdatert på det som skjer innenfor fagfeltet.
+Denne løsningen strukturerer og effektiviserer den prosessen med en full-stack AI-løsning skrevet i Python. Systemet er generisk og kan tilpasset et valgt domene eller rolle. Derfor har jeg tilpasset det til min daglige rolle som Rådgiver - AI & Automatisering, som krever løpende oversikt over fagblogger, forskningsartikler og teknologipublikasjoner. Volumet er høyt og tempoet er raskt. Jeg trenger derfor en løsning som hjelper meg med å holde meg oppdatert på det som skjer innenfor fagfeltet.
 
 ---
 
@@ -66,4 +66,4 @@ Hvert lag i systemet evalueres systematisk. Tilnærmingen følger Paul Iusztins 
 
 ## Forfatter
 
-Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audun-klarholm-nilsen-91b880174/), Business- og AI Controller - hjelper bedrifter med å skape skalerbar tillit og verdi med AI
+Bygget av [Audun Klarholm Nilsen](https://www.linkedin.com/in/audun-klarholm-nilsen-91b880174/), Rådgiver - KI & Automatisering - hjelper virksomheter med å skape skalerbar tillit og verdi
